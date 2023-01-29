@@ -1,0 +1,10 @@
+{
+    "extends": "@jdeurt",
+
+    "overrides": [
+        {
+            "files": ["test/**/*"],
+            "parserOptions": { "project": null }
+        }
+    ]
+}
