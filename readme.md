@@ -176,6 +176,7 @@ Retrieves the property of some input object at the provided path.
 
 -   Add support for async iterables.
 -   Add support for streams.
+-   Add support for CJS.
 
 ## Authors
 
