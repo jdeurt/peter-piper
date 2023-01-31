@@ -15,7 +15,7 @@ export const toAsyncIterable =
 /**
  * Maps some input stream to an equivalent async iterable.
  */
-export const steamToAsyncIterable =
+export const streamToAsyncIterable =
     <T>() =>
     (stream: ReadableStream<T>) => {
         return {
