@@ -12,7 +12,8 @@
     -   [Example usage](#example-usage)
         -   [Basic usage](#basic-usage)
         -   [Building functions](#building-functions)
-        -   [Usage with native functions](#usage-with-native-functions)
+        -   [Treating streams as iterables](#treating-streams-as-iterables)
+        -   [Custom adapters](#custom-adapters)
     -   [API](#api)
         -   [Adapters](#adapters)
             -   [withCustomAdapter](#withcustomadaptert-uadapter-adaptert-u)
@@ -115,12 +116,37 @@ const result = await using(stream).pipe(
 );
 ```
 
-### Usage with native functions
+### Custom adapters
 
 ```js
-import { isTruthy } from "peter-piper";
+import { using, withCustomAdapter, filterAsync } from "peter-piper";
 
-[0, 1, 2, 0, 1].filter(isTruthy()); // [1, 2, 1]
+const evenNumbers = using(0).pipe(
+    // withCustomAdapter allows us to easily create async iterables
+    withCustomAdapter(
+        // `startingValue` is the input.
+        // In this case, 0.
+        (startingValue) => {
+            let currValue = startingValue;
+
+            return {
+                next: async () => currValue++;
+            };
+        }
+    ),
+    filterAsync((x) => x % 2 === 0)
+);
+
+for await (const n of evenNumbers) {
+    console.log(n);
+}
+
+// 0
+// 2
+// 4
+// 6
+// 8
+// ...and so on
 ```
 
 ## API
