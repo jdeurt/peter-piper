@@ -9,6 +9,9 @@
     "types": "types/index.d.ts",
     "license": "MIT",
     "type": "module",
+    "publishConfig": {
+        "access": "public"
+    },
     "author": {
         "name": "Juan de Urtubey",
         "email": "jdeurt@gmail.com",
