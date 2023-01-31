@@ -1,8 +1,8 @@
 {
     "version": "0.0.0",
-    "name": "TODO_MODULE_NAME",
-    "repository": "TODO_USERNAME/TODO_REPO",
-    "description": "TODO_MODULE_DESCRIPTION",
+    "name": "peter-piper",
+    "repository": "jdeurt/peter-piper",
+    "description": "A zero-dependency collection of typed composable/pipable utility functions.",
     "unpkg": "dist/index.min.js",
     "module": "dist/index.mjs",
     "main": "dist/index.js",
@@ -29,6 +29,7 @@
         "node": ">=18"
     },
     "scripts": {
+        "generate-types": "node scripts/generators/types/pipe.js && node scripts/generators/types/cooked-pipe.js",
         "build": "rollup -c",
         "prepublishOnly": "npm run build",
         "types": "tsc --noEmit",
@@ -47,9 +48,11 @@
         ]
     },
     "keywords": [
-        "TODO",
-        "module",
-        "keywords"
+        "pipable",
+        "composable",
+        "utils",
+        "utilities",
+        "typed"
     ],
     "devDependencies": {
         "@fast-check/ava": "^1.1.3",

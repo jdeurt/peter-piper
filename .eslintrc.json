@@ -1,9 +1,13 @@
 {
     "extends": "@jdeurt",
 
+    "rules": {
+        "unicorn/consistent-function-scoping": "off"
+    },
+
     "overrides": [
         {
-            "files": ["test/**/*"],
+            "files": ["scripts/**/*", "test/**/*"],
             "parserOptions": { "project": null }
         }
     ]
