@@ -70,7 +70,7 @@ import { using, concat, filter, compare, map, toArray } from "peter-piper";
 const result = using([1, 2, 3]).pipe(
     concat([4, 5, 6]),
     filter(compare(">", 2)),
-    map((x) => x * 2)
+    map((x) => x * 2),
     toArray()
 );
 
