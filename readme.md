@@ -27,6 +27,7 @@
             -   [Misc](#misc)
                 -   [`deeplyEquals(y: unknown)`](#deeplyequalsy-unknown)
                 -   [`equals(y: unknown)`](#equalsy-unknown)
+                -   [`isOneOf<T>(values: T[])`](#isonofvalues-t)
                 -   [`pipe<T extends Pipable[]>(...args: T)`](#pipet-extends-pipableargs-t)
                 -   [`transform<T, U>(callback: (value: T) => U)`](#transformtu-callback-value-t--u)
             -   [Number](#number)
