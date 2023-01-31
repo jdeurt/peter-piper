@@ -2,7 +2,7 @@
     "version": "0.0.12",
     "name": "peter-piper",
     "repository": "jdeurt/peter-piper",
-    "description": "A zero-dependency collection of typed composable/pipable utility functions.",
+    "description": "A zero-dependency collection of typed composable/pipable utility functions with a focus on lazy evaluation.",
     "unpkg": "dist/index.min.js",
     "module": "dist/index.mjs",
     "main": "dist/index.js",

@@ -2,7 +2,7 @@
 
 # Peter Piper
 
-> A zero-dependency collection of typed composable/pipable utility functions.
+> A zero-dependency collection of typed composable/pipable utility functions with a focus on lazy evaluation.
 
 ## Table of contents
 
