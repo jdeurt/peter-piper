@@ -10,6 +10,9 @@
     -   [Table of contents](#table-of-contents)
     -   [Installation](#installation)
     -   [Example usage](#example-usage)
+        -   [Basic usage](#basic-usage)
+        -   [Building functions](#building-functions)
+        -   [Usage with native functions](#usage-with-native-functions)
     -   [API](#api)
         -   [Pipable helpers](#pipable-helpers)
             -   [Iterable](#iterable)
@@ -55,10 +58,12 @@ Or if you prefer using Yarn:
 $ yarn add peter-piper
 ```
 
-## Example Usage
+## Example usage
+
+### Basic usage
 
 ```js
-import { using, concat, filter, compare, map, toArray, isOneOf } from "peter-piper";
+import { using, concat, filter, compare, map, toArray } from "peter-piper";
 
 const result = using([1, 2, 3]).pipe(
     concat([4, 5, 6]),
@@ -67,9 +72,30 @@ const result = using([1, 2, 3]).pipe(
     toArray()
 );
 
-console.log(result); // [6, 8, 10, 12]
+result; // [6, 8, 10, 12]
+```
 
-console.log(result.filter(isOneOf([6, 10, 14]))); // [6, 10]
+### Building functions
+
+```js
+import { pipe, filter, compare } from "peter-piper";
+
+const getNumbersInRange = (from, to) =>
+    pipe(
+        filter(compare(">=", from)),
+        filter(compare("<=", to)), // Iterable helpers always return iterables
+        toArray() // So we convert the resuling iterable to an array.
+    );
+
+getNumbersInRange(3, 5)([1, 2, 3, 4, 5, 6, 7]); // [3, 4, 5]
+```
+
+### Usage with native functions
+
+```js
+import { isTruthy } from "peter-piper";
+
+[0, 1, 2, 0, 1].filter(isTruthy()); // [1, 2, 1]
 ```
 
 ## API
