@@ -11,20 +11,3 @@ export const toAsyncIterable =
             yield* iterable;
         },
     });
-
-/**
- * Maps some input stream to an equivalent async iterable.
- */
-export const streamToAsyncIterable =
-    <T>() =>
-    (stream: ReadableStream<T>) => {
-        return {
-            [Symbol.asyncIterator]: () => {
-                const reader = stream.getReader();
-                return {
-                    next: () => reader.read(),
-                    return: () => reader.releaseLock(),
-                };
-            },
-        };
-    };
