@@ -27,7 +27,7 @@ export default {
         },
     ],
     external: [
-        ...require("module").builtinModules,
+        ...(await import("module")).builtinModules,
         ...Object.keys(pkg.dependencies || {}),
         ...Object.keys(pkg.peerDependencies || {}),
     ],
