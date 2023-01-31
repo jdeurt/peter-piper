@@ -175,6 +175,7 @@ Retrieves the property of some input object at the provided path.
 ## TODO
 
 -   Add support for async iterables.
+-   Add support for streams.
 
 ## Authors
 
