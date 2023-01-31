@@ -1,1 +1,1 @@
-export { fork } from "./fork.js";
+export * from "./fork.js";

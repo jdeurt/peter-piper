@@ -16,31 +16,33 @@
     -   [API](#api)
         -   [Pipable helpers](#pipable-helpers)
             -   [Iterable](#iterable)
-                -   [`concat<T>(...iterable: Iterable<T>)`](#conctiterablet-iterablet)
-                -   [`every<T>(predicate: (value: T, index: number) => boolean)`](#everytpredicate-value-t-index-number--boolean)
-                -   [`filter<T>(predicate: (value: T, index: number) => boolean)`](#filtertpredicate-value-t-index-number--boolean)
-                -   [`find<T>(predicate: (value: T, index: number) => boolean)`](#findtpredicate-value-t-index-number--boolean)
-                -   [`isEmpty()`](#isempty)
-                -   [`map<T, U>(callback: (value: T, index: number) => U)`](#maptu-callback-value-t-index-number--u)
-                -   [`pluck<P extends string[]>(...path: P)`](#pluckp-extends-stringpath-p)
-                -   [`reduce<T, U = T>(callback: (accumulator: U, value: T, index: number) => U, initialValue?: U)`](#reducetu--t-callback-accumulator-u-value-t-index-number--u-initialvalue-u)
-                -   [`slice<T>(startIndex: number, endIndex = Number.POSITIVE_INFINITY)`](#slicetstartindex-number-endindex--numberpositiveinfinity)
-                -   [`some<T>(predicate: (value: T, index: number) => boolean)`](#sometpredicate-value-t-index-number--boolean)
-                -   [`toArray<T>()`](#toarrayt)
+                -   [concat](#conctiterablet-iterablet)
+                -   [every](#everytpredicate-value-t-index-number--boolean)
+                -   [filter](#filtertpredicate-value-t-index-number--boolean)
+                -   [find](#findtpredicate-value-t-index-number--boolean)
+                -   [isEmpty](#isempty)
+                -   [map](#maptu-callback-value-t-index-number--u)
+                -   [pluck](#pluckp-extends-stringpath-p)
+                -   [reduce](#reducetu--t-callback-accumulator-u-value-t-index-number--u-initialvalue-u)
+                -   [slice](#slicetstartindex-number-endindex--numberpositiveinfinity)
+                -   [some](#sometpredicate-value-t-index-number--boolean)
+                -   [toArray](#toarrayt)
+                -   [toAsyncIterable](#toasynciterablet)
+                -   [streamToAsyncIterable](#streamtoasynciterablet)
             -   [Logic](#logic)
-                -   [`fork<T extends ForkPath[]>(...paths: T)`](#forkt-extends-forkpathpaths-t)
+                -   [fork](#forkt-extends-forkpathpaths-t)
             -   [Misc](#misc)
-                -   [`deeplyEquals(y: unknown)`](#deeplyequalsy-unknown)
-                -   [`equals(y: unknown)`](#equalsy-unknown)
-                -   [`isFalsy()`](#isfalsy)
-                -   [`isOneOf<T>(values: T[])`](#isonofvalues-t)
-                -   [`isTruthy()`](#istruthy)
-                -   [`pipe<T extends Pipable[]>(...args: T)`](#pipet-extends-pipableargs-t)
-                -   [`transform<T, U>(callback: (value: T) => U)`](#transformtu-callback-value-t--u)
+                -   [deeplyEquals](#deeplyequalsy-unknown)
+                -   [equals](#equalsy-unknown)
+                -   [isFalsy](#isfalsy)
+                -   [isOneOf](#isonofvalues-t)
+                -   [isTruthy](#istruthy)
+                -   [pipe](#pipet-extends-pipableargs-t)
+                -   [transform](#transformtu-callback-value-t--u)
             -   [Number](#number)
-                -   [`compare(op: ComparisonOperator, x: number)`](#compareop-comparisonoperator-x-number)
+                -   [compare](#compareop-comparisonoperator-x-number)
             -   [Object](#object)
-                -   [`pick<P extends string[]>(...path: P)`](#pickp-extends-stringpath-p)
+                -   [pick](#pickp-extends-stringpath-p)
     -   [Authors](#authors)
     -   [License](#license)
 
@@ -75,6 +77,28 @@ const result = using([1, 2, 3]).pipe(
 result; // [6, 8, 10, 12]
 ```
 
+### Treating streams as iterables
+
+```js
+import {
+    using,
+    streamToAsyncIterable,
+    sliceAsync,
+    filterAsync,
+    compare,
+    toArrayAsync,
+} from "peter-piper";
+
+const result = await using(stream).pipe(
+    streamToAsyncIterable(),
+    // Iterables are evaluated lazyily.
+    // `sliceAsync` will just limit the iterations to 10 below.
+    sliceAsync(0, 10),
+    filterAsync(compare("<", 0)),
+    toArrayAsync()
+);
+```
+
 ### Building functions
 
 ```js
@@ -106,49 +130,59 @@ import { isTruthy } from "peter-piper";
 
 ##### `concat<T>(...iterable: Iterable<T>)`
 
-Creates an iterable by concatenates an arbitrary amount of iterables to some base iterable.
+Creates an iterable by concatenating an arbitrary amount of iterables to some base iterable. Has an async variant.
 
 ##### `every<T>(predicate: (value: T, index: number) => boolean)`
 
-Tests whether all values of some input iterable satisfy the provided predicate.
+Tests whether all values of some input iterable satisfy the provided predicate. Has an async variant.
 
 ##### `filter<T>(predicate: (value: T, index: number) => boolean)`
 
-Creates a new iterable containing all values of some input iterable that satisfy the provided predicate.
+Creates a new iterable containing all values of some input iterable that satisfy the provided predicate. Has an async variant.
 
 ##### `find<T>(predicate: (value: T, index: number) => boolean)`
 
-Retrieves the first value of some input iterable that satisfies the provided predicate.
+Retrieves the first value of some input iterable that satisfies the provided predicate. Has an async variant.
 
 ##### `isEmpty()`
 
-Returns `true` if some input iterable is empty (i.e. can' produce any values). Returns `false` otherwise.
+Returns `true` if some input iterable is empty (i.e. can' produce any values). Returns `false` otherwise. Has an async variant.
 
 ##### `map<T, U>(callback: (value: T, index: number) => U)`
 
-Creates a new iterable which's values are the result of mapping some input iterable using the provided callback function.
+Creates a new iterable which's values are the result of mapping some input iterable using the provided callback function. Has an async variant.
 
 ##### `pluck<P extends string[]>(...path: P)`
 
-Creates a new iterable which's values are the properties of the values of some input iterable at the provided path.
+Creates a new iterable which's values are the properties of the values of some input iterable at the provided path. Has an async variant.
 
 ##### `reduce<T, U = T>(callback: (accumulator: U, value: T, index: number) => U, initialValue?: U)`
 
 Reduces some input iterable to a value using the provided callback function.
 If no initial value is provided, the accumulator starts as the first value of the input iterable and the reducer is ran on the rest of the iterable's values.
+Has an async variant.
 
 ##### `slice<T>(startIndex: number, endIndex = Number.POSITIVE_INFINITY)`
 
 Creates a new iterable by slicing some input iterable from the provided start index (inclusive) to the provided end index (exclusive).
 If no end index is provided, `Number.POSITIVE_INFINITY` is used instead.
+Has an async variant.
 
 ##### `some<T>(predicate: (value: T, index: number) => boolean)`
 
-Tests whether any values of some input iterable satisfy the provided predicate.
+Tests whether any values of some input iterable satisfy the provided predicate. Has an async variant.
 
 ##### `toArray<T>()`
 
-Creates a new array from the values of some input iterable.
+Creates a new array from the values of some input iterable. Has an async variant.
+
+#### `toAsyncIterable<T>()`
+
+Maps some input iterable to an equivalent async iterable.
+
+#### `streamToAsyncIterable<T>()`
+
+Maps some input stream to an equivalent async iterable.
 
 #### Logic
 
@@ -184,7 +218,7 @@ Pipes some input value through a series of functions, returning the result.
 
 ##### `transform<T, U>(callback: (value: T) => U)`
 
-Transforms some input value via the provided callback function.
+Transforms some input value via the provided callback function. Has an async variant.
 
 #### Number
 
@@ -200,8 +234,8 @@ Retrieves the property of some input object at the provided path.
 
 ## TODO
 
--   Add support for async iterables.
--   Add support for streams.
+-   Add runtime type-safety.
+-   Add support for Websocket -> AsyncIterable transformations.
 -   Add support for CJS.
 
 ## Authors
