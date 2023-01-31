@@ -15,6 +15,7 @@
         -   [Usage with native functions](#usage-with-native-functions)
     -   [API](#api)
         -   [Adapters](#adapters)
+            -   [withCustomAdapter](#withcustomadaptert-uadapter-adaptert-u)
             -   [withStreamAdapter](#withstreamadaptert)
         -   [Iterable helpers](#iterable-helpers)
             -   [concat](#conctiterablet-iterablet)
@@ -125,6 +126,10 @@ import { isTruthy } from "peter-piper";
 ## API
 
 ### Adapters
+
+#### `withCustomAdapter<T, U>(adapter: Adapter<T, U>)`
+
+Maps some input value to an equivalent async iterable.
 
 #### `withStreamAdapter<T>()`
 
