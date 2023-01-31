@@ -1,1 +1,1 @@
-export { compare } from "./compare.js";
+export * from "./compare.js";

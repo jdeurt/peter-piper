@@ -106,7 +106,7 @@ import { isTruthy } from "peter-piper";
 
 ##### `concat<T>(...iterable: Iterable<T>)`
 
-Creates an iterable by concatenates an arbitrary amount of iterables to some base iterable.
+Creates an iterable by concatenating an arbitrary amount of iterables to some base iterable.
 
 ##### `every<T>(predicate: (value: T, index: number) => boolean)`
 
@@ -202,6 +202,7 @@ Retrieves the property of some input object at the provided path.
 
 -   Add support for async iterables.
 -   Add support for streams.
+-   Add support for Websocket -> AsyncIterable transformations.
 -   Add support for CJS.
 
 ## Authors

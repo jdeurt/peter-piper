@@ -1,1 +1,1 @@
-export { pick } from "./pick.js";
+export * from "./pick.js";
