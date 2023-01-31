@@ -15,10 +15,7 @@ export type Last<T extends unknown[]> = T extends [
     : never;
 
 export type Head<T extends unknown[]> = T[0];
-export type Tail<T extends unknown[]> = T extends [
-    unknown,
-    ...infer U extends T
-]
+export type Tail<T extends unknown[]> = T extends [unknown, ...infer U]
     ? U
     : never;
 

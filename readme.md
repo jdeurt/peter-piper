@@ -24,10 +24,14 @@
                 -   [`slice<T>(startIndex: number, endIndex = Number.POSITIVE_INFINITY)`](#slicetstartindex-number-endindex--numberpositiveinfinity)
                 -   [`some<T>(predicate: (value: T, index: number) => boolean)`](#sometpredicate-value-t-index-number--boolean)
                 -   [`toArray<T>()`](#toarrayt)
+            -   [Logic](#logic)
+                -   [`fork<T extends ForkPath[]>(...paths: T)`](#forkt-extends-forkpathpaths-t)
             -   [Misc](#misc)
                 -   [`deeplyEquals(y: unknown)`](#deeplyequalsy-unknown)
                 -   [`equals(y: unknown)`](#equalsy-unknown)
+                -   [`isFalsy()`](#isfalsy)
                 -   [`isOneOf<T>(values: T[])`](#isonofvalues-t)
+                -   [`isTruthy()`](#istruthy)
                 -   [`pipe<T extends Pipable[]>(...args: T)`](#pipet-extends-pipableargs-t)
                 -   [`transform<T, U>(callback: (value: T) => U)`](#transformtu-callback-value-t--u)
             -   [Number](#number)
@@ -120,6 +124,12 @@ Tests whether any values of some input iterable satisfy the provided predicate.
 
 Creates a new array from the values of some input iterable.
 
+#### Logic
+
+##### `fork<T extends ForkPath[]>(...paths: T)`
+
+Finds the first path pair where some input value satisfies that pair's predicate and returns the result of passing said input value to that pair's callback function.
+
 #### Misc
 
 ##### `deeplyEquals(y: unknown)`
@@ -130,9 +140,17 @@ Returns `true` if `x` is deeply (recursively) equal to `y`. Returns `false` othe
 
 Returns `true` if `x` strictly equals `y`. Returns `false` otherwise.
 
+##### `isFalsy()`
+
+Returns `true` is some input value is [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy). Returns `false` otherwise.
+
 #### `isOneOf<T>(value: T[])`
 
 Returns `true` if some input value is present in the provided array of values. Returns `false` otherwise.
+
+##### `isTruthy()`
+
+Returns `true` is some input value is [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy). Returns `false` otherwise.
 
 ##### `pipe<T extends Pipable[]>(...args: T)`
 
