@@ -32,8 +32,6 @@
             -   [some](#sometpredicate-value-t-index-number--boolean)
             -   [toArray](#toarrayt)
             -   [toAsyncIterable](#toasynciterablet)
-        -   [Logic helpers](#logic-helpers)
-            -   [fork](#forkt-extends-forkpathpaths-t)
         -   [Misc helpers](#misc-helpers)
             -   [deeplyEquals](#deeplyequalsy-unknown)
             -   [equals](#equalsy-unknown)
@@ -46,6 +44,9 @@
             -   [compare](#compareop-comparisonoperator-x-number)
         -   [Object helpers](#object-helpers)
             -   [pick](#pickp-extends-stringpath-p)
+        -   [Routing helpers](#routing-helpers)
+            -   [fork](#forkt-extends-forkpathpaths-t)
+            -   [match](#matcht-extends-matchpathpaths-t)
     -   [Authors](#authors)
     -   [License](#license)
 
@@ -243,42 +244,6 @@ Creates a new array from the values of some input iterable. Has an async variant
 
 Maps some input iterable to an equivalent async iterable.
 
-### Routing helpers
-
-#### `fork<T extends ForkPath[]>(...paths: T)`
-
-Passes some input value to an arbitrary amount of executions paths and returns a tuple containing the result of each execution path in order.
-
-**Usage**
-
-```ts
-// Returns [1, 2, 3]
-using(0).pipe(
-    fork(
-        (x) => x + 1,
-        (x) => x + 2,
-        (x) => x + 3
-    )
-);
-```
-
-#### `match<T extends MatchPath[]>(...paths: T)`
-
-Finds the first path pair where some input value satisfies that pair's predicate and returns the result of passing said input value to that pair's callback function.
-
-**Usage**
-
-```ts
-// Returns 3
-using(1).pipe(
-    fork(
-        [compare("<", 1), (x) => x + 1], // No match...
-        [compare("<", 2), (x) => x + 2], // Match!
-        [compare("<", 3), (x) => x + 3]
-    )
-);
-```
-
 ### Misc helpers
 
 #### `deeplyEquals(y: unknown)`
@@ -320,6 +285,42 @@ Compares some input `n` to `x` using the provided comparison operator and return
 #### `pick<P extends string[]>(...path: P)`
 
 Retrieves the property of some input object at the provided path.
+
+### Routing helpers
+
+#### `fork<T extends ForkPath[]>(...paths: T)`
+
+Passes some input value to an arbitrary amount of executions paths and returns a tuple containing the result of each execution path in order.
+
+**Usage**
+
+```ts
+// Returns [1, 2, 3]
+using(0).pipe(
+    fork(
+        (x) => x + 1,
+        (x) => x + 2,
+        (x) => x + 3
+    )
+);
+```
+
+#### `match<T extends MatchPath[]>(...paths: T)`
+
+Finds the first path pair where some input value satisfies that pair's predicate and returns the result of passing said input value to that pair's callback function.
+
+**Usage**
+
+```ts
+// Returns 3
+using(1).pipe(
+    fork(
+        [compare("<", 1), (x) => x + 1], // No match...
+        [compare("<", 2), (x) => x + 2], // Match!
+        [compare("<", 3), (x) => x + 3]
+    )
+);
+```
 
 ## TODO
 
