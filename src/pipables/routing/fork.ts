@@ -14,7 +14,7 @@ type ForkPathReturnValueType<T extends ForkPath[]> = T extends [
     : [];
 
 /**
- * Passes some input value to an arbitrary amount of executions paths and returns a tuple containing the result of each execution path in order.
+ * Passes some input value to an arbitrary amount of execution paths and returns a tuple containing the result of each execution path in order.
  */
 export const fork =
     <T extends ForkPath[]>(...paths: T) =>
