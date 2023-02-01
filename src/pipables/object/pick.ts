@@ -2,6 +2,11 @@ import type { Traverse } from "../../types/traverse.js";
 
 /**
  * Retrieves the property of some input object at the provided path.
+ * @behavior greedy
+ * @example
+ * using({ a: { b: 1 } }).pipe(
+ *     pick("a", "b")
+ * );
  */
 export const pick =
     <P extends string[]>(...path: P) =>

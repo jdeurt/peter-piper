@@ -1,24 +1,29 @@
 import type { AnyIterable } from "../../types/iterable.js";
-import type { MaybePromise } from "../../types/maybe-promise.js";
 import { toAsyncIterable } from "./to-async-iterable.js";
 
 /**
- * Creates a new iterable which's values are the result of mapping some input iterable using the provided callback function.
+ * Creates a new iterable containing only the first `x` values of some input iterable.
  * @behavior lazy
  * @example
  * using([1, 2, 3]).pipe(
- *     map((x) => x * 2)
+ *     limit(2)
  * );
  */
-export const map =
-    <T, U>(callback: (value: T, index: number) => MaybePromise<U>) =>
+export const limit =
+    <T>(x: number) =>
     (iterable: AnyIterable<T>) =>
         ({
             [Symbol.asyncIterator]: async function* () {
                 let index = 0;
 
                 for await (const value of toAsyncIterable<T>()(iterable)) {
-                    yield await callback(value, index++);
+                    if (index === x) {
+                        return;
+                    }
+
+                    yield value;
+
+                    index++;
                 }
             },
-        } as AsyncIterable<U>);
+        } as AsyncIterable<T>);

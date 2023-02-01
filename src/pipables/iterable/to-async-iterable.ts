@@ -2,6 +2,12 @@ import type { AnyIterable } from "../../types/iterable.js";
 
 /**
  * Maps some input iterable to an equivalent async iterable.
+ * Note that all iterable helpers already do this implicitly.
+ * @behavior lazy
+ * @example
+ * using([1, 2, 3]).pipe(
+ *     toAsyncIterable()
+ * );
  */
 export const toAsyncIterable =
     <T>() =>

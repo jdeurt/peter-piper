@@ -3,16 +3,13 @@ import { toAsyncIterable } from "./to-async-iterable.js";
 
 /**
  * Creates a new array from the values of some input iterable.
+ * @behavior greedy
+ * @example
+ * using(new Set([1, 2, 3])).pipe(
+ *     toArray()
+ * );
  */
 export const toArray =
-    <T>() =>
-    (iterable: Iterable<T>) =>
-        [...iterable];
-
-/**
- * Asynchronously creates a new array from the values of some input iterable.
- */
-export const toArrayAsync =
     <T>() =>
     async (iterable: AnyIterable<T>) => {
         const result: T[] = [];

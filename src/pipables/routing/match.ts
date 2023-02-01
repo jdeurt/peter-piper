@@ -22,6 +22,14 @@ type MatchPathReturnValueType<T extends MatchPath[]> = T extends [
 
 /**
  * Finds the first path pair where some input value satisfies that pair's predicate and returns the result of passing said input value to that pair's callback function.
+ * @behavior greedy
+ * @example
+ * using(1).pipe(
+ *     match(
+ *         [equals(0), (x) => x + 1],
+ *         [equals(1), (x) => x - 1]
+ *     )
+ * );
  */
 export const match =
     <T extends MatchPath[]>(...paths: T) =>

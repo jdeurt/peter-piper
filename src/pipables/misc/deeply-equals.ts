@@ -1,5 +1,10 @@
 /**
  * Returns `true` if `x` is deeply (recursively) equal to `y`. Returns `false` otherwise.
+ * @behavior greedy
+ * @example
+ * using(someObject).pipe(
+ *     deeplyEquals(someOtherObject)
+ * );
  */
 // eslint-disable-next-line sonarjs/cognitive-complexity
 export const deeplyEquals = (y: unknown) => (x: unknown) => {
