@@ -1,5 +1,6 @@
-import type { AnyIterable } from "../../types/iterable.js";
+import type { AnyIterable } from "../../types/any-iterable.js";
 import { toAsyncIterable } from "./to-async-iterable.js";
+import { withIterableAssertion } from "../../util/type-assertions/assert-iterable.js";
 
 /**
  * Creates a new iterable by slicing some input iterable from the provided start index (inclusive) to the provided end index (exclusive).
@@ -10,23 +11,27 @@ import { toAsyncIterable } from "./to-async-iterable.js";
  *     slice(1, 3)
  * );
  */
-export const slice =
-    <T>(startIndex: number, endIndex = Number.POSITIVE_INFINITY) =>
-    (input: AnyIterable<T>) =>
-        ({
-            [Symbol.asyncIterator]: async function* () {
-                let index = 0;
+export const slice = <T>(
+    startIndex: number,
+    endIndex = Number.POSITIVE_INFINITY
+) =>
+    withIterableAssertion(
+        (input: AnyIterable<T>) =>
+            ({
+                [Symbol.asyncIterator]: async function* () {
+                    let index = 0;
 
-                for await (const value of toAsyncIterable<T>()(input)) {
-                    if (index === endIndex) {
-                        return;
+                    for await (const value of toAsyncIterable<T>()(input)) {
+                        if (index === endIndex) {
+                            return;
+                        }
+
+                        if (index >= startIndex) {
+                            yield value;
+                        }
+
+                        index++;
                     }
-
-                    if (index >= startIndex) {
-                        yield value;
-                    }
-
-                    index++;
-                }
-            },
-        } as AsyncIterable<T>);
+                },
+            } as AsyncIterable<T>)
+    );

@@ -1,11 +1,15 @@
+import { assertReadableStream } from "../../util/type-assertions/assert-readable-stream.js";
+
 /**
  * Maps some input stream to an equivalent async iterable.
  * @group Adapters
  */
 export const withStreamAdapter =
     <T>() =>
-    (input: ReadableStream<T>) =>
-        ({
+    (input: ReadableStream<T>) => {
+        assertReadableStream(input);
+
+        return {
             [Symbol.asyncIterator]: () => {
                 const reader = input.getReader();
 
@@ -14,7 +18,8 @@ export const withStreamAdapter =
                     return: () => reader.releaseLock(),
                 };
             },
-        } as AsyncIterable<T>);
+        } as AsyncIterable<T>;
+    };
 
 /**
  * A non-currying variant of {@link withStreamAdapter}.

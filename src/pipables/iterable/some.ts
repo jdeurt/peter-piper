@@ -1,6 +1,7 @@
-import type { AnyIterable } from "../../types/iterable.js";
+import type { AnyIterable } from "../../types/any-iterable.js";
 import type { MaybePromise } from "../../types/maybe-promise.js";
 import { toAsyncIterable } from "./to-async-iterable.js";
+import { withIterableAssertion } from "../../util/type-assertions/assert-iterable.js";
 
 /**
  * Tests whether any values of some input iterable satisfy the provided predicate.
@@ -10,9 +11,10 @@ import { toAsyncIterable } from "./to-async-iterable.js";
  *     some((x) => x === 2)
  * );
  */
-export const some =
-    <T>(predicate: (value: T, index: number) => MaybePromise<boolean>) =>
-    async (input: AnyIterable<T>) => {
+export const some = <T>(
+    predicate: (value: T, index: number) => MaybePromise<boolean>
+) =>
+    withIterableAssertion(async (input: AnyIterable<T>) => {
         let index = 0;
         let accumulator = false;
 
@@ -21,4 +23,4 @@ export const some =
         }
 
         return accumulator;
-    };
+    });

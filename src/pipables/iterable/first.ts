@@ -1,6 +1,7 @@
-import type { AnyIterable } from "../../types/iterable.js";
+import type { AnyIterable } from "../../types/any-iterable.js";
 import type { MaybePromise } from "../../types/maybe-promise.js";
 import { toAsyncIterable } from "./to-async-iterable.js";
+import { withIterableAssertion } from "../../util/type-assertions/assert-iterable.js";
 
 /**
  * Creates an iterable containing only the first value of some input iterable or, if a predicate is provided, the first value to satisfy that predicate.
@@ -10,9 +11,10 @@ import { toAsyncIterable } from "./to-async-iterable.js";
  *     first((x) => x === 2)
  * );
  */
-export const first =
-    <T>(predicate?: (value: T, index: number) => MaybePromise<boolean>) =>
-    (input: AnyIterable<T>) => {
+export const first = <T>(
+    predicate?: (value: T, index: number) => MaybePromise<boolean>
+) =>
+    withIterableAssertion((input: AnyIterable<T>) => {
         let index = 0;
 
         return {
@@ -30,4 +32,4 @@ export const first =
                 }
             },
         } as AsyncIterable<T>;
-    };
+    });

@@ -57,27 +57,21 @@ getNumbersInRange(3, 5)([1, 2, 3, 4, 5, 6, 7]); // [3, 4, 5]
 ### Treating streams as iterables
 
 ```js
-import {
-    using,
-    streamAdapter,
-    sliceAsync,
-    filterAsync,
-    toArrayAsync,
-} from "peter-piper";
+import { using, streamAdapter, slice, filter, toArray } from "peter-piper";
 
 const result = await using(streamAdapter(stream)).pipe(
     // Iterables are evaluated lazily.
-    // `sliceAsync` will limit the iterations to 10.
-    sliceAsync(0, 10),
-    filterAsync((x) => x <= 10),
-    toArrayAsync()
+    // `slice` will limit the iterations to 10.
+    slice(0, 10),
+    filter((x) => x <= 10),
+    toArray()
 );
 ```
 
 ### Custom adapters
 
 ```js
-import { using, withCustomAdapter, filterAsync } from "peter-piper";
+import { using, withCustomAdapter, filter } from "peter-piper";
 
 const evenNumbers = using(0).pipe(
     // `withCustomAdapter` allows us to easily create async iterables.
@@ -92,7 +86,7 @@ const evenNumbers = using(0).pipe(
             };
         }
     ),
-    filterAsync((x) => x % 2 === 0)
+    filter((x) => x % 2 === 0)
 );
 
 for await (const n of evenNumbers) {
@@ -109,7 +103,6 @@ for await (const n of evenNumbers) {
 
 ## TODO
 
--   Add runtime type-safety.
 -   Add support for Websocket -> AsyncIterable transformations.
 -   Add support for CJS.
 

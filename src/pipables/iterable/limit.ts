@@ -1,5 +1,6 @@
-import type { AnyIterable } from "../../types/iterable.js";
+import type { AnyIterable } from "../../types/any-iterable.js";
 import { toAsyncIterable } from "./to-async-iterable.js";
+import { withIterableAssertion } from "../../util/type-assertions/assert-iterable.js";
 
 /**
  * Creates a new iterable containing only the first `x` values of some input iterable.
@@ -9,21 +10,22 @@ import { toAsyncIterable } from "./to-async-iterable.js";
  *     limit(2)
  * );
  */
-export const limit =
-    <T>(x: number) =>
-    (input: AnyIterable<T>) =>
-        ({
-            [Symbol.asyncIterator]: async function* () {
-                let index = 0;
+export const limit = <T>(x: number) =>
+    withIterableAssertion(
+        (input: AnyIterable<T>) =>
+            ({
+                [Symbol.asyncIterator]: async function* () {
+                    let index = 0;
 
-                for await (const value of toAsyncIterable<T>()(input)) {
-                    if (index === x) {
-                        return;
+                    for await (const value of toAsyncIterable<T>()(input)) {
+                        if (index === x) {
+                            return;
+                        }
+
+                        yield value;
+
+                        index++;
                     }
-
-                    yield value;
-
-                    index++;
-                }
-            },
-        } as AsyncIterable<T>);
+                },
+            } as AsyncIterable<T>)
+    );

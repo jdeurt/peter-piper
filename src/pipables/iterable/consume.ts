@@ -1,6 +1,7 @@
-import type { AnyIterable } from "../../types/iterable.js";
+import type { AnyIterable } from "../../types/any-iterable.js";
 import type { MaybePromise } from "../../types/maybe-promise.js";
 import { toAsyncIterable } from "./to-async-iterable.js";
+import { withIterableAssertion } from "../../util/type-assertions/assert-iterable.js";
 
 /**
  * Fully consumes some input iterable while passing each value of the iterable to the provided callback function. The values returned from calling the callback function are returned as an array.
@@ -10,9 +11,8 @@ import { toAsyncIterable } from "./to-async-iterable.js";
  *     consume((x) => x);
  * );
  */
-export const consume =
-    <T, U>(callback: (value: T) => MaybePromise<U>) =>
-    async (input: AnyIterable<T>) => {
+export const consume = <T, U>(callback: (value: T) => MaybePromise<U>) =>
+    withIterableAssertion(async (input: AnyIterable<T>) => {
         const results: U[] = [];
 
         for await (const value of toAsyncIterable<T>()(input)) {
@@ -20,4 +20,4 @@ export const consume =
         }
 
         return results;
-    };
+    });

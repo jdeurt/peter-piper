@@ -1,23 +1,35 @@
+import type { MaybePromise } from "../../types/maybe-promise.js";
+
 type MatchPath<T = never, U = unknown> = [
-    predicate: (value: T) => boolean,
+    predicate: (value: T) => MaybePromise<boolean>,
     callback: (value: T) => U
 ];
 
-type MatchPathInputValueType<T extends MatchPath[]> = T extends [
-    infer Head extends MatchPath,
-    ...infer Tail extends MatchPath[]
+type FallbackPath<T = never, U = unknown> = [callback: (value: T) => U];
+
+type MatchPathInputValueType<
+    T extends MatchPath[] | [...MatchPath[], FallbackPath]
+> = T extends [
+    infer Head extends MatchPath | FallbackPath,
+    ...infer Tail extends MatchPath[] | [...MatchPath[], FallbackPath]
 ]
-    ?
-          | Parameters<Head[0]>[0]
-          | Parameters<Head[1]>[0]
-          | MatchPathInputValueType<Tail>
+    ? Head extends MatchPath
+        ?
+              | Parameters<Head[0]>[0]
+              | Parameters<Head[1]>[0]
+              | MatchPathInputValueType<Tail>
+        : Parameters<Head[0]>[0] | MatchPathInputValueType<Tail>
     : never;
 
-type MatchPathReturnValueType<T extends MatchPath[]> = T extends [
-    infer Head extends MatchPath,
-    ...infer Tail extends MatchPath[]
+type MatchPathReturnValueType<
+    T extends MatchPath[] | [...MatchPath[], FallbackPath]
+> = T extends [
+    infer Head extends MatchPath | FallbackPath,
+    ...infer Tail extends MatchPath[] | [...MatchPath[], FallbackPath]
 ]
-    ? ReturnType<Head[1]> | MatchPathReturnValueType<Tail>
+    ? Head extends MatchPath
+        ? ReturnType<Head[1]> | MatchPathReturnValueType<Tail>
+        : ReturnType<Head[0]> | MatchPathReturnValueType<Tail>
     : never;
 
 /**
@@ -32,8 +44,18 @@ type MatchPathReturnValueType<T extends MatchPath[]> = T extends [
  * );
  */
 export const match =
-    <T extends MatchPath[]>(...paths: T) =>
-    (input: MatchPathInputValueType<T>) =>
-        paths.find(([predicate]) => predicate(input))?.[1](input) as
-            | MatchPathReturnValueType<T>
-            | undefined;
+    <T extends MatchPath[] | [...MatchPath[], FallbackPath]>(...paths: T) =>
+    async (input: MatchPathInputValueType<T>) => {
+        for (const path of paths) {
+            const predicate = path.length === 2 ? path[0] : undefined;
+            const callback = path.length === 2 ? path[1] : path[0];
+
+            if ((await predicate?.(input)) ?? true) {
+                return callback(input) as MatchPathReturnValueType<T>;
+            }
+        }
+
+        return (paths[paths.length - 1] as FallbackPath)[0](
+            input
+        ) as MatchPathReturnValueType<T>;
+    };

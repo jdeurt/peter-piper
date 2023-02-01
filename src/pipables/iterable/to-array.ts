@@ -1,5 +1,6 @@
-import type { AnyIterable } from "../../types/iterable.js";
+import type { AnyIterable } from "../../types/any-iterable.js";
 import { toAsyncIterable } from "./to-async-iterable.js";
+import { withIterableAssertion } from "../../util/type-assertions/assert-iterable.js";
 
 /**
  * Creates a new array from the values of some input iterable.
@@ -9,9 +10,8 @@ import { toAsyncIterable } from "./to-async-iterable.js";
  *     toArray()
  * );
  */
-export const toArray =
-    <T>() =>
-    async (input: AnyIterable<T>) => {
+export const toArray = <T>() =>
+    withIterableAssertion(async (input: AnyIterable<T>) => {
         const result: T[] = [];
 
         for await (const value of toAsyncIterable<T>()(input)) {
@@ -19,4 +19,4 @@ export const toArray =
         }
 
         return result;
-    };
+    });

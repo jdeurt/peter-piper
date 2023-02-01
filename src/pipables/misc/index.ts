@@ -1,3 +1,4 @@
+export * from "./assert-type.js";
 export * from "./deeply-equals.js";
 export * from "./equals.js";
 export * from "./is-falsy.js";

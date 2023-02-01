@@ -5,11 +5,11 @@ import { match } from "../../../src/index.js";
 testProp(
     "should allow for basic pattern-matching behavior",
     [fc.hexa(), fc.tuple(fc.hexa(), fc.hexa())],
-    (t, char, charArr) =>
+    async (t, char, charArr) =>
         t.is(
-            match(
+            await match(
                 [(x: string) => charArr.includes(x), () => true],
-                [(x: string) => !charArr.includes(x), () => false]
+                [() => false]
             )(char),
             charArr.includes(char)
         )

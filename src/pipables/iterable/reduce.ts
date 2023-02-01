@@ -1,7 +1,8 @@
-import type { AnyIterable } from "../../types/iterable.js";
+import type { AnyIterable } from "../../types/any-iterable.js";
 import type { MaybePromise } from "../../types/maybe-promise.js";
 import { NOTHING } from "../../constants/nothing.js";
 import { toAsyncIterable } from "./to-async-iterable.js";
+import { withIterableAssertion } from "../../util/type-assertions/assert-iterable.js";
 
 /**
  * Reduces some input iterable to a value using the provided callback function.
@@ -16,7 +17,7 @@ export function reduce<T, U = T>(
     callback: (accumulator: U, value: T, index: number) => MaybePromise<U>,
     initialValue?: U
 ) {
-    return async (input: AnyIterable<T>) => {
+    return withIterableAssertion(async (input: AnyIterable<T>) => {
         let index = 0;
         let accumulator: U | typeof NOTHING =
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -40,5 +41,5 @@ export function reduce<T, U = T>(
         }
 
         return accumulator;
-    };
+    });
 }

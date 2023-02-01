@@ -1,5 +1,6 @@
-import type { AnyIterable } from "../../types/iterable.js";
+import type { AnyIterable } from "../../types/any-iterable.js";
 import { toAsyncIterable } from "./to-async-iterable.js";
+import { withIterableAssertion } from "../../util/type-assertions/assert-iterable.js";
 
 /**
  * Returns `Promise<true>` if some input iterable is empty (i.e. can't produce any values). Returns `Promise<false>` otherwise.
@@ -9,8 +10,10 @@ import { toAsyncIterable } from "./to-async-iterable.js";
  *     isEmpty()
  * )
  */
-export const isEmpty = () => (input: AnyIterable<unknown>) =>
-    toAsyncIterable()(input)
-        [Symbol.asyncIterator]()
-        .next()
-        .then(({ done }) => Boolean(done));
+export const isEmpty = () =>
+    withIterableAssertion((input: AnyIterable<unknown>) =>
+        toAsyncIterable()(input)
+            [Symbol.asyncIterator]()
+            .next()
+            .then(({ done }) => Boolean(done))
+    );

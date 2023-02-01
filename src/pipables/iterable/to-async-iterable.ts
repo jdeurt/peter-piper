@@ -1,4 +1,5 @@
-import type { AnyIterable } from "../../types/iterable.js";
+import type { AnyIterable } from "../../types/any-iterable.js";
+import { withIterableAssertion } from "../../util/type-assertions/assert-iterable.js";
 
 /**
  * Maps some input iterable to an equivalent async iterable.
@@ -9,11 +10,12 @@ import type { AnyIterable } from "../../types/iterable.js";
  *     toAsyncIterable()
  * );
  */
-export const toAsyncIterable =
-    <T>() =>
-    (input: AnyIterable<T>): AsyncIterable<T> => ({
-        // eslint-disable-next-line @typescript-eslint/require-await
-        [Symbol.asyncIterator]: async function* () {
-            yield* input;
-        },
-    });
+export const toAsyncIterable = <T>() =>
+    withIterableAssertion(
+        (input: AnyIterable<T>): AsyncIterable<T> => ({
+            // eslint-disable-next-line @typescript-eslint/require-await
+            [Symbol.asyncIterator]: async function* () {
+                yield* input;
+            },
+        })
+    );
