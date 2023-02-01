@@ -101,15 +101,14 @@ getNumbersInRange(3, 5)([1, 2, 3, 4, 5, 6, 7]); // [3, 4, 5]
 ```js
 import {
     using,
-    streamToAsyncIterable,
+    streamAdapter,
     sliceAsync,
     filterAsync,
     compare,
     toArrayAsync,
 } from "peter-piper";
 
-const result = await using(stream).pipe(
-    streamToAsyncIterable(),
+const result = await using(streamAdapter(stream)).pipe(
     // Iterables are evaluated lazyily.
     // `sliceAsync` will just limit the iterations to 10 below.
     sliceAsync(0, 10),
