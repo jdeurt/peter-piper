@@ -123,7 +123,7 @@ const result = await using(stream).pipe(
 import { using, withCustomAdapter, filterAsync } from "peter-piper";
 
 const evenNumbers = using(0).pipe(
-    // withCustomAdapter allows us to easily create async iterables
+    // `withCustomAdapter` allows us to easily create async iterables.
     withCustomAdapter(
         // `startingValue` is the input.
         // In this case, 0.
@@ -243,11 +243,41 @@ Creates a new array from the values of some input iterable. Has an async variant
 
 Maps some input iterable to an equivalent async iterable.
 
-### Logic helpers
+### Routing helpers
 
 #### `fork<T extends ForkPath[]>(...paths: T)`
 
+Passes some input value to an arbitrary amount of executions paths and returns a tuple containing the result of each execution path in order.
+
+**Usage**
+
+```ts
+// Returns [1, 2, 3]
+using(0).pipe(
+    fork(
+        (x) => x + 1,
+        (x) => x + 2,
+        (x) => x + 3
+    )
+);
+```
+
+#### `match<T extends MatchPath[]>(...paths: T)`
+
 Finds the first path pair where some input value satisfies that pair's predicate and returns the result of passing said input value to that pair's callback function.
+
+**Usage**
+
+```ts
+// Returns 3
+using(1).pipe(
+    fork(
+        [compare("<", 1), (x) => x + 1], // No match...
+        [compare("<", 2), (x) => x + 2], // Match!
+        [compare("<", 3), (x) => x + 3]
+    )
+);
+```
 
 ### Misc helpers
 
