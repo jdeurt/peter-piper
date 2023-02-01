@@ -14,3 +14,9 @@ export const withStreamAdapter =
                 };
             },
         } as AsyncIterable<T>);
+
+/**
+ * Maps the provided input stream to an equivalent async iterable.
+ */
+export const streamAdapter = <T>(stream: ReadableStream<T>) =>
+    withStreamAdapter<T>()(stream);

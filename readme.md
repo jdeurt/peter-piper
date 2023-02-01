@@ -17,6 +17,7 @@
     -   [API](#api)
         -   [Adapters](#adapters)
             -   [withCustomAdapter](#withcustomadaptert-uadapter-adaptert-u)
+            -   [withEventAdapter](#witheventadaptert-u-extends-unknownfactory-factoryfnt-u-cleanup-cleanupfnt-u)
             -   [withStreamAdapter](#withstreamadaptert)
         -   [Iterable helpers](#iterable-helpers)
             -   [concat](#conctiterablet-iterablet)
@@ -157,9 +158,36 @@ for await (const n of evenNumbers) {
 
 Maps some input value to an equivalent async iterable.
 
+#### `withEventAdapter<T, U extends unknown[]>(factory: FactoryFn<T, U>, cleanup: CleanupFn<T, U>)`
+
+Creates an async iterable representation of some event target's events.
+
+**Usage**
+
+```ts
+using(someEventTarget).pipe(
+    withEventAdapter<typeof someEventTarget, [SomeEvent]>(
+        (target, handler) => target.on("event", handler),
+        (target, handler) => target.removeListener("event", handler)
+    ),
+    pluck("data"),
+    (data) => console.log(data)
+);
+```
+
 #### `withStreamAdapter<T>()`
 
 Maps some input stream to an equivalent async iterable.
+
+**Usage**
+
+```ts
+using(readableStream).pipe(
+    withStreamAdapter<string>(),
+    toArrayAsync(),
+    transform((arr) => arr.join())
+);
+```
 
 ### Iterable helpers
 
