@@ -4,6 +4,10 @@
 
 ## Table of contents
 
+### Variables
+
+- [\_\_](modules.md#__)
+
 ### Other helpers
 
 - [assertType](modules.md#asserttype)
@@ -52,6 +56,16 @@
 
 - [using](modules.md#using)
 
+## Variables
+
+### \_\_
+
+• `Const` **\_\_**: typeof [`__`](modules.md#__)
+
+#### Defined in
+
+constants/placeholder.ts:1
+
 ## Other helpers
 
 ### assertType
@@ -93,7 +107,7 @@ using(unknownValue).pipe(
 
 #### Defined in
 
-pipables/misc/assert-type.ts:11
+[pipables/misc/assert-type.ts:11](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/misc/assert-type.ts#L11)
 
 ___
 
@@ -129,7 +143,7 @@ using([]).pipe(
 
 #### Defined in
 
-[pipables/iterable/is-empty.ts:13](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/iterable/is-empty.ts#L13)
+[pipables/iterable/is-empty.ts:13](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/iterable/is-empty.ts#L13)
 
 ___
 
@@ -177,7 +191,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[pipables/misc/use-side-effect.ts:10](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/misc/use-side-effect.ts#L10)
+[pipables/misc/use-side-effect.ts:10](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/misc/use-side-effect.ts#L10)
 
 ## Lazy helpers
 
@@ -225,7 +239,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[pipables/iterable/concat.ts:13](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/iterable/concat.ts#L13)
+[pipables/iterable/concat.ts:13](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/iterable/concat.ts#L13)
 
 ___
 
@@ -273,7 +287,7 @@ using([1, 0, 0, 1, 0]).pipe(
 
 #### Defined in
 
-[pipables/iterable/filter.ts:14](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/iterable/filter.ts#L14)
+[pipables/iterable/filter.ts:14](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/iterable/filter.ts#L14)
 
 ___
 
@@ -321,7 +335,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[pipables/iterable/first.ts:14](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/iterable/first.ts#L14)
+[pipables/iterable/first.ts:14](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/iterable/first.ts#L14)
 
 ___
 
@@ -369,7 +383,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[pipables/iterable/limit.ts:13](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/iterable/limit.ts#L13)
+[pipables/iterable/limit.ts:13](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/iterable/limit.ts#L13)
 
 ___
 
@@ -418,7 +432,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[pipables/iterable/map.ts:14](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/iterable/map.ts#L14)
+[pipables/iterable/map.ts:14](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/iterable/map.ts#L14)
 
 ___
 
@@ -472,7 +486,7 @@ using([{ a: 1 }, { a: 2 }]).pipe(
 
 #### Defined in
 
-[pipables/iterable/pluck.ts:15](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/iterable/pluck.ts#L15)
+[pipables/iterable/pluck.ts:15](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/iterable/pluck.ts#L15)
 
 ___
 
@@ -522,7 +536,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[pipables/iterable/scan.ts:15](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/iterable/scan.ts#L15)
+[pipables/iterable/scan.ts:15](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/iterable/scan.ts#L15)
 
 ___
 
@@ -572,7 +586,7 @@ using([1, 2, 3, 4]).pipe(
 
 #### Defined in
 
-[pipables/iterable/slice.ts:14](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/iterable/slice.ts#L14)
+[pipables/iterable/slice.ts:14](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/iterable/slice.ts#L14)
 
 ## Greedy helpers
 
@@ -621,7 +635,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[pipables/iterable/consume.ts:14](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/iterable/consume.ts#L14)
+[pipables/iterable/consume.ts:14](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/iterable/consume.ts#L14)
 
 ___
 
@@ -663,7 +677,7 @@ using(someObject).pipe(
 
 #### Defined in
 
-[pipables/misc/deeply-equals.ts:10](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/misc/deeply-equals.ts#L10)
+[pipables/misc/deeply-equals.ts:10](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/misc/deeply-equals.ts#L10)
 
 ___
 
@@ -705,7 +719,7 @@ using(1).pipe(
 
 #### Defined in
 
-[pipables/misc/equals.ts:9](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/misc/equals.ts#L9)
+[pipables/misc/equals.ts:9](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/misc/equals.ts#L9)
 
 ___
 
@@ -753,7 +767,7 @@ using([2, 4, 6]).pipe(
 
 #### Defined in
 
-[pipables/iterable/every.ts:14](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/iterable/every.ts#L14)
+[pipables/iterable/every.ts:14](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/iterable/every.ts#L14)
 
 ___
 
@@ -801,7 +815,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[pipables/iterable/find.ts:14](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/iterable/find.ts#L14)
+[pipables/iterable/find.ts:14](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/iterable/find.ts#L14)
 
 ___
 
@@ -852,7 +866,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[pipables/routing/fork.ts:28](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/routing/fork.ts#L28)
+[pipables/routing/fork.ts:28](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/routing/fork.ts#L28)
 
 ___
 
@@ -888,7 +902,7 @@ using(0).pipe(
 
 #### Defined in
 
-[pipables/misc/is-falsy.ts:9](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/misc/is-falsy.ts#L9)
+[pipables/misc/is-falsy.ts:9](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/misc/is-falsy.ts#L9)
 
 ___
 
@@ -936,7 +950,7 @@ using(2).pipe(
 
 #### Defined in
 
-[pipables/misc/is-one-of.ts:10](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/misc/is-one-of.ts#L10)
+[pipables/misc/is-one-of.ts:10](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/misc/is-one-of.ts#L10)
 
 ___
 
@@ -972,15 +986,15 @@ using(1).pipe(
 
 #### Defined in
 
-[pipables/misc/is-truthy.ts:9](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/misc/is-truthy.ts#L9)
+[pipables/misc/is-truthy.ts:9](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/misc/is-truthy.ts#L9)
 
 ___
 
 ### match
 
-▸ **match**<`T`\>(`...paths`): (`input`: `MatchPathInputValueType`<`T`\>) => `Promise`<`MatchPathReturnValueType`<`T`\>\>
+▸ **match**<`T`\>(`...paths`): (`input`: `MatchPathInputValueType`<`T`\>) => `Promise`<`T` extends `MatchPaths` ? `undefined` \| `MatchPathReturnValueType`<`T`\> : `MatchPathReturnValueType`<`T`\>\>
 
-Finds the first path pair where some input value satisfies that pair's predicate and returns the result of passing said input value to that pair's callback function.
+Finds the first path pair where some input value satisfies that pair's predicate and returns the result of passing said input value to that pair's callback function. If a placeholder (`__`) is used in place of a predicate in the last path, that path will act as a fallback path.
 
 **`Example`**
 
@@ -991,13 +1005,21 @@ using(1).pipe(
         [equals(1), (x) => x - 1]
     )
 );
+
+// with placeholder
+using(1).pipe(
+    match(
+        [equals(0), (x) => x + 1],
+        [__, (x) => x - 1]
+    )
+);
 ```
 
 #### Type parameters
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [...MatchPath<never, unknown\>[], `FallbackPath`<`never`, `unknown`\>] \| `MatchPath`<`never`, `unknown`\>[] |
+| `T` | extends `MatchPathsWithFallback` \| `MatchPaths` |
 
 #### Parameters
 
@@ -1009,7 +1031,7 @@ using(1).pipe(
 
 `fn`
 
-▸ (`input`): `Promise`<`MatchPathReturnValueType`<`T`\>\>
+▸ (`input`): `Promise`<`T` extends `MatchPaths` ? `undefined` \| `MatchPathReturnValueType`<`T`\> : `MatchPathReturnValueType`<`T`\>\>
 
 ##### Parameters
 
@@ -1019,11 +1041,11 @@ using(1).pipe(
 
 ##### Returns
 
-`Promise`<`MatchPathReturnValueType`<`T`\>\>
+`Promise`<`T` extends `MatchPaths` ? `undefined` \| `MatchPathReturnValueType`<`T`\> : `MatchPathReturnValueType`<`T`\>\>
 
 #### Defined in
 
-[pipables/routing/match.ts:47](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/routing/match.ts#L47)
+[pipables/routing/match.ts:58](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/routing/match.ts#L58)
 
 ___
 
@@ -1077,7 +1099,7 @@ using({ a: { b: 1 } }).pipe(
 
 #### Defined in
 
-[pipables/object/pick.ts:12](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/object/pick.ts#L12)
+[pipables/object/pick.ts:12](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/object/pick.ts#L12)
 
 ___
 
@@ -1128,7 +1150,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:7](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L7)
+[types/generated/pipe.ts:7](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L7)
 
 ▸ **pipe**<`A`, `B`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`B`\>
 
@@ -1176,7 +1198,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:8](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L8)
+[types/generated/pipe.ts:8](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L8)
 
 ▸ **pipe**<`A`, `B`, `C`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`C`\>
 
@@ -1225,7 +1247,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:9](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L9)
+[types/generated/pipe.ts:9](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L9)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`D`\>
 
@@ -1275,7 +1297,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:10](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L10)
+[types/generated/pipe.ts:10](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L10)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`E`\>
 
@@ -1326,7 +1348,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:11](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L11)
+[types/generated/pipe.ts:11](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L11)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`F`\>
 
@@ -1378,7 +1400,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:12](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L12)
+[types/generated/pipe.ts:12](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L12)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`G`\>
 
@@ -1431,7 +1453,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:13](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L13)
+[types/generated/pipe.ts:13](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L13)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`H`\>
 
@@ -1485,7 +1507,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:14](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L14)
+[types/generated/pipe.ts:14](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L14)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`I`\>
 
@@ -1540,7 +1562,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:15](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L15)
+[types/generated/pipe.ts:15](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L15)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`J`\>
 
@@ -1596,7 +1618,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:16](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L16)
+[types/generated/pipe.ts:16](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L16)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`K`\>
 
@@ -1653,7 +1675,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:17](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L17)
+[types/generated/pipe.ts:17](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L17)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`L`\>
 
@@ -1711,7 +1733,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:18](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L18)
+[types/generated/pipe.ts:18](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L18)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`M`\>
 
@@ -1770,7 +1792,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:19](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L19)
+[types/generated/pipe.ts:19](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L19)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`N`\>
 
@@ -1830,7 +1852,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:20](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L20)
+[types/generated/pipe.ts:20](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L20)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`O`\>
 
@@ -1891,7 +1913,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:21](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L21)
+[types/generated/pipe.ts:21](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L21)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`P`\>
 
@@ -1953,7 +1975,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:22](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L22)
+[types/generated/pipe.ts:22](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L22)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`Q`\>
 
@@ -2016,7 +2038,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:23](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L23)
+[types/generated/pipe.ts:23](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L23)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`, `R`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`R`\>
 
@@ -2080,7 +2102,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:24](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L24)
+[types/generated/pipe.ts:24](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L24)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`, `R`, `S`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`S`\>
 
@@ -2145,7 +2167,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:25](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L25)
+[types/generated/pipe.ts:25](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L25)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`, `R`, `S`, `T`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`T`\>
 
@@ -2211,7 +2233,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:26](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L26)
+[types/generated/pipe.ts:26](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L26)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`, `R`, `S`, `T`, `U`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`U`\>
 
@@ -2278,7 +2300,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:27](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L27)
+[types/generated/pipe.ts:27](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L27)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`, `R`, `S`, `T`, `U`, `V`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`V`\>
 
@@ -2346,7 +2368,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:28](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L28)
+[types/generated/pipe.ts:28](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L28)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`, `R`, `S`, `T`, `U`, `V`, `W`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`W`\>
 
@@ -2415,7 +2437,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:29](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L29)
+[types/generated/pipe.ts:29](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L29)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`, `R`, `S`, `T`, `U`, `V`, `W`, `X`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`X`\>
 
@@ -2485,7 +2507,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:30](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L30)
+[types/generated/pipe.ts:30](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L30)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`, `R`, `S`, `T`, `U`, `V`, `W`, `X`, `Y`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`Y`\>
 
@@ -2556,7 +2578,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:31](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L31)
+[types/generated/pipe.ts:31](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L31)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`, `R`, `S`, `T`, `U`, `V`, `W`, `X`, `Y`, `Z`\>(`...args`): (`value`: `In`<`A`\>) => `ReturnType`<`Z`\>
 
@@ -2628,7 +2650,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[types/generated/pipe.ts:32](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/types/generated/pipe.ts#L32)
+[types/generated/pipe.ts:32](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/types/generated/pipe.ts#L32)
 
 ___
 
@@ -2679,7 +2701,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[pipables/iterable/reduce.ts:16](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/iterable/reduce.ts#L16)
+[pipables/iterable/reduce.ts:16](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/iterable/reduce.ts#L16)
 
 ___
 
@@ -2727,7 +2749,7 @@ using([1, 2, 3]).pipe(
 
 #### Defined in
 
-[pipables/iterable/some.ts:14](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/iterable/some.ts#L14)
+[pipables/iterable/some.ts:14](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/iterable/some.ts#L14)
 
 ___
 
@@ -2769,7 +2791,7 @@ using(new Set([1, 2, 3])).pipe(
 
 #### Defined in
 
-[pipables/iterable/to-array.ts:13](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/iterable/to-array.ts#L13)
+[pipables/iterable/to-array.ts:13](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/iterable/to-array.ts#L13)
 
 ## Adapters
 
@@ -2797,7 +2819,7 @@ A non-currying variant of [withCustomAdapter](modules.md#withcustomadapter).
 
 #### Defined in
 
-[pipables/adapters/custom-adapter.ts:21](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/adapters/custom-adapter.ts#L21)
+[pipables/adapters/custom-adapter.ts:21](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/adapters/custom-adapter.ts#L21)
 
 ___
 
@@ -2826,7 +2848,7 @@ A non-currying variant of [withEventAdapter](modules.md#witheventadapter).
 
 #### Defined in
 
-[pipables/adapters/event-adapter.ts:77](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/adapters/event-adapter.ts#L77)
+[pipables/adapters/event-adapter.ts:77](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/adapters/event-adapter.ts#L77)
 
 ___
 
@@ -2854,7 +2876,7 @@ A non-currying variant of [withStreamAdapter](modules.md#withstreamadapter).
 
 #### Defined in
 
-[pipables/adapters/stream-adapter.ts:28](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/adapters/stream-adapter.ts#L28)
+[pipables/adapters/stream-adapter.ts:28](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/adapters/stream-adapter.ts#L28)
 
 ___
 
@@ -2895,7 +2917,7 @@ Maps some input value to an async iterable in accordance with the provided adapt
 
 #### Defined in
 
-[pipables/adapters/custom-adapter.ts:11](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/adapters/custom-adapter.ts#L11)
+[pipables/adapters/custom-adapter.ts:11](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/adapters/custom-adapter.ts#L11)
 
 ___
 
@@ -2946,7 +2968,7 @@ withEventAdapter(
 
 #### Defined in
 
-[pipables/adapters/event-adapter.ts:23](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/adapters/event-adapter.ts#L23)
+[pipables/adapters/event-adapter.ts:23](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/adapters/event-adapter.ts#L23)
 
 ___
 
@@ -2980,7 +3002,7 @@ Maps some input stream to an equivalent async iterable.
 
 #### Defined in
 
-[pipables/adapters/stream-adapter.ts:8](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/pipables/adapters/stream-adapter.ts#L8)
+[pipables/adapters/stream-adapter.ts:8](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/pipables/adapters/stream-adapter.ts#L8)
 
 ## Functions
 
@@ -3020,4 +3042,4 @@ using("Hello World!").pipe(
 
 #### Defined in
 
-[index.ts:11](https://github.com/jdeurt/peter-piper/blob/67af3d0/src/index.ts#L11)
+[index.ts:11](https://github.com/jdeurt/peter-piper/blob/59e9d41/src/index.ts#L11)

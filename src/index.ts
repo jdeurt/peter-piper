@@ -14,4 +14,5 @@ export const using = <T>(value: T) => ({
         args.reduce((x, f) => (f as Pipable)(x), value)) as CookedPipe<T>,
 });
 
+export { PLACEHOLDER as __ } from "./constants/placeholder.js";
 export * from "./pipables/index.js";

@@ -11,6 +11,7 @@ import {
     reduce,
     toArray,
     using,
+    __,
 } from "../src/index.js";
 import { set } from "./helpers/set-arbitrary.js";
 
@@ -45,7 +46,7 @@ testProp.failing(
                         concat(set),
                         match(
                             [isEmpty(), () => 0],
-                            [reduce<number, number>((acc, x) => acc + x)]
+                            [__, reduce<number, number>((acc, x) => acc + x)]
                         )
                     )
                 )
