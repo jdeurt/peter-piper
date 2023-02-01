@@ -4,7 +4,7 @@ import { toAsyncIterable } from "./to-async-iterable.js";
 
 /**
  * Creates an iterable containing only the first value of some input iterable or, if a predicate is provided, the first value to satisfy that predicate.
- * @behavior lazy
+ * @group Lazy helpers
  * @example
  * using([1, 2, 3]).pipe(
  *     first((x) => x === 2)

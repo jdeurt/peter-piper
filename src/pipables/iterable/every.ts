@@ -4,7 +4,7 @@ import { toAsyncIterable } from "./to-async-iterable.js";
 
 /**
  * Tests whether all values of some input iterable satisfy the provided predicate.
- * @behavior greedy
+ * @group Greedy helpers
  * @example
  * using([2, 4, 6]).pipe(
  *     every((x) => x % 2 === 0)

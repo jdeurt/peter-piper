@@ -3,7 +3,7 @@ import type { Pipe } from "../../types/generated/pipe.js";
 
 /**
  * Pipes some input value through a series of functions, returning the result.
- * @behavior greedy
+ * @group Greedy helpers
  * @example
  * using([1, 2, 3]).pipe(
  *     pipe(

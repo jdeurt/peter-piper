@@ -3,7 +3,7 @@ import { toAsyncIterable } from "./to-async-iterable.js";
 
 /**
  * Creates an iterable by concatenating an arbitrary amount of iterables to some base iterable.
- * @behavior lazy
+ * @group Lazy helpers
  * @example
  * using([1, 2, 3]).pipe(
  *     concat([4, 5, 6])

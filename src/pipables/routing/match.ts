@@ -22,7 +22,7 @@ type MatchPathReturnValueType<T extends MatchPath[]> = T extends [
 
 /**
  * Finds the first path pair where some input value satisfies that pair's predicate and returns the result of passing said input value to that pair's callback function.
- * @behavior greedy
+ * @group Greedy helpers
  * @example
  * using(1).pipe(
  *     match(

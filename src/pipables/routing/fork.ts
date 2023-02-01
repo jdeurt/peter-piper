@@ -15,7 +15,7 @@ type ForkPathReturnValueType<T extends ForkPath[]> = T extends [
 
 /**
  * Passes some input value to an arbitrary amount of execution paths and returns a tuple containing the result of each execution path in order.
- * @behavior greedy
+ * @group Greedy helpers
  * @example
  * using([1, 2, 3]).pipe(
  *     fork(

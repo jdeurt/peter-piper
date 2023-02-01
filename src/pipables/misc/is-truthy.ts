@@ -1,6 +1,6 @@
 /**
  * Returns `true` is some input value is [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy). Returns `false` otherwise.
- * @behavior greedy
+ * @group Greedy helpers
  * @example
  * using(1).pipe(
  *     isTruthy()

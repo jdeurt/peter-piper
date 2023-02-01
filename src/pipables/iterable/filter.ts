@@ -4,7 +4,7 @@ import { toAsyncIterable } from "./to-async-iterable.js";
 
 /**
  * Creates a new iterable containing all values of some input iterable that satisfy the provided predicate.
- * @behavior lazy
+ * @group Lazy helpers
  * @example
  * using([1, 0, 0, 1, 0]).pipe(
  *     filter((x) => x === 1);

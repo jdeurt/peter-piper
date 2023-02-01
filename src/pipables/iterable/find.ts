@@ -4,7 +4,7 @@ import { toAsyncIterable } from "./to-async-iterable.js";
 
 /**
  * Retrieves the first value of some input iterable that satisfies the provided predicate.
- * @behavior greedy
+ * @group Greedy helpers
  * @example
  * using([1, 2, 3]).pipe(
  *     find((x) => x === 2)

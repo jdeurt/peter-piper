@@ -3,7 +3,7 @@ import { toAsyncIterable } from "./to-async-iterable.js";
 
 /**
  * Creates a new array from the values of some input iterable.
- * @behavior greedy
+ * @group Greedy helpers
  * @example
  * using(new Set([1, 2, 3])).pipe(
  *     toArray()

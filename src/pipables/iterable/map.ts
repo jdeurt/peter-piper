@@ -4,7 +4,7 @@ import { toAsyncIterable } from "./to-async-iterable.js";
 
 /**
  * Creates a new iterable which's values are the result of mapping some input iterable using the provided callback function.
- * @behavior lazy
+ * @group Lazy helpers
  * @example
  * using([1, 2, 3]).pipe(
  *     map((x) => x * 2)

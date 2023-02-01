@@ -3,7 +3,7 @@ import { toAsyncIterable } from "./to-async-iterable.js";
 
 /**
  * Returns `Promise<true>` if some input iterable is empty (i.e. can't produce any values). Returns `Promise<false>` otherwise.
- * @behavior non-consuming
+ * @group Other helpers
  * @example
  * using([]).pipe(
  *     isEmpty()

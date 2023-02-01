@@ -5,7 +5,7 @@ import { toAsyncIterable } from "./to-async-iterable.js";
 
 /**
  * Similar to `reduce` except returns an iterable with values corresponding to the result of each reduction step.
- * @behavior lazy
+ * @group Lazy helpers
  * @example
  * using([1, 2, 3]).pipe(
  *     scan((acc, x) => acc + x)

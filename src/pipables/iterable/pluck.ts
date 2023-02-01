@@ -5,7 +5,7 @@ import { toAsyncIterable } from "./to-async-iterable.js";
 
 /**
  * Creates a new iterable which's values are the properties of the values of some input iterable at the provided path.
- * @behavior lazy
+ * @group Lazy helpers
  * @example
  * using([{ a: 1 }, { a: 2 }]).pipe(
  *     pluck("a")

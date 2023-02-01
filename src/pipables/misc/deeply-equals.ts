@@ -1,6 +1,6 @@
 /**
  * Returns `true` if `x` is deeply (recursively) equal to `y`. Returns `false` otherwise.
- * @behavior greedy
+ * @group Greedy helpers
  * @example
  * using(someObject).pipe(
  *     deeplyEquals(someOtherObject)

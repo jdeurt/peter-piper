@@ -1,4 +1,5 @@
 export * from "./concat.js";
+export * from "./consume.js";
 export * from "./every.js";
 export * from "./filter.js";
 export * from "./find.js";

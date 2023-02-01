@@ -3,7 +3,7 @@ import { toAsyncIterable } from "./to-async-iterable.js";
 
 /**
  * Creates a new iterable containing only the first `x` values of some input iterable.
- * @behavior lazy
+ * @group Lazy helpers
  * @example
  * using([1, 2, 3]).pipe(
  *     limit(2)
