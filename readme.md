@@ -109,7 +109,7 @@ import {
 } from "peter-piper";
 
 const result = await using(streamAdapter(stream)).pipe(
-    // Iterables are evaluated lazyily.
+    // Iterables are evaluated lazily.
     // `sliceAsync` will just limit the iterations to 10 below.
     sliceAsync(0, 10),
     filterAsync(compare("<", 0)),
