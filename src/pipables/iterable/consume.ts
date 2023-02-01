@@ -10,6 +10,11 @@ import { withIterableAssertion } from "../../util/type-assertions/assert-iterabl
  * using([1, 2, 3]).pipe(
  *     consume((x) => x);
  * );
+ *
+ * @remarks
+ *
+ * Since this helper is greedy, it will only stop consuming values when the input's iterator lets it know there are no values left to consume.
+ * Using an input iterable which's iterator never returns will cause this helper to run indefinitely.
  */
 export const consume = <T, U>(callback: (value: T) => MaybePromise<U>) =>
     withIterableAssertion(async (input: AnyIterable<T>) => {
