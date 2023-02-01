@@ -84,7 +84,7 @@ result; // [6, 8, 10, 12]
 ### Building functions
 
 ```js
-import { pipe, filter, compare } from "peter-piper";
+import { pipe, filter, compare, toArray } from "peter-piper";
 
 const getNumbersInRange = (from, to) =>
     pipe(
