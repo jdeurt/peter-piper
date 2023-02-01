@@ -20,6 +20,10 @@ Or if you prefer using Yarn:
 $ yarn add peter-piper
 ```
 
+## Documentation
+
+Documentation is available [here](docs/modules.md).
+
 ## Example usage
 
 ### Basic usage
