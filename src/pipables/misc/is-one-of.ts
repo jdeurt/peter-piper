@@ -8,5 +8,5 @@
  */
 export const isOneOf =
     <T>(values: T[]) =>
-    (value: T) =>
-        values.includes(value);
+    (input: T) =>
+        values.includes(input);

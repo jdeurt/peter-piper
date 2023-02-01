@@ -10,9 +10,9 @@ import type { Traverse } from "../../types/traverse.js";
  */
 export const pick =
     <P extends string[]>(...path: P) =>
-    <O>(obj: O): Traverse<O, P> => {
+    <O>(input: O): Traverse<O, P> => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        let curr: any = obj;
+        let curr: any = input;
 
         try {
             for (const key of path) {

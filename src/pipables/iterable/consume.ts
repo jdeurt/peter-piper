@@ -12,10 +12,10 @@ import { toAsyncIterable } from "./to-async-iterable.js";
  */
 export const consume =
     <T, U>(callback: (value: T) => MaybePromise<U>) =>
-    async (iterable: AnyIterable<T>) => {
+    async (input: AnyIterable<T>) => {
         const results: U[] = [];
 
-        for await (const value of toAsyncIterable<T>()(iterable)) {
+        for await (const value of toAsyncIterable<T>()(input)) {
             results.push(await callback(value));
         }
 

@@ -9,8 +9,8 @@ import { toAsyncIterable } from "./to-async-iterable.js";
  *     isEmpty()
  * )
  */
-export const isEmpty = () => (value: AnyIterable<unknown>) =>
-    toAsyncIterable()(value)
+export const isEmpty = () => (input: AnyIterable<unknown>) =>
+    toAsyncIterable()(input)
         [Symbol.asyncIterator]()
         .next()
         .then(({ done }) => Boolean(done));

@@ -4,7 +4,7 @@ import { NOTHING } from "../../constants/nothing.js";
 import { toAsyncIterable } from "./to-async-iterable.js";
 
 /**
- * Similar to `reduce` except returns an iterable with values corresponding to the result of each reduction step.
+ * Similar to {@link reduce} except returns an iterable with values corresponding to the result of each reduction step.
  * @group Lazy helpers
  * @example
  * using([1, 2, 3]).pipe(
@@ -15,7 +15,7 @@ export function scan<T, U = T>(
     callback: (accumulator: U, value: T, index: number) => MaybePromise<U>,
     initialValue?: U
 ) {
-    return (iterable: AnyIterable<T>) => {
+    return (input: AnyIterable<T>) => {
         let index = 0;
         let accumulator: U | typeof NOTHING =
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -23,7 +23,7 @@ export function scan<T, U = T>(
 
         return {
             [Symbol.asyncIterator]: async function* () {
-                for await (const value of toAsyncIterable<T>()(iterable)) {
+                for await (const value of toAsyncIterable<T>()(input)) {
                     if (accumulator === NOTHING) {
                         index++;
                         accumulator = value as unknown as U;

@@ -12,11 +12,11 @@ import { toAsyncIterable } from "./to-async-iterable.js";
  */
 export const every =
     <T>(predicate: (value: T, index: number) => MaybePromise<boolean>) =>
-    async (iterable: AnyIterable<T>) => {
+    async (input: AnyIterable<T>) => {
         let index = 0;
         let accumulator = true;
 
-        for await (const value of toAsyncIterable<T>()(iterable)) {
+        for await (const value of toAsyncIterable<T>()(input)) {
             accumulator = accumulator && (await predicate(value, index++));
         }
 

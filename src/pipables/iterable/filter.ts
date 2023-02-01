@@ -12,12 +12,12 @@ import { toAsyncIterable } from "./to-async-iterable.js";
  */
 export const filter =
     <T>(predicate: (value: T, index: number) => MaybePromise<boolean>) =>
-    (iterable: AnyIterable<T>) =>
+    (input: AnyIterable<T>) =>
         ({
             [Symbol.asyncIterator]: async function* () {
                 let index = 0;
 
-                for await (const value of toAsyncIterable<T>()(iterable)) {
+                for await (const value of toAsyncIterable<T>()(input)) {
                     if (await predicate(value, index++)) {
                         yield value;
                     }

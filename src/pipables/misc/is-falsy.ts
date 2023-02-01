@@ -6,4 +6,4 @@
  *     isFalsy()
  * );
  */
-export const isFalsy = () => (value: unknown) => !value;
+export const isFalsy = () => (input: unknown) => !input;

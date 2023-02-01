@@ -13,10 +13,10 @@ import { toAsyncIterable } from "./to-async-iterable.js";
  */
 export const pluck =
     <P extends string[]>(...path: P) =>
-    <T>(iterable: AnyIterable<T>) =>
+    <T>(input: AnyIterable<T>) =>
         ({
             [Symbol.asyncIterator]: async function* () {
-                for await (const value of toAsyncIterable<T>()(iterable)) {
+                for await (const value of toAsyncIterable<T>()(input)) {
                     yield pick(...path)(value);
                 }
             },

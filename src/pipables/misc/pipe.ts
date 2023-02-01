@@ -13,6 +13,6 @@ import type { Pipe } from "../../types/generated/pipe.js";
  * );
  */
 export const pipe = ((...args: unknown[]) =>
-    (value: unknown) =>
+    (input: unknown) =>
         // eslint-disable-next-line unicorn/no-array-reduce
-        args.reduce((x, f) => (f as Pipable)(x), value)) as Pipe;
+        args.reduce((x, f) => (f as Pipable)(x), input)) as Pipe;

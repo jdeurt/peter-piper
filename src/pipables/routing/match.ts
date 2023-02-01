@@ -33,7 +33,7 @@ type MatchPathReturnValueType<T extends MatchPath[]> = T extends [
  */
 export const match =
     <T extends MatchPath[]>(...paths: T) =>
-    (value: MatchPathInputValueType<T>) =>
-        paths.find(([predicate]) => predicate(value))?.[1](value) as
+    (input: MatchPathInputValueType<T>) =>
+        paths.find(([predicate]) => predicate(input))?.[1](input) as
             | MatchPathReturnValueType<T>
             | undefined;

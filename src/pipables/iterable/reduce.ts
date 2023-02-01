@@ -16,13 +16,13 @@ export function reduce<T, U = T>(
     callback: (accumulator: U, value: T, index: number) => MaybePromise<U>,
     initialValue?: U
 ) {
-    return async (iterable: AnyIterable<T>) => {
+    return async (input: AnyIterable<T>) => {
         let index = 0;
         let accumulator: U | typeof NOTHING =
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             arguments.length === 2 ? initialValue! : NOTHING;
 
-        for await (const value of toAsyncIterable<T>()(iterable)) {
+        for await (const value of toAsyncIterable<T>()(input)) {
             if (accumulator === NOTHING) {
                 index++;
                 accumulator = value as unknown as U;

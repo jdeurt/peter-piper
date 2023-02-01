@@ -12,12 +12,12 @@ import { toAsyncIterable } from "./to-async-iterable.js";
  */
 export const slice =
     <T>(startIndex: number, endIndex = Number.POSITIVE_INFINITY) =>
-    (iterable: AnyIterable<T>) =>
+    (input: AnyIterable<T>) =>
         ({
             [Symbol.asyncIterator]: async function* () {
                 let index = 0;
 
-                for await (const value of toAsyncIterable<T>()(iterable)) {
+                for await (const value of toAsyncIterable<T>()(input)) {
                     if (index === endIndex) {
                         return;
                     }

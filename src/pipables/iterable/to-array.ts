@@ -11,10 +11,10 @@ import { toAsyncIterable } from "./to-async-iterable.js";
  */
 export const toArray =
     <T>() =>
-    async (iterable: AnyIterable<T>) => {
+    async (input: AnyIterable<T>) => {
         const result: T[] = [];
 
-        for await (const value of toAsyncIterable<T>()(iterable)) {
+        for await (const value of toAsyncIterable<T>()(input)) {
             result.push(value);
         }
 

@@ -6,4 +6,4 @@
  *     isTruthy()
  * );
  */
-export const isTruthy = () => (value: unknown) => !!value;
+export const isTruthy = () => (input: unknown) => !!input;

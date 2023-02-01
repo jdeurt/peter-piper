@@ -11,9 +11,9 @@ import type { AnyIterable } from "../../types/iterable.js";
  */
 export const toAsyncIterable =
     <T>() =>
-    (iterable: AnyIterable<T>): AsyncIterable<T> => ({
+    (input: AnyIterable<T>): AsyncIterable<T> => ({
         // eslint-disable-next-line @typescript-eslint/require-await
         [Symbol.asyncIterator]: async function* () {
-            yield* iterable;
+            yield* input;
         },
     });

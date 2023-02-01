@@ -11,12 +11,12 @@ import { toAsyncIterable } from "./to-async-iterable.js";
  */
 export const limit =
     <T>(x: number) =>
-    (iterable: AnyIterable<T>) =>
+    (input: AnyIterable<T>) =>
         ({
             [Symbol.asyncIterator]: async function* () {
                 let index = 0;
 
-                for await (const value of toAsyncIterable<T>()(iterable)) {
+                for await (const value of toAsyncIterable<T>()(input)) {
                     if (index === x) {
                         return;
                     }

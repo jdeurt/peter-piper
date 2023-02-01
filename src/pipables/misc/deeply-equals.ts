@@ -1,5 +1,5 @@
 /**
- * Returns `true` if `x` is deeply (recursively) equal to `y`. Returns `false` otherwise.
+ * Returns `true` if some input value is deeply (recursively) equal to the provided value. Returns `false` otherwise.
  * @group Greedy helpers
  * @example
  * using(someObject).pipe(
@@ -7,37 +7,37 @@
  * );
  */
 // eslint-disable-next-line sonarjs/cognitive-complexity
-export const deeplyEquals = (y: unknown) => (x: unknown) => {
-    if (x === y) {
+export const deeplyEquals = (value: unknown) => (input: unknown) => {
+    if (input === value) {
         return true;
     }
 
-    if (typeof x !== typeof y) {
+    if (typeof input !== typeof value) {
         return false;
     }
 
     // Redundant check on RHS of `||`, but necessary for type narrowing later on.
-    if (typeof x !== "object" || typeof y !== "object") {
+    if (typeof input !== "object" || typeof value !== "object") {
         return false;
     }
 
-    if (x === null || y === null) {
+    if (input === null || value === null) {
         return false;
     }
 
-    if (Array.isArray(x) !== Array.isArray(y)) {
+    if (Array.isArray(input) !== Array.isArray(value)) {
         return false;
     }
 
     // Also a redundant check on RHS of `&&`.
-    if (Array.isArray(x) && Array.isArray(y)) {
-        if (x.length !== y.length) {
+    if (Array.isArray(input) && Array.isArray(value)) {
+        if (input.length !== value.length) {
             return false;
         }
 
         // eslint-disable-next-line unicorn/no-for-loop
-        for (let i = 0; i < x.length; i++) {
-            if (!deeplyEquals(y[i])(x[i])) {
+        for (let i = 0; i < input.length; i++) {
+            if (!deeplyEquals(value[i])(input[i])) {
                 return false;
             }
         }
@@ -45,8 +45,8 @@ export const deeplyEquals = (y: unknown) => (x: unknown) => {
         return true;
     }
 
-    const xKeys = Object.keys(x);
-    const yKeys = Object.keys(y);
+    const xKeys = Object.keys(input);
+    const yKeys = Object.keys(value);
 
     if (xKeys.length !== yKeys.length) {
         return false;
@@ -54,7 +54,7 @@ export const deeplyEquals = (y: unknown) => (x: unknown) => {
 
     for (const key of xKeys) {
         // @ts-expect-error - We already know `key` is a candidate key for x and y because of the creation of `xKeys` above.
-        if (!deeplyEquals(y[key])(x[key])) {
+        if (!deeplyEquals(value[key])(input[key])) {
             return false;
         }
     }

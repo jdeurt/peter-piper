@@ -12,12 +12,12 @@ import { toAsyncIterable } from "./to-async-iterable.js";
  */
 export const first =
     <T>(predicate?: (value: T, index: number) => MaybePromise<boolean>) =>
-    (iterable: AnyIterable<T>) => {
+    (input: AnyIterable<T>) => {
         let index = 0;
 
         return {
             [Symbol.asyncIterator]: async function* () {
-                for await (const value of toAsyncIterable<T>()(iterable)) {
+                for await (const value of toAsyncIterable<T>()(input)) {
                     if (predicate === undefined) {
                         yield value;
                         return;

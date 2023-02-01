@@ -8,8 +8,8 @@
  */
 export const useSideEffect =
     <T>(sideEffect: (value: T) => unknown) =>
-    (value: T) => {
-        sideEffect(value);
+    (input: T) => {
+        sideEffect(input);
 
-        return value;
+        return input;
     };

@@ -26,5 +26,5 @@ type ForkPathReturnValueType<T extends ForkPath[]> = T extends [
  */
 export const fork =
     <T extends ForkPath[]>(...paths: T) =>
-    (value: ForkPathInputValueType<T>) =>
-        paths.map((path) => path(value as never)) as ForkPathReturnValueType<T>;
+    (input: ForkPathInputValueType<T>) =>
+        paths.map((path) => path(input as never)) as ForkPathReturnValueType<T>;

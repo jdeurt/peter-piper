@@ -12,12 +12,12 @@ import { toAsyncIterable } from "./to-async-iterable.js";
  */
 export const map =
     <T, U>(callback: (value: T, index: number) => MaybePromise<U>) =>
-    (iterable: AnyIterable<T>) =>
+    (input: AnyIterable<T>) =>
         ({
             [Symbol.asyncIterator]: async function* () {
                 let index = 0;
 
-                for await (const value of toAsyncIterable<T>()(iterable)) {
+                for await (const value of toAsyncIterable<T>()(input)) {
                     yield await callback(value, index++);
                 }
             },

@@ -11,11 +11,11 @@ import { toAsyncIterable } from "./to-async-iterable.js";
  */
 export const concat =
     <T>(...iterables: AnyIterable<T>[]) =>
-    (base: AnyIterable<T>) =>
+    (input: AnyIterable<T>) =>
         ({
             [Symbol.asyncIterator]: async function* () {
                 for (const iterable of [
-                    toAsyncIterable()(base),
+                    toAsyncIterable()(input),
                     ...iterables.map(toAsyncIterable()),
                 ]) {
                     yield* iterable;
