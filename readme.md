@@ -27,7 +27,7 @@
             -   [isEmpty](#isempty)
             -   [map](#maptu-callback-value-t-index-number--u)
             -   [pluck](#pluckp-extends-stringpath-p)
-            -   [reduce](#reducetu--t-callback-accumulator-u-value-t-index-number--u-initialvalue-u)
+            -   [reduce](#reducet-u--tcallback-accumulator-u-value-t-index-number--u-initialvalue-u)
             -   [slice](#slicetstartindex-number-endindex--numberpositiveinfinity)
             -   [some](#sometpredicate-value-t-index-number--boolean)
             -   [toArray](#toarrayt)
@@ -40,8 +40,7 @@
             -   [isTruthy](#istruthy)
             -   [pipe](#pipet-extends-pipableargs-t)
             -   [transform](#transformtu-callback-value-t--u)
-        -   [Number helpers](#number-helpers)
-            -   [compare](#compareop-comparisonoperator-x-number)
+            -   [useSideEffect](#usesideeffecttsideeffect-value-t--unknown)
         -   [Object helpers](#object-helpers)
             -   [pick](#pickp-extends-stringpath-p)
         -   [Routing helpers](#routing-helpers)
@@ -69,11 +68,11 @@ $ yarn add peter-piper
 ### Basic usage
 
 ```js
-import { using, concat, filter, compare, map, toArray } from "peter-piper";
+import { using, concat, filter, map, toArray } from "peter-piper";
 
 const result = using([1, 2, 3]).pipe(
     concat([4, 5, 6]),
-    filter(compare(">", 2)),
+    filter((x) => x > 2),
     map((x) => x * 2),
     toArray()
 );
@@ -84,12 +83,12 @@ result; // [6, 8, 10, 12]
 ### Building functions
 
 ```js
-import { pipe, filter, compare, toArray } from "peter-piper";
+import { pipe, filter, toArray } from "peter-piper";
 
 const getNumbersInRange = (from, to) =>
     pipe(
-        filter(compare(">=", from)),
-        filter(compare("<=", to)), // Iterable helpers always return iterables
+        filter((x) => x >= from),
+        filter((x) => x <= to), // Iterable helpers always return iterables
         toArray() // So we convert the resuling iterable to an array.
     );
 
@@ -104,15 +103,14 @@ import {
     streamAdapter,
     sliceAsync,
     filterAsync,
-    compare,
     toArrayAsync,
 } from "peter-piper";
 
 const result = await using(streamAdapter(stream)).pipe(
     // Iterables are evaluated lazily.
-    // `sliceAsync` will just limit the iterations to 10 below.
+    // `sliceAsync` will limit the iterations to 10.
     sliceAsync(0, 10),
-    filterAsync(compare("<", 0)),
+    filterAsync((x) => x <= 10),
     toArrayAsync()
 );
 ```
@@ -171,7 +169,7 @@ using(someEventTarget).pipe(
         (target, handler) => target.removeListener("event", handler)
     ),
     pluck("data"),
-    (data) => console.log(data)
+    useSideEffect(console.log)
 );
 ```
 
@@ -273,11 +271,9 @@ Pipes some input value through a series of functions, returning the result.
 
 Transforms some input value via the provided callback function. Has an async variant.
 
-### Number helpers
+#### `useSideEffect<T>(sideEffect: (value: T) => unknown)`
 
-#### `compare(op: ComparisonOperator, x: number)`
-
-Compares some input `n` to `x` using the provided comparison operator and returns the result of the comparison.
+Executes the provided side-effect function and returns an unmodified version of some input value.
 
 ### Object helpers
 
@@ -313,10 +309,9 @@ Finds the first path pair where some input value satisfies that pair's predicate
 ```ts
 // Returns 3
 using(1).pipe(
-    fork(
-        [compare("<", 1), (x) => x + 1], // No match...
-        [compare("<", 2), (x) => x + 2], // Match!
-        [compare("<", 3), (x) => x + 3]
+    match(
+        [equals(0), (x) => x + 1], // No match...
+        [equals(1), (x) => x + 2] // Match!
     )
 );
 ```

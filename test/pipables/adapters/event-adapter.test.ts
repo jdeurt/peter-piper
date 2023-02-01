@@ -6,10 +6,9 @@ import { eventAdapter } from "../../../src/index.js";
 test("should properly iterate through events asynchronously", async (t) => {
     const emitter = new EventEmitter();
 
-    const eventIterator = eventAdapter<EventEmitter, [number, string]>(
-        emitter,
-        (target, handler) => target.on("a", handler),
-        (target, handler) => target.removeListener("a", handler)
+    const eventIterator = eventAdapter<[number, string]>(
+        (handler) => emitter.on("a", handler),
+        (handler) => emitter.removeListener("a", handler)
     )[Symbol.asyncIterator]();
 
     emitter.emit("a", 1, "2");

@@ -1,5 +1,14 @@
 import type { AnyIterable, ContainedIterableType } from "../types/iterable.js";
 
+export function isIterable<T>(value: unknown): value is AnyIterable<T> {
+    return (
+        typeof value === "object" &&
+        value !== null &&
+        (Reflect.has(value, Symbol.iterator) ||
+            Reflect.has(value, Symbol.asyncIterator))
+    );
+}
+
 export const isSyncIterable = <T>(
     iterable: AnyIterable<T>
 ): iterable is Iterable<T> => Reflect.has(iterable, Symbol.iterator);

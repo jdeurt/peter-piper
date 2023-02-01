@@ -13,8 +13,6 @@ export const withCustomAdapter =
             [Symbol.asyncIterator]: () => adapter(value),
         } as AsyncIterable<U>);
 
-/**
- * Maps the provided input value to an async iterable in accordance with the provided adapter function.
- */
-export const customAdapter = <T, U>(value: T, adapter: Adapter<T, U>) =>
-    withCustomAdapter(adapter)(value);
+export const customAdapter = <U>(adapter: Adapter<undefined, U>) =>
+    // eslint-disable-next-line unicorn/no-useless-undefined
+    withCustomAdapter(adapter)(undefined);

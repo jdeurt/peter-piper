@@ -1,17 +1,27 @@
+type FactoryFn<T, U extends unknown[]> = (
+    eventHandler: (...args: U) => void,
+    target: T
+) => unknown;
+
+type CleanupFn<T, U extends unknown[]> = (
+    eventHandler: (...args: U) => void,
+    target: T
+) => unknown;
+
 /**
  * Creates an async iterable representation of some event target's events.
  * @param factory A function that creates an event listener.
  * @param cleanup A function that cleans up an event listener.
  * @example
  * withEventAdapter(
- *     (target, handler) => target.on("someEvent", handler),
- *     (target, handler) => target.removeListener("someEvent", handler)
+ *     (handler, target) => target.on("someEvent", handler),
+ *     (handler, target) => target.removeListener("someEvent", handler)
  * )(someTarget);
  */
 export const withEventAdapter =
     <T, U extends unknown[]>(
-        factory: (target: T, eventHandler: (...args: U) => void) => unknown,
-        cleanup: (target: T, eventHandler: (...args: U) => void) => unknown
+        factory: FactoryFn<T, U>,
+        cleanup?: CleanupFn<T, U>
     ) =>
     (target: T) => {
         let isDone = false;
@@ -28,11 +38,11 @@ export const withEventAdapter =
                     controller.enqueue(args);
                 };
 
-                factory(target, eventHandler);
+                factory(eventHandler, target);
             },
             cancel() {
                 isDone = true;
-                cleanup(target, eventHandler);
+                cleanup?.(eventHandler, target);
             },
         });
 
@@ -51,9 +61,6 @@ export const withEventAdapter =
                     return reader.read();
                 },
                 return: async () => {
-                    isDone = true;
-                    cleanup(target, eventHandler);
-
                     await reader.cancel();
 
                     return { value: [] as [] };
@@ -62,8 +69,8 @@ export const withEventAdapter =
         } as AsyncIterable<U | []>;
     };
 
-export const eventAdapter = <T, U extends unknown[]>(
-    target: T,
-    factory: (target: T, eventHandler: (...args: U) => void) => unknown,
-    cleanup: (target: T, eventHandler: (...args: U) => void) => unknown
-) => withEventAdapter(factory, cleanup)(target);
+export const eventAdapter = <U extends unknown[]>(
+    factory: FactoryFn<undefined, U>,
+    cleanup: CleanupFn<undefined, U>
+    // eslint-disable-next-line unicorn/no-useless-undefined
+) => withEventAdapter(factory, cleanup)(undefined);
