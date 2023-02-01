@@ -23,15 +23,3 @@ export const getIterator = <T extends AnyIterable<unknown>>(iterable: T) =>
         : iterable[Symbol.asyncIterator]()) as T extends Iterable<unknown>
         ? Iterator<ContainedIterableType<T>>
         : AsyncIterator<ContainedIterableType<T>>;
-
-export const toAsyncIterableFromStream = <T>(stream: ReadableStream<T>) => {
-    return {
-        [Symbol.asyncIterator]: () => {
-            const reader = stream.getReader();
-            return {
-                next: () => reader.read(),
-                return: () => reader.releaseLock(),
-            };
-        },
-    };
-};

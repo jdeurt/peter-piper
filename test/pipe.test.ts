@@ -19,19 +19,19 @@ testProp(
         )
 );
 
-test("should lazily evaluate iterables", (t) => {
+test("should lazily evaluate iterables", async (t) => {
     const iterator = using(infiniteNumberGenerator())
         .pipe(
             filter((value: number) => value % 2 === 0),
             slice<number>(0, 5),
             map((value: number) => `n${value}`)
         )
-        [Symbol.iterator]();
+        [Symbol.asyncIterator]();
 
-    t.is(iterator.next().value, "n0");
-    t.is(iterator.next().value, "n2");
-    t.is(iterator.next().value, "n4");
-    t.is(iterator.next().value, "n6");
-    t.is(iterator.next().value, "n8");
-    t.is(iterator.next().done, true);
+    t.is((await iterator.next()).value, "n0");
+    t.is((await iterator.next()).value, "n2");
+    t.is((await iterator.next()).value, "n4");
+    t.is((await iterator.next()).value, "n6");
+    t.is((await iterator.next()).value, "n8");
+    t.is((await iterator.next()).done, true);
 });

@@ -22,10 +22,18 @@ type MatchPathReturnValueType<T extends MatchPath[]> = T extends [
 
 /**
  * Finds the first path pair where some input value satisfies that pair's predicate and returns the result of passing said input value to that pair's callback function.
+ * @group Greedy helpers
+ * @example
+ * using(1).pipe(
+ *     match(
+ *         [equals(0), (x) => x + 1],
+ *         [equals(1), (x) => x - 1]
+ *     )
+ * );
  */
 export const match =
     <T extends MatchPath[]>(...paths: T) =>
-    (value: MatchPathInputValueType<T>) =>
-        paths.find(([predicate]) => predicate(value))?.[1](value) as
+    (input: MatchPathInputValueType<T>) =>
+        paths.find(([predicate]) => predicate(input))?.[1](input) as
             | MatchPathReturnValueType<T>
             | undefined;

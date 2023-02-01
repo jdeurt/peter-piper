@@ -1,12 +1,13 @@
 /**
  * Maps some input stream to an equivalent async iterable.
+ * @group Adapters
  */
 export const withStreamAdapter =
     <T>() =>
-    (stream: ReadableStream<T>) =>
+    (input: ReadableStream<T>) =>
         ({
             [Symbol.asyncIterator]: () => {
-                const reader = stream.getReader();
+                const reader = input.getReader();
 
                 return {
                     next: () => reader.read(),
@@ -16,7 +17,8 @@ export const withStreamAdapter =
         } as AsyncIterable<T>);
 
 /**
- * Maps the provided input stream to an equivalent async iterable.
+ * A non-currying variant of {@link withStreamAdapter}.
+ * @group Adapters
  */
 export const streamAdapter = <T>(stream: ReadableStream<T>) =>
     withStreamAdapter<T>()(stream);

@@ -1,3 +1,5 @@
+peter-piper / [Exports](modules.md)
+
 [![npm version](https://badge.fury.io/js/peter-piper.svg)](https://badge.fury.io/js/peter-piper)
 
 # Peter Piper
@@ -17,10 +19,6 @@ Or if you prefer using Yarn:
 ```sh
 $ yarn add peter-piper
 ```
-
-## Documentation
-
-Documentation is available [here](docs/modules.md).
 
 ## Example usage
 

@@ -4,28 +4,18 @@ import { toAsyncIterable } from "./to-async-iterable.js";
 
 /**
  * Retrieves the first value of some input iterable that satisfies the provided predicate.
+ * @group Greedy helpers
+ * @example
+ * using([1, 2, 3]).pipe(
+ *     find((x) => x === 2)
+ * );
  */
 export const find =
-    <T>(predicate: (value: T, index: number) => boolean) =>
-    (iterable: Iterable<T>) => {
-        let index = 0;
-
-        for (const value of iterable) {
-            if (predicate(value, index++)) {
-                return value;
-            }
-        }
-    };
-
-/**
- * Asynchronously retrieves the first value of some input iterable that satisfies the provided predicate.
- */
-export const findAsync =
     <T>(predicate: (value: T, index: number) => MaybePromise<boolean>) =>
-    async (iterable: AnyIterable<T>) => {
+    async (input: AnyIterable<T>) => {
         let index = 0;
 
-        for await (const value of toAsyncIterable<T>()(iterable)) {
+        for await (const value of toAsyncIterable<T>()(input)) {
             if (await predicate(value, index++)) {
                 return value;
             }

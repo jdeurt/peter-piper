@@ -10,6 +10,7 @@ type CleanupFn<T, U extends unknown[]> = (
 
 /**
  * Creates an async iterable representation of some event target's events.
+ * @group Adapters
  * @param factory A function that creates an event listener.
  * @param cleanup A function that cleans up an event listener.
  * @example
@@ -23,7 +24,7 @@ export const withEventAdapter =
         factory: FactoryFn<T, U>,
         cleanup?: CleanupFn<T, U>
     ) =>
-    (target: T) => {
+    (input: T) => {
         let isDone = false;
 
         let eventHandler: (...args: U) => void;
@@ -38,11 +39,11 @@ export const withEventAdapter =
                     controller.enqueue(args);
                 };
 
-                factory(eventHandler, target);
+                factory(eventHandler, input);
             },
             cancel() {
                 isDone = true;
-                cleanup?.(eventHandler, target);
+                cleanup?.(eventHandler, input);
             },
         });
 
@@ -69,6 +70,10 @@ export const withEventAdapter =
         } as AsyncIterable<U | []>;
     };
 
+/**
+ * A non-currying variant of {@link withEventAdapter}.
+ * @group Adapters
+ */
 export const eventAdapter = <U extends unknown[]>(
     factory: FactoryFn<undefined, U>,
     cleanup: CleanupFn<undefined, U>
