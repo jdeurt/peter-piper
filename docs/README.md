@@ -31,7 +31,7 @@ In contrast, lazy helpers immidiately output an iterable that can be acted on an
 In practice, this behavioral diffirence can be demonstrated as follows:
 
 ```js
-import { using, map, consume } from "peter-piper";
+import { using, map, consume, useSideEffect } from "peter-piper";
 
 const infiniteNumberGenerator = function* () {
     let i = 0;
@@ -42,11 +42,11 @@ const infiniteNumberGenerator = function* () {
 
 using(infiniteNumberGenerator()).pipe(
     map((x) => x * 2), // Lazy: immidiately passes an iterable to the next helper
-    consume((x) => x * 2) // Greedy: will keep pooling values until the iterable has finished
-);
+    consume((x) => x * 2), // Greedy: will keep pooling values until the iterable has finished
 
-// Since the generator never stops outputting values, the following line is never reached.
-console.log("Done!");
+    // Since the infinite number generator never stops outputting values, `consume` will run infinitely and this helper is never reached.
+    useSideEffect(console.log)
+);
 ```
 
 ## Documentation

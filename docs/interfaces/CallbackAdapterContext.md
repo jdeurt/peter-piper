@@ -35,7 +35,7 @@ Marks the end of the iterable returned by the [callbackAdapter](../modules.md#ca
 
 #### Defined in
 
-pipables/adapters/callback-adapter.ts:13
+[pipables/adapters/callback-adapter.ts:13](https://github.com/jdeurt/peter-piper/blob/ce0fc41/src/pipables/adapters/callback-adapter.ts#L13)
 
 ___
 
@@ -61,4 +61,4 @@ Passes values to the iterable returned by the [callbackAdapter](../modules.md#ca
 
 #### Defined in
 
-pipables/adapters/callback-adapter.ts:8
+[pipables/adapters/callback-adapter.ts:8](https://github.com/jdeurt/peter-piper/blob/ce0fc41/src/pipables/adapters/callback-adapter.ts#L8)
