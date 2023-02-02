@@ -20,6 +20,35 @@ Or if you prefer using Yarn:
 $ yarn add peter-piper
 ```
 
+## Concepts
+
+### Greedy vs lazy
+
+Greedy helpers do what the name implies: they fully consume whatever input is given. In the context of this library, greedy helpers will take whatever iterable is passed to them as input and only return a value once that iterable has been fully consumed. This means that greedy helpers can run infinitely if the input iterable never ends.
+
+In contrast, lazy helpers immidiately output an iterable that can be acted on and consume a single value at a time.
+
+In practice, this behavioral diffirence can be demonstrated as follows:
+
+```js
+import { using, map, consume } from "peter-piper";
+
+const infiniteNumberGenerator = function* () {
+    let i = 0;
+    while (true) {
+        yield i++;
+    }
+};
+
+using(infiniteNumberGenerator()).pipe(
+    map((x) => x * 2), // Lazy: immidiately passes an iterable to the next helper
+    consume((x) => x * 2) // Greedy: will keep pooling values until the iterable has finished
+);
+
+// Since the generator never stops outputting values, the following line is never reached.
+console.log("Done!");
+```
+
 ## Documentation
 
 Documentation is available [here](docs/modules.md).

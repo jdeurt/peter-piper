@@ -7,7 +7,6 @@ export * from "./first.js";
 export * from "./is-empty.js";
 export * from "./limit.js";
 export * from "./map.js";
-export * from "./pluck.js";
 export * from "./reduce.js";
 export * from "./scan.js";
 export * from "./slice.js";

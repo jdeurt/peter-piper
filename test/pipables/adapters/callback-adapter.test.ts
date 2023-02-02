@@ -1,14 +1,14 @@
 import test from "ava";
 import EventEmitter from "node:events";
 
-import { eventAdapter } from "../../../src/index.js";
+import { callbackAdapter } from "../../../src/index.js";
 
 test("should properly iterate through events asynchronously", async (t) => {
     const emitter = new EventEmitter();
 
-    const eventIterator = eventAdapter<[number, string]>(
-        (handler) => emitter.on("a", handler),
-        (handler) => emitter.removeListener("a", handler)
+    const eventIterator = callbackAdapter<[number, string]>(
+        (ctx) => emitter.on("a", ctx.pass),
+        (ctx) => emitter.removeListener("a", ctx.pass)
     )[Symbol.asyncIterator]();
 
     emitter.emit("a", 1, "2");

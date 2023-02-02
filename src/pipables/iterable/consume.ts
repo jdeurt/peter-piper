@@ -12,16 +12,17 @@ import { withIterableAssertion } from "../../util/type-assertions/assert-iterabl
  * );
  *
  * @remarks
- *
- * Since this helper is greedy, it will only stop consuming values when the input's iterator lets it know there are no values left to consume.
- * Using an input iterable which's iterator never returns will cause this helper to run indefinitely.
+ * `consume` behaves almost identically to `map`, the main difference being that `consume` will greedily iterate through the input iterable.
+ * Because of this, you must be careful not to pass an inifinite iterable as input unless you want `consume` to run forever.
  */
-export const consume = <T, U>(callback: (value: T) => MaybePromise<U>) =>
+export const consume = <T, U>(callback?: (value: T) => MaybePromise<U>) =>
     withIterableAssertion(async (input: AnyIterable<T>) => {
         const results: U[] = [];
 
         for await (const value of toAsyncIterable<T>()(input)) {
-            results.push(await callback(value));
+            if (callback) {
+                results.push(await callback(value));
+            }
         }
 
         return results;
