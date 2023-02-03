@@ -31,7 +31,7 @@
         "node": ">=18"
     },
     "scripts": {
-        "docs": "typedoc --plugin typedoc-plugin-markdown --out docs src/index.ts && git add docs/modules.md && git commit -m\"chore: update docs\" && git push",
+        "docs": "typedoc --plugin typedoc-plugin-markdown --out docs src/index.ts",
         "generate-types": "node scripts/generators/types/pipe.js && node scripts/generators/types/cooked-pipe.js",
         "build": "rollup -c",
         "prepublishOnly": "npm run build",
@@ -39,9 +39,9 @@
         "test": "ava",
         "test:json": "ava --tap | ava-tap-json",
         "publish:validate": "node scripts/git/publish.js",
-        "publish:major": "npm run publish:validate && npm run docs && npm version major && git push origin main --tags && npm publish",
-        "publish:minor": "npm run publish:validate && npm run docs && npm version minor && git push origin main --tags && npm publish",
-        "publish:patch": "npm run publish:validate && npm run docs && npm version patch && git push origin main --tags && npm publish"
+        "publish:major": "npm run publish:validate && npm version major && git push origin main --tags && npm publish",
+        "publish:minor": "npm run publish:validate && npm version minor && git push origin main --tags && npm publish",
+        "publish:patch": "npm run publish:validate && npm version patch && git push origin main --tags && npm publish"
     },
     "ava": {
         "extensions": [
