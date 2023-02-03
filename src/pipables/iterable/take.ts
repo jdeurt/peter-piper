@@ -7,10 +7,10 @@ import { withIterableAssertion } from "../../util/type-assertions/assert-iterabl
  * @group Lazy helpers
  * @example
  * using([1, 2, 3]).pipe(
- *     limit(2)
+ *     take(2)
  * );
  */
-export const limit = <T>(x: number) =>
+export const take = <T>(x: number) =>
     withIterableAssertion(
         (input: AnyIterable<T>) =>
             ({

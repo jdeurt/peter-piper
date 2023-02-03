@@ -5,7 +5,7 @@ export * from "./filter.js";
 export * from "./find.js";
 export * from "./first.js";
 export * from "./is-empty.js";
-export * from "./limit.js";
+export * from "./take.js";
 export * from "./map.js";
 export * from "./reduce.js";
 export * from "./scan.js";
