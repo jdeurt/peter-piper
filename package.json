@@ -37,10 +37,10 @@
         "prepublishOnly": "npm run build",
         "types": "tsc --noEmit",
         "test": "ava",
-        "push-tags": "git push origin main --tags",
-        "publish-semver": "npm docs && npm version patch && npm push-tags && npm publish",
-        "publish:minor": "npm docs && npm version minor && npm push-tags && npm publish",
-        "publish:major": "npm docs && npm version major && npm push-tags && npm publish"
+        "test:json": "ava --tap | ava-tap-json",
+        "publish:major": "npm run docs && npm version major && git push origin main --tags && npm publish",
+        "publish:minor": "npm run docs && npm version minor && git push origin main --tags && npm publish",
+        "publish:patch": "npm run docs && npm version patch && git push origin main --tags && npm publish"
     },
     "ava": {
         "extensions": [
@@ -64,6 +64,7 @@
         "@rollup/plugin-terser": "^0.4.0",
         "@types/node": "^18.11.18",
         "ava": "^5.1.1",
+        "ava-tap-json": "^2.0.4",
         "eslint": "^8.32.0",
         "prettier": "^2.8.3",
         "rollup": "^3.12.0",
