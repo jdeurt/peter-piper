@@ -8,8 +8,8 @@
  */
 export const useSideEffect =
     <T>(sideEffect: (value: T) => unknown) =>
-    (input: T) => {
-        sideEffect(input);
+    async (input: T) => {
+        await sideEffect(input);
 
         return input;
     };
