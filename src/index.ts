@@ -1,5 +1,5 @@
-import type { CookedPipe } from "./types/generated/cooked-pipe.js";
-import type { Pipable } from "./types/pipable.js";
+import type { CookedPipe } from "./types/generated/cooked-pipe";
+import type { Pipable } from "./types/pipable";
 
 /**
  * Creates a new "cooked" pipe using the provided value as the starting input.
@@ -14,5 +14,5 @@ export const using = <T>(value: T) => ({
         args.reduce((x, f) => (f as Pipable)(x), value)) as CookedPipe<T>,
 });
 
-export { PLACEHOLDER as __ } from "./constants/placeholder.js";
-export * from "./pipables/index.js";
+export { PLACEHOLDER as __ } from "./constants/placeholder";
+export * from "./pipables";

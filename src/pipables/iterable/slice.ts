@@ -1,6 +1,6 @@
-import type { AnyIterable } from "../../types/any-iterable.js";
-import { toAsyncIterable } from "./to-async-iterable.js";
-import { withIterableAssertion } from "../../util/type-assertions/assert-iterable.js";
+import type { AnyIterable } from "../../types/any-iterable";
+import { toAsyncIterable } from "./to-async-iterable";
+import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
 /**
  * Creates a new iterable by slicing some input iterable from the provided start index (inclusive) to the provided end index (exclusive).

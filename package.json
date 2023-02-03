@@ -8,7 +8,6 @@
     "main": "dist/index.js",
     "types": "types/index.d.ts",
     "license": "MIT",
-    "type": "module",
     "publishConfig": {
         "access": "public"
     },
@@ -38,17 +37,17 @@
         "prepublishOnly": "npm run build",
         "types": "tsc --noEmit",
         "test": "ava",
-        "publish:patch": "npm version patch && git push origin main --tags && npm publish",
-        "publish:minor": "npm version minor && git push origin main --tags && npm publish",
-        "publish:major": "npm version major && git push origin main --tags && npm publish"
+        "push-tags": "git push origin main --tags",
+        "publish-semver": "npm docs && npm version patch && npm push-tags && npm publish",
+        "publish:minor": "npm docs && npm version minor && npm push-tags && npm publish",
+        "publish:major": "npm docs && npm version major && npm push-tags && npm publish"
     },
     "ava": {
-        "extensions": {
-            "ts": "module"
-        },
-        "nodeArguments": [
-            "--loader=ts-node/esm",
-            "--no-warnings"
+        "extensions": [
+            "ts"
+        ],
+        "require": [
+            "ts-node/register"
         ]
     },
     "keywords": [

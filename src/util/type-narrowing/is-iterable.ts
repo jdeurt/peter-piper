@@ -1,7 +1,7 @@
-import type { AnyIterable } from "../../types/any-iterable.js";
-import { hasProperty } from "./has-property.js";
-import { isCallable } from "./is-callable.js";
-import { isObject } from "./is-object.js";
+import type { AnyIterable } from "../../types/any-iterable";
+import { hasProperty } from "./has-property";
+import { isCallable } from "./is-callable";
+import { isObject } from "./is-object";
 
 export const isIterable = <T>(value: unknown): value is AnyIterable<T> => {
     return (

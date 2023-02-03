@@ -1,6 +1,6 @@
 import { testProp, fc } from "@fast-check/ava";
 
-import { useSideEffect } from "../../../src/index.js";
+import { useSideEffect } from "../../../src";
 
 testProp("should produce a side-effect", [fc.float()], (t, value) => {
     let someValue = 0;

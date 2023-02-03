@@ -1,3 +1,3 @@
-export * from "./callback-adapter.js";
-export * from "./custom-adapter.js";
-export * from "./stream-adapter.js";
+export * from "./callback-adapter";
+export * from "./custom-adapter";
+export * from "./stream-adapter";

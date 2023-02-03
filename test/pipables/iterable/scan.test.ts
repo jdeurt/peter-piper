@@ -1,7 +1,7 @@
 import { testProp, fc } from "@fast-check/ava";
 
-import { scan, toArray } from "../../../src/index.js";
-import { set } from "../../helpers/set-arbitrary.js";
+import { scan, toArray } from "../../../src";
+import { set } from "../../helpers/set-arbitrary";
 
 testProp(
     "should reduce an iterable to a value sequentially",

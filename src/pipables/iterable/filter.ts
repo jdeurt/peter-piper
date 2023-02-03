@@ -1,7 +1,7 @@
-import type { AnyIterable } from "../../types/any-iterable.js";
-import type { MaybePromise } from "../../types/maybe-promise.js";
-import { toAsyncIterable } from "./to-async-iterable.js";
-import { withIterableAssertion } from "../../util/type-assertions/assert-iterable.js";
+import type { AnyIterable } from "../../types/any-iterable";
+import type { MaybePromise } from "../../types/maybe-promise";
+import { toAsyncIterable } from "./to-async-iterable";
+import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
 /**
  * Creates a new iterable containing all values of some input iterable that satisfy the provided predicate.

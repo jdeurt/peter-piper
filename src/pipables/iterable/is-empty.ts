@@ -1,6 +1,6 @@
-import type { AnyIterable } from "../../types/any-iterable.js";
-import { toAsyncIterable } from "./to-async-iterable.js";
-import { withIterableAssertion } from "../../util/type-assertions/assert-iterable.js";
+import type { AnyIterable } from "../../types/any-iterable";
+import { toAsyncIterable } from "./to-async-iterable";
+import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
 /**
  * Returns `Promise<true>` if some input iterable is empty (i.e. can't produce any values). Returns `Promise<false>` otherwise.

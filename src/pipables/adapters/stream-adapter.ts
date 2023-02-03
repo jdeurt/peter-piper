@@ -1,4 +1,4 @@
-import { assertReadableStream } from "../../util/type-assertions/assert-readable-stream.js";
+import { assertReadableStream } from "../../util/type-assertions/assert-readable-stream";
 
 /**
  * Maps some input stream to an equivalent async iterable.

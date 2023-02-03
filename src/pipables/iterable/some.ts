@@ -1,7 +1,7 @@
-import type { AnyIterable } from "../../types/any-iterable.js";
-import type { MaybePromise } from "../../types/maybe-promise.js";
-import { toAsyncIterable } from "./to-async-iterable.js";
-import { withIterableAssertion } from "../../util/type-assertions/assert-iterable.js";
+import type { AnyIterable } from "../../types/any-iterable";
+import type { MaybePromise } from "../../types/maybe-promise";
+import { toAsyncIterable } from "./to-async-iterable";
+import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
 /**
  * Tests whether any values of some input iterable satisfy the provided predicate.

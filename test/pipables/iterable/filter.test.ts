@@ -1,7 +1,7 @@
 import { testProp, fc } from "@fast-check/ava";
 
-import { filter, toArray } from "../../../src/index.js";
-import { set } from "../../helpers/set-arbitrary.js";
+import { filter, toArray } from "../../../src";
+import { set } from "../../helpers/set-arbitrary";
 
 testProp(
     "should filter invalid values out of an iterable",

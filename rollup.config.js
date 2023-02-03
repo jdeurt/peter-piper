@@ -1,9 +1,9 @@
-import resolve from "@rollup/plugin-node-resolve";
-import typescript from "rollup-plugin-typescript2";
-import terser from "@rollup/plugin-terser";
-import pkg from "./package.json" assert { type: "json" };
+const resolve = require("@rollup/plugin-node-resolve");
+const typescript = require("rollup-plugin-typescript2");
+const terser = require("@rollup/plugin-terser");
+const pkg = require("./package.json");
 
-export default {
+module.exports = {
     input: "src/index.ts",
     output: [
         {
@@ -27,7 +27,7 @@ export default {
         },
     ],
     external: [
-        ...(await import("module")).builtinModules,
+        ...require("node:module").builtinModules,
         ...Object.keys(pkg.dependencies || {}),
         ...Object.keys(pkg.peerDependencies || {}),
     ],

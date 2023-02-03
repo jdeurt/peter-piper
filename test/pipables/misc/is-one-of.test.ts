@@ -1,6 +1,6 @@
 import { testProp, fc } from "@fast-check/ava";
 
-import { isOneOf } from "../../../src/index.js";
+import { isOneOf } from "../../../src";
 
 testProp(
     "should check if a value is present in an array of values",

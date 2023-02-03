@@ -1,6 +1,6 @@
 import { testProp, fc } from "@fast-check/ava";
 
-import { fork } from "../../../src/index.js";
+import { fork } from "../../../src";
 
 testProp(
     "should allow for creating forks in execution paths",

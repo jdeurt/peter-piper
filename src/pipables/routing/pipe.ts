@@ -1,5 +1,5 @@
-import type { Pipable } from "../../types/pipable.js";
-import type { Pipe } from "../../types/generated/pipe.js";
+import type { Pipable } from "../../types/pipable";
+import type { Pipe } from "../../types/generated/pipe";
 
 /**
  * Pipes some input value through a series of functions, returning the result.

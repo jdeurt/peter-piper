@@ -1,6 +1,6 @@
 import { testProp, fc } from "@fast-check/ava";
 
-import { equals } from "../../../src/index.js";
+import { equals } from "../../../src";
 
 testProp(
     "should check for equality between values",

@@ -1,8 +1,8 @@
-import type { AnyIterable } from "../../types/any-iterable.js";
-import type { MaybePromise } from "../../types/maybe-promise.js";
-import { NOTHING } from "../../constants/nothing.js";
-import { toAsyncIterable } from "./to-async-iterable.js";
-import { withIterableAssertion } from "../../util/type-assertions/assert-iterable.js";
+import type { AnyIterable } from "../../types/any-iterable";
+import type { MaybePromise } from "../../types/maybe-promise";
+import { NOTHING } from "../../constants/nothing";
+import { toAsyncIterable } from "./to-async-iterable";
+import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
 /**
  * Similar to {@link reduce} except returns an iterable with values corresponding to the result of each reduction step.

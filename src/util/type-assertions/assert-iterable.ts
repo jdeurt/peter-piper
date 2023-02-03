@@ -1,5 +1,5 @@
-import type { AnyIterable } from "../../types/any-iterable.js";
-import { isIterable } from "../type-narrowing/is-iterable.js";
+import type { AnyIterable } from "../../types/any-iterable";
+import { isIterable } from "../type-narrowing/is-iterable";
 
 export function assertIterable(
     value: unknown

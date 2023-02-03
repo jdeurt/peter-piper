@@ -1,6 +1,6 @@
 import { testProp, fc } from "@fast-check/ava";
 
-import { take, toArray } from "../../../src/index.js";
+import { take, toArray } from "../../../src";
 
 testProp(
     "should limit an iterable to an amount of values",
