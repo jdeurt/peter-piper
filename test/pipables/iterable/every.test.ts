@@ -1,7 +1,7 @@
 import { testProp, fc } from "@fast-check/ava";
 
-import { every } from "../../../src/index.js";
-import { set } from "../../helpers/set-arbitrary.js";
+import { every } from "../../../src";
+import { set } from "../../helpers/set-arbitrary";
 
 testProp(
     "should check if an iterable's values all pass a check function",

@@ -12,8 +12,8 @@ import {
     toArray,
     using,
     __,
-} from "../src/index.js";
-import { set } from "./helpers/set-arbitrary.js";
+} from "../src";
+import { set } from "./helpers/set-arbitrary";
 
 testProp(
     "simple implementation",

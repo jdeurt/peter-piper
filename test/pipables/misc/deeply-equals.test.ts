@@ -1,6 +1,6 @@
 import { testProp, fc } from "@fast-check/ava";
 
-import { deeplyEquals } from "../../../src/index.js";
+import { deeplyEquals } from "../../../src";
 
 testProp(
     "should check for deep equality between values",

@@ -1,3 +1,3 @@
-export * from "./fork.js";
-export * from "./match.js";
-export * from "./pipe.js";
+export * from "./fork";
+export * from "./match";
+export * from "./pipe";

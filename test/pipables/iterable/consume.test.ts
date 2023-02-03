@@ -1,6 +1,6 @@
 import { testProp, fc } from "@fast-check/ava";
 
-import { consume } from "../../../src/index.js";
+import { consume } from "../../../src";
 
 testProp(
     "should fully consume an iterable",

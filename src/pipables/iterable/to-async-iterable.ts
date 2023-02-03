@@ -1,5 +1,5 @@
-import type { AnyIterable } from "../../types/any-iterable.js";
-import { withIterableAssertion } from "../../util/type-assertions/assert-iterable.js";
+import type { AnyIterable } from "../../types/any-iterable";
+import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
 /**
  * Maps some input iterable to an equivalent async iterable.

@@ -1,6 +1,6 @@
-import type { AnyIterable } from "../../types/any-iterable.js";
-import { toAsyncIterable } from "./to-async-iterable.js";
-import { withIterableAssertion } from "../../util/type-assertions/assert-iterable.js";
+import type { AnyIterable } from "../../types/any-iterable";
+import { toAsyncIterable } from "./to-async-iterable";
+import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
 /**
  * Creates an iterable by concatenating an arbitrary amount of iterables to some base iterable.

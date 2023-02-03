@@ -1,7 +1,7 @@
 import { testProp, fc } from "@fast-check/ava";
 
-import { reduce } from "../../../src/index.js";
-import { set } from "../../helpers/set-arbitrary.js";
+import { reduce } from "../../../src";
+import { set } from "../../helpers/set-arbitrary";
 
 testProp(
     "should reduce an iterable to a value",

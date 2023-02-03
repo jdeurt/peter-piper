@@ -1,8 +1,8 @@
 import { testProp, fc } from "@fast-check/ava";
 import test from "ava";
 
-import { filter, map, slice, using } from "../src/index.js";
-import { infiniteNumberGenerator } from "./helpers/inifinite-number-generator.js";
+import { filter, map, slice, using } from "../src";
+import { infiniteNumberGenerator } from "./helpers/inifinite-number-generator";
 
 testProp(
     "should pipe a value through a chain of operations",

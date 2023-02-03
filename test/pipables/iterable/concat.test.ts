@@ -1,6 +1,6 @@
 import { testProp, fc } from "@fast-check/ava";
 
-import { concat, toArray } from "../../../src/index.js";
+import { concat, toArray } from "../../../src";
 
 testProp(
     "should concatenate iterables",

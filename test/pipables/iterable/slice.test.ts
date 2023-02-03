@@ -1,6 +1,6 @@
 import { testProp, fc } from "@fast-check/ava";
 
-import { slice, toArray } from "../../../src/index.js";
+import { slice, toArray } from "../../../src";
 
 testProp(
     "should slice out a chunk of an iterable",

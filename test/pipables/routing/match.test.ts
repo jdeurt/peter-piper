@@ -1,6 +1,6 @@
 import { testProp, fc } from "@fast-check/ava";
 
-import { match, __ } from "../../../src/index.js";
+import { match, __ } from "../../../src";
 
 testProp(
     "should allow for basic pattern-matching behavior",

@@ -1,7 +1,7 @@
 import { testProp, fc } from "@fast-check/ava";
 
-import { isEmpty } from "../../../src/index.js";
-import { set } from "../../helpers/set-arbitrary.js";
+import { isEmpty } from "../../../src";
+import { set } from "../../helpers/set-arbitrary";
 
 testProp(
     "should check if an iterable is empty",

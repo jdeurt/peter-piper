@@ -1,7 +1,7 @@
 import test from "ava";
 import EventEmitter from "node:events";
 
-import { callbackAdapter } from "../../../src/index.js";
+import { callbackAdapter } from "../../../src";
 
 test("should properly iterate through events asynchronously", async (t) => {
     const emitter = new EventEmitter();

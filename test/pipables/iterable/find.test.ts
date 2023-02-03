@@ -1,7 +1,7 @@
 import { testProp, fc } from "@fast-check/ava";
 
-import { find } from "../../../src/index.js";
-import { set } from "../../helpers/set-arbitrary.js";
+import { find } from "../../../src";
+import { set } from "../../helpers/set-arbitrary";
 
 testProp(
     "should retrieve the first value from an iterable that meets a predicate",
