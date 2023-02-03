@@ -31,7 +31,7 @@
         "node": ">=18"
     },
     "scripts": {
-        "docs": "typedoc --plugin typedoc-plugin-markdown --out docs src/index.ts && git add docs/**/* && git commit -m\"chore: update docs\"",
+        "docs": "typedoc --plugin typedoc-plugin-markdown --out docs src/index.ts && git add docs/**/* && git commit -m\"chore: update docs\" && git push",
         "generate-types": "node scripts/generators/types/pipe.js && node scripts/generators/types/cooked-pipe.js",
         "build": "rollup -c",
         "prepublishOnly": "npm run build",
