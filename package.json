@@ -38,9 +38,10 @@
         "types": "tsc --noEmit",
         "test": "ava",
         "test:json": "ava --tap | ava-tap-json",
-        "publish:major": "npm run docs && npm version major && git push origin main --tags && npm publish",
-        "publish:minor": "npm run docs && npm version minor && git push origin main --tags && npm publish",
-        "publish:patch": "npm run docs && npm version patch && git push origin main --tags && npm publish"
+        "publish:validate": "node scripts/git/publish.js",
+        "publish:major": "npm run publish:validate && npm run docs && npm version major && git push origin main --tags && npm publish",
+        "publish:minor": "npm run publish:validate && npm run docs && npm version minor && git push origin main --tags && npm publish",
+        "publish:patch": "npm run publish:validate && npm run docs && npm version patch && git push origin main --tags && npm publish"
     },
     "ava": {
         "extensions": [

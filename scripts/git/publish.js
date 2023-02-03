@@ -1,13 +1,5 @@
 const { exec } = require("node:child_process");
 
-const version = process.argv.slice(-1)[0];
-
-if (!version || !["major", "minor", "patch"].includes(version)) {
-    throw new Error(
-        "Invalid version argument. Expected one of 'major', 'minor', or 'patch' to be present."
-    );
-}
-
 console.info("Running tests...");
 
 exec("npm run test:json", (err, stdout, stderr) => {
@@ -26,5 +18,7 @@ exec("npm run test:json", (err, stdout, stderr) => {
         console.error("Run 'npm run test' to view more info.");
     }
 
-    exec(`npm run publish:${version}`).stdout.pipe(process.stdout);
+    console.info(
+        `All ${stats.passes} tests passed or had expected failures. Proceeding...`
+    );
 });
