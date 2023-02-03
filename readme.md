@@ -134,7 +134,6 @@ for await (const n of evenNumbers) {
 
 -   Make generic types more user-friendly.
 -   Add support for Websocket -> AsyncIterable transformations.
--   Add support for CJS.
 
 ## Authors
 

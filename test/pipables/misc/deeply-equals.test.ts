@@ -6,6 +6,8 @@ testProp(
     "should check for deep equality between values",
     [fc.object()],
     (t, x) =>
-        t.deepEqual(structuredClone(x), x) &&
-        t.true(deeplyEquals(structuredClone(x))(x))
+        t.is(
+            deeplyEquals(structuredClone(x), { checkNaN: true })(x),
+            t.deepEqual(structuredClone(x), x)
+        )
 );
