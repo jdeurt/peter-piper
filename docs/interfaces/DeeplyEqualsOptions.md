@@ -18,4 +18,4 @@ Whether or not `NaN === NaN` should be treated as `true`.
 
 #### Defined in
 
-[helpers/misc/deeply-equals.ts:5](https://github.com/jdeurt/peter-piper/blob/5873414/src/helpers/misc/deeply-equals.ts#L5)
+[helpers/misc/deeply-equals.ts:5](https://github.com/jdeurt/peter-piper/blob/389d924/src/helpers/misc/deeply-equals.ts#L5)
