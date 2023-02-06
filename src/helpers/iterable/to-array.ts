@@ -1,5 +1,4 @@
 import type { AnyIterable } from "../../types/any-iterable";
-import { toAsyncIterable } from "./to-async-iterable";
 import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
 /**
@@ -14,7 +13,7 @@ export const toArray = <T>() =>
     withIterableAssertion(async (input: AnyIterable<T>) => {
         const result: T[] = [];
 
-        for await (const value of toAsyncIterable<T>()(input)) {
+        for await (const value of input) {
             result.push(value);
         }
 

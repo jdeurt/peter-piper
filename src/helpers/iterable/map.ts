@@ -1,6 +1,6 @@
 import type { AnyIterable } from "../../types/any-iterable";
 import type { MaybePromise } from "../../types/maybe-promise";
-import { toAsyncIterable } from "./to-async-iterable";
+import { lift } from "../../util/lift";
 import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
 /**
@@ -14,15 +14,8 @@ import { withIterableAssertion } from "../../util/type-assertions/assert-iterabl
 export const map = <T, U>(
     callback: (value: T, index: number) => MaybePromise<U>
 ) =>
-    withIterableAssertion(
-        (input: AnyIterable<T>) =>
-            ({
-                [Symbol.asyncIterator]: async function* () {
-                    let index = 0;
+    withIterableAssertion((input: AnyIterable<T>): AsyncIterable<U> => {
+        let index = 0;
 
-                    for await (const value of toAsyncIterable<T>()(input)) {
-                        yield await callback(value, index++);
-                    }
-                },
-            } as AsyncIterable<U>)
-    );
+        return lift(input, (value) => callback(value, index++));
+    });

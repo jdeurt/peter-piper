@@ -5,3 +5,4 @@ export * from "./is-falsy";
 export * from "./is-one-of";
 export * from "./is-truthy";
 export * from "./use-side-effect";
+export * from "./wrap";

@@ -2,19 +2,20 @@ import type { AnyIterable } from "../../types/any-iterable";
 import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
 /**
- * Maps some input iterable to an equivalent async iterable or, if the input is non-iterable, wraps some input value in an async iterable.
+ * Creates an iterable by concatenating an arbitrary amount of iterables to some base iterable.
  * @group Lazy helpers
  * @example
  * using([1, 2, 3]).pipe(
- *     toAsyncIterable()
+ *     concat([4, 5, 6])
  * );
  */
-export const toAsyncIterable = <T>() =>
+export const concat = <T>(...iterables: AnyIterable<T>[]) =>
     withIterableAssertion(
         (input: AnyIterable<T>): AsyncIterable<T> => ({
-            // eslint-disable-next-line @typescript-eslint/require-await
             [Symbol.asyncIterator]: async function* () {
-                yield* input;
+                for (const iterable of [input, ...iterables]) {
+                    yield* iterable;
+                }
             },
         })
     );

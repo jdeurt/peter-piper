@@ -1,6 +1,5 @@
 import type { AnyIterable } from "../../types/any-iterable";
 import type { MaybePromise } from "../../types/maybe-promise";
-import { toAsyncIterable } from "./to-async-iterable";
 import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
 /**
@@ -16,10 +15,10 @@ import { withIterableAssertion } from "../../util/type-assertions/assert-iterabl
  * Because of this, you must be careful not to pass an inifinite iterable as input unless you want `consume` to run forever.
  */
 export const consume = <T, U>(callback?: (value: T) => MaybePromise<U>) =>
-    withIterableAssertion(async (input: AnyIterable<T>) => {
+    withIterableAssertion(async (input: AnyIterable<T>): Promise<U[]> => {
         const results: U[] = [];
 
-        for await (const value of toAsyncIterable<T>()(input)) {
+        for await (const value of input) {
             if (callback) {
                 results.push(await callback(value));
             }

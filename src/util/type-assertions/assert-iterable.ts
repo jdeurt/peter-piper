@@ -5,7 +5,8 @@ export function assertIterable(
     value: unknown
 ): asserts value is AnyIterable<unknown> {
     if (!isIterable(value)) {
-        throw new TypeError(`Expected an iterable but got "${typeof value}".`);
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        throw new TypeError(`Expected an iterable but got "${value}".`);
     }
 }
 

@@ -1,5 +1,4 @@
 import type { AnyIterable } from "../../types/any-iterable";
-import { toAsyncIterable } from "./to-async-iterable";
 import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
 /**
@@ -21,7 +20,7 @@ export const slice = <T>(
                 [Symbol.asyncIterator]: async function* () {
                     let index = 0;
 
-                    for await (const value of toAsyncIterable<T>()(input)) {
+                    for await (const value of input) {
                         if (index === endIndex) {
                             return;
                         }

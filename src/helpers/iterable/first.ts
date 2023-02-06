@@ -1,6 +1,5 @@
 import type { AnyIterable } from "../../types/any-iterable";
 import type { MaybePromise } from "../../types/maybe-promise";
-import { toAsyncIterable } from "./to-async-iterable";
 import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
 /**
@@ -14,12 +13,12 @@ import { withIterableAssertion } from "../../util/type-assertions/assert-iterabl
 export const first = <T>(
     predicate?: (value: T, index: number) => MaybePromise<boolean>
 ) =>
-    withIterableAssertion((input: AnyIterable<T>) => {
+    withIterableAssertion((input: AnyIterable<T>): AsyncIterable<T> => {
         let index = 0;
 
         return {
             [Symbol.asyncIterator]: async function* () {
-                for await (const value of toAsyncIterable<T>()(input)) {
+                for await (const value of input) {
                     if (predicate === undefined) {
                         yield value;
                         return;
@@ -31,5 +30,5 @@ export const first = <T>(
                     }
                 }
             },
-        } as AsyncIterable<T>;
+        };
     });

@@ -3,7 +3,8 @@ export function assertReadableStream(
 ): asserts value is ReadableStream {
     if (!(value instanceof ReadableStream)) {
         throw new TypeError(
-            `Expected value to be a ReadableStream, but got ${typeof value}`
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            `Expected value to be a ReadableStream, but got "${value}".`
         );
     }
 }

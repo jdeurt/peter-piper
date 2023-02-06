@@ -1,7 +1,6 @@
 import type { AnyIterable } from "../../types/any-iterable";
 import type { MaybePromise } from "../../types/maybe-promise";
 import { NOTHING } from "../../constants/nothing";
-import { toAsyncIterable } from "./to-async-iterable";
 import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
 /**
@@ -24,7 +23,7 @@ export function scan<T, U = T>(
 
         return {
             [Symbol.asyncIterator]: async function* () {
-                for await (const value of toAsyncIterable<T>()(input)) {
+                for await (const value of input) {
                     if (accumulator === NOTHING) {
                         index++;
                         accumulator = value as unknown as U;
