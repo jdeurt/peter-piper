@@ -1,3 +1,4 @@
+import { asyncIterable, iterable } from "../../util/iterable-factory";
 import type { AnyIterable } from "../../types/any-iterable";
 import type { MaybePromise } from "../../types/maybe-promise";
 import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
@@ -14,8 +15,8 @@ export const filter = <T>(
     predicate: (value: T, index: number) => MaybePromise<boolean>
 ) =>
     withIterableAssertion(
-        (input: AnyIterable<T>): AsyncIterable<T> => ({
-            [Symbol.asyncIterator]: async function* () {
+        (input: AnyIterable<T>): AsyncIterable<T> =>
+            asyncIterable(async function* () {
                 let index = 0;
 
                 for await (const value of input) {
@@ -23,6 +24,21 @@ export const filter = <T>(
                         yield value;
                     }
                 }
-            },
-        })
+            })
+    );
+
+export const filterSync = <T>(
+    predicate: (value: T, index: number) => boolean
+) =>
+    withIterableAssertion(
+        (input: Iterable<T>): Iterable<T> =>
+            iterable(function* () {
+                let index = 0;
+
+                for (const value of input) {
+                    if (predicate(value, index++)) {
+                        yield value;
+                    }
+                }
+            })
     );

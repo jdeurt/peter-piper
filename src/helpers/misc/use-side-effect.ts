@@ -8,8 +8,16 @@
  */
 export const useSideEffect =
     <T>(sideEffect: (value: T) => unknown) =>
-    async (input: T) => {
+    async (input: T): Promise<T> => {
         await sideEffect(input);
+
+        return input;
+    };
+
+export const useSideEffectSync =
+    <T>(sideEffect: (value: T) => unknown) =>
+    (input: T): T => {
+        sideEffect(input);
 
         return input;
     };

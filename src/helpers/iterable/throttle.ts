@@ -7,6 +7,9 @@ import type { AnyIterable } from "../../types/any-iterable";
  * using(someAsyncGenerator()).pipe(
  *     throttle(2000) // 2 seconds
  * );
+ *
+ * @remarks
+ * Due to the nature of this helper, it does not have a sync variant.
  */
 export const throttle = <T>(ms: number) => {
     let lastPass = Number.NEGATIVE_INFINITY;

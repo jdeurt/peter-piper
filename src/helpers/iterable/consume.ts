@@ -26,3 +26,16 @@ export const consume = <T, U>(callback?: (value: T) => MaybePromise<U>) =>
 
         return results;
     });
+
+export const consumeSync = <T, U>(callback?: (value: T) => U) =>
+    withIterableAssertion((input: Iterable<T>): U[] => {
+        const results: U[] = [];
+
+        for (const value of input) {
+            if (callback) {
+                results.push(callback(value));
+            }
+        }
+
+        return results;
+    });

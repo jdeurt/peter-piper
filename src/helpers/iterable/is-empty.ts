@@ -18,3 +18,8 @@ export const isEmpty = () =>
                 .next()
                 .then(({ done }) => Boolean(done))
     );
+
+export const isEmptySync = () =>
+    withIterableAssertion((input: Iterable<unknown>): boolean =>
+        Boolean(input[Symbol.iterator]().next().done)
+    );

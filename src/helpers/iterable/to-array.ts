@@ -10,10 +10,21 @@ import { withIterableAssertion } from "../../util/type-assertions/assert-iterabl
  * );
  */
 export const toArray = <T>() =>
-    withIterableAssertion(async (input: AnyIterable<T>) => {
+    withIterableAssertion(async (input: AnyIterable<T>): Promise<T[]> => {
         const result: T[] = [];
 
         for await (const value of input) {
+            result.push(value);
+        }
+
+        return result;
+    });
+
+export const toArraySync = <T>() =>
+    withIterableAssertion((input: Iterable<T>): T[] => {
+        const result: T[] = [];
+
+        for (const value of input) {
             result.push(value);
         }
 

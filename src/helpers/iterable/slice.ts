@@ -1,3 +1,4 @@
+import { asyncIterable, iterable } from "../../util/iterable-factory";
 import type { AnyIterable } from "../../types/any-iterable";
 import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
@@ -15,22 +16,43 @@ export const slice = <T>(
     endIndex = Number.POSITIVE_INFINITY
 ) =>
     withIterableAssertion(
-        (input: AnyIterable<T>) =>
-            ({
-                [Symbol.asyncIterator]: async function* () {
-                    let index = 0;
+        (input: AnyIterable<T>): AsyncIterable<T> =>
+            asyncIterable(async function* () {
+                let index = 0;
 
-                    for await (const value of input) {
-                        if (index === endIndex) {
-                            return;
-                        }
-
-                        if (index >= startIndex) {
-                            yield value;
-                        }
-
-                        index++;
+                for await (const value of input) {
+                    if (index === endIndex) {
+                        return;
                     }
-                },
-            } as AsyncIterable<T>)
+
+                    if (index >= startIndex) {
+                        yield value;
+                    }
+
+                    index++;
+                }
+            })
+    );
+
+export const sliceSync = <T>(
+    startIndex: number,
+    endIndex = Number.POSITIVE_INFINITY
+) =>
+    withIterableAssertion(
+        (input: Iterable<T>): Iterable<T> =>
+            iterable(function* () {
+                let index = 0;
+
+                for (const value of input) {
+                    if (index === endIndex) {
+                        return;
+                    }
+
+                    if (index >= startIndex) {
+                        yield value;
+                    }
+
+                    index++;
+                }
+            })
     );

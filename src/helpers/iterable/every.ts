@@ -23,3 +23,15 @@ export const every = <T>(
 
         return accumulator;
     });
+
+export const everySync = <T>(predicate: (value: T, index: number) => boolean) =>
+    withIterableAssertion((input: Iterable<T>): boolean => {
+        let index = 0;
+        let accumulator = true;
+
+        for (const value of input) {
+            accumulator = accumulator && predicate(value, index++);
+        }
+
+        return accumulator;
+    });

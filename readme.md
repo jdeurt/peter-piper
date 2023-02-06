@@ -47,6 +47,21 @@ pp.using(infiniteNumberGenerator()).pipe(
 );
 ```
 
+### Working with sync iterables
+
+The main focus of Peter Piper is working with AsyncIterables. However, if needed, specialized sync helpers are available via `*Sync` variations (`pp.map` vs `pp.mapSync`) and through the `/sync` path:
+
+```js
+import { using, randomInts, map } from "peter-piper/sync";
+
+const threeRandomIntsFrom0To5 = using(randomInts([0, 5])).pipe(take(3));
+
+// Will log 3 random integers.
+for (const n of threeRandomIntsFrom0To5) {
+    console.log(n);
+}
+```
+
 ## Documentation
 
 Documentation is available [here](docs/modules.md).

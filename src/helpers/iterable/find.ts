@@ -24,3 +24,14 @@ export const find = <T>(
             }
         }
     );
+
+export const findSync = <T>(predicate: (value: T, index: number) => boolean) =>
+    withIterableAssertion((input: Iterable<T>): T | undefined => {
+        let index = 0;
+
+        for (const value of input) {
+            if (predicate(value, index++)) {
+                return value;
+            }
+        }
+    });

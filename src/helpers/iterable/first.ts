@@ -1,3 +1,4 @@
+import { asyncIterable, iterable } from "../../util/iterable-factory";
 import type { AnyIterable } from "../../types/any-iterable";
 import type { MaybePromise } from "../../types/maybe-promise";
 import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
@@ -16,19 +17,38 @@ export const first = <T>(
     withIterableAssertion((input: AnyIterable<T>): AsyncIterable<T> => {
         let index = 0;
 
-        return {
-            [Symbol.asyncIterator]: async function* () {
-                for await (const value of input) {
-                    if (predicate === undefined) {
-                        yield value;
-                        return;
-                    }
-
-                    if (await predicate(value, index++)) {
-                        yield value;
-                        return;
-                    }
+        return asyncIterable(async function* () {
+            for await (const value of input) {
+                if (predicate === undefined) {
+                    yield value;
+                    return;
                 }
-            },
-        };
+
+                if (await predicate(value, index++)) {
+                    yield value;
+                    return;
+                }
+            }
+        });
+    });
+
+export const firstSync = <T>(
+    predicate?: (value: T, index: number) => boolean
+) =>
+    withIterableAssertion((input: Iterable<T>): Iterable<T> => {
+        let index = 0;
+
+        return iterable(function* () {
+            for (const value of input) {
+                if (predicate === undefined) {
+                    yield value;
+                    return;
+                }
+
+                if (predicate(value, index++)) {
+                    yield value;
+                    return;
+                }
+            }
+        });
     });

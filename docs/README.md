@@ -31,7 +31,7 @@ In contrast, lazy helpers immidiately output an iterable that can be acted on an
 In practice, this behavioral diffirence can be demonstrated as follows:
 
 ```js
-import { using, map, consume, useSideEffect } from "peter-piper";
+import * as pp from "peter-piper";
 
 const infiniteNumberGenerator = function* () {
     let i = 0;
@@ -40,12 +40,12 @@ const infiniteNumberGenerator = function* () {
     }
 };
 
-using(infiniteNumberGenerator()).pipe(
-    map((x) => x * 2), // Lazy: immidiately passes an iterable to the next helper
-    consume((x) => x * 2), // Greedy: will keep pooling values until the iterable has finished
+pp.using(infiniteNumberGenerator()).pipe(
+    pp.map((x) => x * 2), // Lazy: immidiately passes an iterable to the next helper
+    pp.consume((x) => x * 2), // Greedy: will keep pooling values until the iterable has finished
 
     // Since the infinite number generator never stops outputting values, `consume` will run infinitely and this helper is never reached.
-    useSideEffect(console.log)
+    pp.useSideEffect(console.log)
 );
 ```
 
@@ -58,13 +58,13 @@ Documentation is available [here](docs/modules.md).
 ### Basic usage
 
 ```js
-import { using, concat, filter, map, toArray } from "peter-piper";
+import * as pp from "peter-piper";
 
-const result = using([1, 2, 3]).pipe(
-    concat([4, 5, 6]),
-    filter((x) => x > 2),
-    map((x) => x * 2),
-    toArray()
+const result = await pp.using([1, 2, 3]).pipe(
+    pp.concat([4, 5, 6]),
+    pp.filter((x) => x > 2),
+    pp.map((x) => x * 2),
+    pp.toArray()
 );
 
 result; // [6, 8, 10, 12]
@@ -73,7 +73,7 @@ result; // [6, 8, 10, 12]
 ### Building functions
 
 ```js
-import { pipe, filter, toArray } from "peter-piper";
+import * as pp from "peter-piper";
 
 const getNumbersInRange = (from, to) =>
     pipe(
@@ -82,31 +82,31 @@ const getNumbersInRange = (from, to) =>
         toArray() // So we convert the resuling iterable to an array.
     );
 
-getNumbersInRange(3, 5)([1, 2, 3, 4, 5, 6, 7]); // [3, 4, 5]
+await getNumbersInRange(3, 5)([1, 2, 3, 4, 5, 6, 7]); // [3, 4, 5]
 ```
 
 ### Treating streams as iterables
 
 ```js
-import { using, streamAdapter, slice, filter, toArray } from "peter-piper";
+import * as pp from "peter-piper";
 
-const result = await using(streamAdapter(stream)).pipe(
+const result = await pp.using(pp.streamAdapter(stream)).pipe(
     // Iterables are evaluated lazily.
     // `slice` will limit the iterations to 10.
-    slice(0, 10),
-    filter((x) => x <= 10),
-    toArray()
+    pp.slice(0, 10),
+    pp.filter((x) => x <= 10),
+    pp.toArray()
 );
 ```
 
 ### Custom adapters
 
 ```js
-import { using, withCustomAdapter, filter } from "peter-piper";
+import * as pp from "peter-piper";
 
-const evenNumbers = using(0).pipe(
+const evenNumbers = pp.using(0).pipe(
     // `withCustomAdapter` allows us to easily create async iterables.
-    withCustomAdapter(
+    pp.withCustomAdapter(
         // `startingValue` is the input.
         // In this case, 0.
         (startingValue) => {
@@ -117,7 +117,7 @@ const evenNumbers = using(0).pipe(
             };
         }
     ),
-    filter((x) => x % 2 === 0)
+    pp.filter((x) => x % 2 === 0)
 );
 
 for await (const n of evenNumbers) {
@@ -134,9 +134,9 @@ for await (const n of evenNumbers) {
 
 ## TODO
 
+-   Internal `lift` refactor.
 -   Make generic types more user-friendly.
 -   Add support for Websocket -> AsyncIterable transformations.
--   Add support for CJS.
 
 ## Authors
 
