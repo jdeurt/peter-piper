@@ -1,7 +1,7 @@
-const resolve = require("@rollup/plugin-node-resolve");
 const typescript = require("rollup-plugin-typescript2");
 const terser = require("@rollup/plugin-terser");
 const pkg = require("./package.json");
+const generatePackageJson = require("rollup-plugin-generate-package-json");
 
 module.exports = [
     {
@@ -33,12 +33,12 @@ module.exports = [
         output: [
             {
                 format: "esm",
-                file: pkg.moduleSync,
+                file: "dist/sync/index.mjs",
                 sourcemap: false,
             },
             {
                 format: "cjs",
-                file: pkg.mainSync,
+                file: "dist/sync/index.js",
                 sourcemap: false,
                 esModule: false,
             },
@@ -47,7 +47,6 @@ module.exports = [
 ].map((config) => ({
     ...config,
     plugins: [
-        resolve(),
         typescript({
             useTsconfigDeclarationDir: true,
         }),
