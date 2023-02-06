@@ -33,12 +33,12 @@ module.exports = [
         output: [
             {
                 format: "esm",
-                file: "dist/sync/index.mjs",
+                file: "dist/sync.mjs",
                 sourcemap: false,
             },
             {
                 format: "cjs",
-                file: "dist/sync/index.js",
+                file: "dist/sync.js",
                 sourcemap: false,
                 esModule: false,
             },

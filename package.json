@@ -27,14 +27,14 @@
         },
         "./package.json": "./package.json",
         "./sync": {
-            "import": "./dist/sync/index.mjs",
-            "require": "./dist/sync/index.js"
+            "import": "./dist/sync.mjs",
+            "require": "./dist/sync.js"
         }
     },
     "typesVersions": {
         "*": {
             "sync": [
-                "dist/sync/index.js"
+                "types/sync.d.ts"
             ]
         }
     },
