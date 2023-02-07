@@ -1,6 +1,6 @@
+import type { AnyIterable, AnySyncIterable } from "../../types/any-iterable";
+import type { AsyncPredicate, Predicate } from "../../types/predicate";
 import { asyncIterable, iterable } from "../../util/iterable-factory";
-import type { AnyIterable } from "../../types/any-iterable";
-import type { MaybePromise } from "../../types/maybe-promise";
 import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
 /**
@@ -11,10 +11,8 @@ import { withIterableAssertion } from "../../util/type-assertions/assert-iterabl
  *     first((x) => x === 2)
  * );
  */
-export const first = <T>(
-    predicate?: (value: T, index: number) => MaybePromise<boolean>
-) =>
-    withIterableAssertion((input: AnyIterable<T>): AsyncIterable<T> => {
+export const first = <T>(predicate?: AsyncPredicate<T>) =>
+    withIterableAssertion((input: AnyIterable<T>) => {
         let index = 0;
 
         return asyncIterable(async function* () {
@@ -32,10 +30,8 @@ export const first = <T>(
         });
     });
 
-export const firstSync = <T>(
-    predicate?: (value: T, index: number) => boolean
-) =>
-    withIterableAssertion((input: Iterable<T>): Iterable<T> => {
+export const firstSync = <T>(predicate?: Predicate<T>) =>
+    withIterableAssertion((input: AnySyncIterable<T>) => {
         let index = 0;
 
         return iterable(function* () {

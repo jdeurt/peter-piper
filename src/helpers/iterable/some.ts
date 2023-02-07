@@ -1,5 +1,5 @@
-import type { AnyIterable } from "../../types/any-iterable";
-import type { MaybePromise } from "../../types/maybe-promise";
+import type { AnyIterable, AnySyncIterable } from "../../types/any-iterable";
+import type { AsyncPredicate, Predicate } from "../../types/predicate";
 import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
 /**
@@ -10,9 +10,7 @@ import { withIterableAssertion } from "../../util/type-assertions/assert-iterabl
  *     some((x) => x === 2)
  * );
  */
-export const some = <T>(
-    predicate: (value: T, index: number) => MaybePromise<boolean>
-) =>
+export const some = <T>(predicate: AsyncPredicate<T>) =>
     withIterableAssertion(async (input: AnyIterable<T>): Promise<boolean> => {
         let index = 0;
         let accumulator = false;
@@ -24,8 +22,8 @@ export const some = <T>(
         return accumulator;
     });
 
-export const someSync = <T>(predicate: (value: T, index: number) => boolean) =>
-    withIterableAssertion((input: Iterable<T>): boolean => {
+export const someSync = <T>(predicate: Predicate<T>) =>
+    withIterableAssertion((input: AnySyncIterable<T>): boolean => {
         let index = 0;
         let accumulator = false;
 

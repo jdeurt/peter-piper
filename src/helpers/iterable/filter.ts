@@ -1,6 +1,6 @@
+import type { AnyIterable, AnySyncIterable } from "../../types/any-iterable";
+import type { AsyncPredicate, Predicate } from "../../types/predicate";
 import { asyncIterable, iterable } from "../../util/iterable-factory";
-import type { AnyIterable } from "../../types/any-iterable";
-import type { MaybePromise } from "../../types/maybe-promise";
 import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
 /**
@@ -11,34 +11,28 @@ import { withIterableAssertion } from "../../util/type-assertions/assert-iterabl
  *     filter((x) => x === 1)
  * );
  */
-export const filter = <T>(
-    predicate: (value: T, index: number) => MaybePromise<boolean>
-) =>
-    withIterableAssertion(
-        (input: AnyIterable<T>): AsyncIterable<T> =>
-            asyncIterable(async function* () {
-                let index = 0;
+export const filter = <T>(predicate: AsyncPredicate<T>) =>
+    withIterableAssertion((input: AnyIterable<T>) =>
+        asyncIterable(async function* () {
+            let index = 0;
 
-                for await (const value of input) {
-                    if (await predicate(value, index++)) {
-                        yield value;
-                    }
+            for await (const value of input) {
+                if (await predicate(value, index++)) {
+                    yield value;
                 }
-            })
+            }
+        })
     );
 
-export const filterSync = <T>(
-    predicate: (value: T, index: number) => boolean
-) =>
-    withIterableAssertion(
-        (input: Iterable<T>): Iterable<T> =>
-            iterable(function* () {
-                let index = 0;
+export const filterSync = <T>(predicate: Predicate<T>) =>
+    withIterableAssertion((input: AnySyncIterable<T>) =>
+        iterable(function* () {
+            let index = 0;
 
-                for (const value of input) {
-                    if (predicate(value, index++)) {
-                        yield value;
-                    }
+            for (const value of input) {
+                if (predicate(value, index++)) {
+                    yield value;
                 }
-            })
+            }
+        })
     );

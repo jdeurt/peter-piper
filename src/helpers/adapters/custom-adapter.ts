@@ -1,3 +1,5 @@
+import { asyncIterable } from "../../util/iterable-factory";
+
 type Adapter<T, U> = (value: T) => {
     next: () => Promise<{ value: U; done: boolean }>;
     return?: () => Promise<void>;
@@ -10,9 +12,7 @@ type Adapter<T, U> = (value: T) => {
 export const withCustomAdapter =
     <T, U>(adapter: Adapter<T, U>) =>
     (input: T) =>
-        ({
-            [Symbol.asyncIterator]: () => adapter(input),
-        } as AsyncIterable<U>);
+        asyncIterable(() => adapter(input) as AsyncIterator<U>);
 
 /**
  * A non-currying variant of {@link withCustomAdapter}.

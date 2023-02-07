@@ -1,4 +1,4 @@
-import type { AnyIterable } from "../../types/any-iterable";
+import type { AnyIterable, AnySyncIterable } from "../../types/any-iterable";
 import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
 /**
@@ -21,7 +21,7 @@ export const toArray = <T>() =>
     });
 
 export const toArraySync = <T>() =>
-    withIterableAssertion((input: Iterable<T>): T[] => {
+    withIterableAssertion((input: AnySyncIterable<T>): T[] => {
         const result: T[] = [];
 
         for (const value of input) {

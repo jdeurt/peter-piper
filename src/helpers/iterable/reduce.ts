@@ -1,6 +1,7 @@
-import type { AnyIterable } from "../../types/any-iterable";
+import type { AnyIterable, AnySyncIterable } from "../../types/any-iterable";
 import type { MaybePromise } from "../../types/maybe-promise";
 import { NOTHING } from "../../constants/nothing";
+import type { Reducer } from "../../types/reducer";
 import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
 /**
@@ -13,10 +14,10 @@ import { withIterableAssertion } from "../../util/type-assertions/assert-iterabl
  * );
  */
 export function reduce<T, U = T>(
-    callback: (accumulator: U, value: T, index: number) => MaybePromise<U>,
+    reducer: Reducer<T, MaybePromise<U>>,
     initialValue?: U
 ) {
-    return withIterableAssertion(async (input: AnyIterable<T>) => {
+    return withIterableAssertion(async (input: AnyIterable<T>): Promise<U> => {
         let index = 0;
         let accumulator: U | typeof NOTHING =
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -30,7 +31,7 @@ export function reduce<T, U = T>(
                 continue;
             }
 
-            accumulator = await callback(accumulator, value, index++);
+            accumulator = await reducer(accumulator, value, index++);
         }
 
         if (accumulator === NOTHING) {
@@ -43,11 +44,8 @@ export function reduce<T, U = T>(
     });
 }
 
-export function reduceSync<T, U = T>(
-    callback: (accumulator: U, value: T, index: number) => U,
-    initialValue?: U
-) {
-    return withIterableAssertion((input: Iterable<T>) => {
+export function reduceSync<T, U = T>(reducer: Reducer<T, U>, initialValue?: U) {
+    return withIterableAssertion((input: AnySyncIterable<T>): U => {
         let index = 0;
         let accumulator: U | typeof NOTHING =
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -61,7 +59,7 @@ export function reduceSync<T, U = T>(
                 continue;
             }
 
-            accumulator = callback(accumulator, value, index++);
+            accumulator = reducer(accumulator, value, index++);
         }
 
         if (accumulator === NOTHING) {

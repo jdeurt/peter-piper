@@ -1,3 +1,5 @@
+import { asyncIterable } from "../../util/iterable-factory";
+
 /**
  * The context of the callback adapter. Contains functions that allow for passing values to the iterable and marking the end of an iterable.
  */
@@ -67,25 +69,26 @@ export const withCallbackAdapter =
 
         const reader = stream.getReader();
 
-        return {
-            [Symbol.asyncIterator]: () => ({
-                next: () => {
-                    if (isDone) {
-                        return Promise.resolve({
-                            value: [],
-                            done: true,
-                        });
-                    }
+        return asyncIterable(
+            () =>
+                ({
+                    next: () => {
+                        if (isDone) {
+                            return Promise.resolve({
+                                value: [],
+                                done: true,
+                            });
+                        }
 
-                    return reader.read();
-                },
-                return: () => {
-                    context.kill();
+                        return reader.read();
+                    },
+                    return: () => {
+                        context.kill();
 
-                    return Promise.resolve({ value: [] });
-                },
-            }),
-        } as AsyncIterable<U>;
+                        return Promise.resolve({ value: [] });
+                    },
+                } as AsyncIterator<U>)
+        );
     };
 
 /**

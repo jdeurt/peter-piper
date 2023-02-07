@@ -1,4 +1,4 @@
-peter-piper / [Exports](modules.md)
+peter-piper / [Modules](modules.md)
 
 [![npm version](https://badge.fury.io/js/peter-piper.svg)](https://badge.fury.io/js/peter-piper)
 
@@ -47,6 +47,24 @@ pp.using(infiniteNumberGenerator()).pipe(
     // Since the infinite number generator never stops outputting values, `consume` will run infinitely and this helper is never reached.
     pp.useSideEffect(console.log)
 );
+```
+
+### New in version 0.0.31: Extended iterables
+
+v0.0.31 introduces the `pp.usingIterable` method, which allows you to construct iterables extended with Peter Piper iterable helpers.
+
+Since version 0.0.31, all iterable helpers and generators return these extended iterables as well.
+
+```js
+import { usingIterable, range, filter, take } from "peter-piper/sync";
+
+const filterPredicate = (x) => x > 0;
+
+usingIterable([-2, -1, 0, 1, 2]).pipe(filter(filterPredicate), take(2));
+// produces the same result as
+usingIterable([-2, -1, 0, 1, 2]).filter(filterPredicate).take(2);
+// which produces the same result as
+range([-2, 2]).filter(filterPredicate).take(2);
 ```
 
 ### Working with sync iterables

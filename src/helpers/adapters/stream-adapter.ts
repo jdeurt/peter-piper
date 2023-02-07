@@ -1,4 +1,5 @@
 import { assertReadableStream } from "../../util/type-assertions/assert-readable-stream";
+import { asyncIterable } from "../../util/iterable-factory";
 
 /**
  * Maps some input stream to an equivalent async iterable.
@@ -9,16 +10,14 @@ export const withStreamAdapter =
     (input: ReadableStream<T>) => {
         assertReadableStream(input);
 
-        return {
-            [Symbol.asyncIterator]: () => {
-                const reader = input.getReader();
+        return asyncIterable(() => {
+            const reader = input.getReader();
 
-                return {
-                    next: () => reader.read(),
-                    return: () => reader.releaseLock(),
-                };
-            },
-        } as AsyncIterable<T>;
+            return {
+                next: () => reader.read(),
+                return: () => reader.releaseLock(),
+            } as AsyncIterator<T>;
+        });
     };
 
 /**

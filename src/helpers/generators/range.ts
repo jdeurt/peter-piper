@@ -1,4 +1,5 @@
 import type { Range } from "../../types/range";
+import { iterable } from "../../util/iterable-factory";
 
 /**
  * Creates an iterable that yields integers in order in the provided range.
@@ -8,10 +9,9 @@ import type { Range } from "../../types/range";
  *     console.log(n);
  * }
  */
-export const range = ([from, to]: Range): Iterable<number> => ({
-    [Symbol.iterator]: function* () {
+export const range = ([from, to]: Range) =>
+    iterable(function* () {
         for (let i = from; i <= to; i++) {
             yield i;
         }
-    },
-});
+    });

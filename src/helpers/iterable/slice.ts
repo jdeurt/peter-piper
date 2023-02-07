@@ -1,5 +1,5 @@
+import type { AnyIterable, AnySyncIterable } from "../../types/any-iterable";
 import { asyncIterable, iterable } from "../../util/iterable-factory";
-import type { AnyIterable } from "../../types/any-iterable";
 import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
 /**
@@ -15,44 +15,42 @@ export const slice = <T>(
     startIndex: number,
     endIndex = Number.POSITIVE_INFINITY
 ) =>
-    withIterableAssertion(
-        (input: AnyIterable<T>): AsyncIterable<T> =>
-            asyncIterable(async function* () {
-                let index = 0;
+    withIterableAssertion((input: AnyIterable<T>) =>
+        asyncIterable(async function* () {
+            let index = 0;
 
-                for await (const value of input) {
-                    if (index === endIndex) {
-                        return;
-                    }
-
-                    if (index >= startIndex) {
-                        yield value;
-                    }
-
-                    index++;
+            for await (const value of input) {
+                if (index === endIndex) {
+                    return;
                 }
-            })
+
+                if (index >= startIndex) {
+                    yield value;
+                }
+
+                index++;
+            }
+        })
     );
 
 export const sliceSync = <T>(
     startIndex: number,
     endIndex = Number.POSITIVE_INFINITY
 ) =>
-    withIterableAssertion(
-        (input: Iterable<T>): Iterable<T> =>
-            iterable(function* () {
-                let index = 0;
+    withIterableAssertion((input: AnySyncIterable<T>) =>
+        iterable(function* () {
+            let index = 0;
 
-                for (const value of input) {
-                    if (index === endIndex) {
-                        return;
-                    }
-
-                    if (index >= startIndex) {
-                        yield value;
-                    }
-
-                    index++;
+            for (const value of input) {
+                if (index === endIndex) {
+                    return;
                 }
-            })
+
+                if (index >= startIndex) {
+                    yield value;
+                }
+
+                index++;
+            }
+        })
     );

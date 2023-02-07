@@ -1,5 +1,6 @@
 import { randomFloat, randomInt } from "../../util/random";
 import type { Range } from "../../types/range";
+import { iterable } from "../../util/iterable-factory";
 
 /**
  * Creates an iterable that yields random floats in the provided range or from 0 to 1 if the range argument is omitted.
@@ -9,14 +10,13 @@ import type { Range } from "../../types/range";
  *     console.log(n);
  * }
  */
-export const randomFloats = (range?: Range): Iterable<number> => ({
-    [Symbol.iterator]: function* () {
+export const randomFloats = (range?: Range, generator?: () => number) =>
+    iterable(function* () {
         // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         while (true) {
-            yield randomFloat(range ?? [0, 1]);
+            yield randomFloat(range ?? [0, 1], generator);
         }
-    },
-});
+    });
 
 /**
  * Creates an iterable that yields random integers in the provided range.
@@ -26,11 +26,10 @@ export const randomFloats = (range?: Range): Iterable<number> => ({
  *     console.log(n);
  * }
  */
-export const randomInts = (range: Range): Iterable<number> => ({
-    [Symbol.iterator]: function* () {
+export const randomInts = (range: Range, generator?: () => number) =>
+    iterable(function* () {
         // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         while (true) {
-            yield randomInt(range);
+            yield randomInt(range, generator);
         }
-    },
-});
+    });

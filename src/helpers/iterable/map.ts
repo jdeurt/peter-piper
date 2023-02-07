@@ -1,6 +1,6 @@
-import type { AnyIterable } from "../../types/any-iterable";
-import { lift } from "../../util/lift";
-import { toAsyncIterable } from "../../util/to-async-iterable";
+import type { AnyIterable, AnySyncIterable } from "../../types/any-iterable";
+import { asyncIterable, iterable } from "../../util/iterable-factory";
+import type { MapFn } from "../../types/map-fn";
 import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
 /**
@@ -11,18 +11,24 @@ import { withIterableAssertion } from "../../util/type-assertions/assert-iterabl
  *     map((x) => x * 2)
  * );
  */
-export const map = <T, U>(callback: (value: T, index: number) => U) =>
-    withIterableAssertion((input: AnyIterable<T>): AsyncIterable<U> => {
+export const map = <T, U>(mapFn: MapFn<T, U>) =>
+    withIterableAssertion((input: AnyIterable<T>) => {
         let index = 0;
 
-        return lift(toAsyncIterable(input), (value) =>
-            callback(value, index++)
-        );
+        return asyncIterable(async function* () {
+            for await (const value of input) {
+                yield mapFn(value, index++);
+            }
+        });
     });
 
-export const mapSync = <T, U>(callback: (value: T, index: number) => U) =>
-    withIterableAssertion((input: Iterable<T>): Iterable<U> => {
+export const mapSync = <T, U>(mapFn: MapFn<T, U>) =>
+    withIterableAssertion((input: AnySyncIterable<T>) => {
         let index = 0;
 
-        return lift(input, (value) => callback(value, index++));
+        return iterable(function* () {
+            for (const value of input) {
+                yield mapFn(value, index++);
+            }
+        });
     });

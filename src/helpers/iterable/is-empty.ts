@@ -1,4 +1,4 @@
-import type { AnyIterable } from "../../types/any-iterable";
+import type { AnyIterable, AnySyncIterable } from "../../types/any-iterable";
 import { toAsyncIterable } from "../../util/to-async-iterable";
 import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
@@ -20,6 +20,6 @@ export const isEmpty = () =>
     );
 
 export const isEmptySync = () =>
-    withIterableAssertion((input: Iterable<unknown>): boolean =>
+    withIterableAssertion((input: AnySyncIterable<unknown>): boolean =>
         Boolean(input[Symbol.iterator]().next().done)
     );

@@ -12,7 +12,7 @@ import { asyncIterable, iterable } from "../../util/iterable-factory";
  */
 export const wrap =
     <T>() =>
-    (input: T): AsyncIterable<T> =>
+    (input: T) =>
         // eslint-disable-next-line @typescript-eslint/require-await
         asyncIterable(async function* () {
             yield input;
@@ -20,7 +20,7 @@ export const wrap =
 
 export const wrapSync =
     <T>() =>
-    (input: T): Iterable<T> =>
+    (input: T) =>
         iterable(function* () {
             yield input;
         });
