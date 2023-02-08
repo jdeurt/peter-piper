@@ -22,7 +22,7 @@ $ yarn add peter-piper
 
 ## Documentation
 
-Documentation is available [here](docs/modules.md).
+Documentation is available [here](https://jdeurt.github.io/peter-piper/).
 
 ## Concepts
 
