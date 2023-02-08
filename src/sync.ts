@@ -1,4 +1,3 @@
-export { using, usingIterable } from "./util";
 export { PLACEHOLDER as __ } from "./constants/placeholder";
 export {
     randomFloats,
@@ -28,4 +27,6 @@ export {
     useSideEffectSync as useSideEffect,
     wrapSync as wrap,
     pipe,
+    using,
+    usingIterable,
 } from "./helpers";

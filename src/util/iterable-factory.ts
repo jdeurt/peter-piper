@@ -3,7 +3,7 @@ import type {
     ExtendedAsyncIterable,
     ExtendedIterable,
 } from "../types/pp-iterable";
-import { using } from "./using";
+import { using } from "../helpers";
 
 export const iterable = <T>(
     iterator: () => Iterator<T>
