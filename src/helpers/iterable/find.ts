@@ -29,7 +29,7 @@ export const find = <T>(predicate: AsyncPredicate<T>) =>
 
 /**
  * A sync variant of {@link find}.
- * @group Lazy helpers
+ * @group Greedy helpers
  *
  * @remarks
  * Available as `find` when imported from `peter-piper/sync`.

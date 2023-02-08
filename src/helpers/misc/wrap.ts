@@ -20,7 +20,7 @@ export const wrap =
 
 /**
  * A sync variant of {@link wrap}.
- * @group Other helpers
+ * @group Lazy helpers
  *
  * @remarks
  * Available as `wrap` when imported from `peter-piper/sync`.

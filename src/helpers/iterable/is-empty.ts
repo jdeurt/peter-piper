@@ -20,7 +20,7 @@ export const isEmpty = () =>
 
 /**
  * A sync variant of {@link isEmpty}.
- * @group Lazy helpers
+ * @group Other helpers
  *
  * @remarks
  * Available as `isEmpty` when imported from `peter-piper/sync`.

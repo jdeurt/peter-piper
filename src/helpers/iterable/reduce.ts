@@ -49,7 +49,7 @@ export function reduce<T, U = T>(
 
 /**
  * A sync variant of {@link reduce}.
- * @group Lazy helpers
+ * @group Greedy helpers
  *
  * @remarks
  * Available as `reduce` when imported from `peter-piper/sync`.

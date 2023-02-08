@@ -22,7 +22,7 @@ export const toArray = <T>() =>
 
 /**
  * A sync variant of {@link toArray}.
- * @group Lazy helpers
+ * @group Greedy helpers
  *
  * @remarks
  * Available as `toArray` when imported from `peter-piper/sync`.

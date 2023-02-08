@@ -35,7 +35,7 @@ export const consume = <T, U>(mapFn?: MapFn<T, MaybePromise<U>>) =>
 
 /**
  * A sync variant of {@link consume}.
- * @group Lazy helpers
+ * @group Greedy helpers
  *
  * @remarks
  * Available as `consume` when imported from `peter-piper/sync`.

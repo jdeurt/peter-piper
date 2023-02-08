@@ -28,7 +28,7 @@ export const some = <T>(predicate: AsyncPredicate<T>) =>
 
 /**
  * A sync variant of {@link some}.
- * @group Lazy helpers
+ * @group Greedy helpers
  *
  * @remarks
  * Available as `some` when imported from `peter-piper/sync`.
