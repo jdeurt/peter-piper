@@ -6,6 +6,7 @@ export * from "./generated/cooked-pipe";
 export * from "./generated/pipe";
 export * from "./list-helpers";
 export * from "./map-fn";
+export * from "./match";
 export * from "./math";
 export * from "./maybe-promise";
 export * from "./pipable";

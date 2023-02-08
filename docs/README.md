@@ -6,6 +6,8 @@ peter-piper / [Modules](modules.md)
 
 > A zero-dependency collection of typed composable/pipable utility functions with a focus on lazy evaluation.
 
+This project proudly uses [ZeroVer](https://0ver.org) versioning :)
+
 ## Installation
 
 To install, run:
