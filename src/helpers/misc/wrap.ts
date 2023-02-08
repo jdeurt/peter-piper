@@ -18,6 +18,13 @@ export const wrap =
             yield input;
         });
 
+/**
+ * A sync variant of {@link wrap}.
+ * @group Other helpers
+ *
+ * @remarks
+ * Available as `wrap` when imported from `peter-piper/sync`.
+ */
 export const wrapSync =
     <T>() =>
     (input: T) =>
