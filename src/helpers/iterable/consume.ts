@@ -33,6 +33,13 @@ export const consume = <T, U>(mapFn?: MapFn<T, MaybePromise<U>>) =>
         return results;
     });
 
+/**
+ * A sync variant of {@link consume}.
+ * @group Lazy helpers
+ *
+ * @remarks
+ * Available as `consume` when imported from `peter-piper/sync`.
+ */
 export const consumeSync = <T, U>(mapFn?: MapFn<T, U>) =>
     withIterableAssertion((input: AnySyncIterable<T>): U[] => {
         const results: U[] = [];

@@ -2,6 +2,10 @@ import type { CallbackAdapterContext } from "./callback-adapter";
 import { assertWebSocket } from "../../util";
 import { callbackAdapter } from "./callback-adapter";
 
+/**
+ * Creates and async iteratable that yields values from messages received from a WebSocket.
+ * @group Adapters
+ */
 export const withWebSocketAdapter =
     <T>() =>
     (input: WebSocket) => {
@@ -19,5 +23,9 @@ export const withWebSocketAdapter =
         );
     };
 
+/**
+ * A non-currying variant of {@link withWebSocketAdapter}.
+ * @group Adapters
+ */
 export const webSocketAdapter = <T>(input: WebSocket) =>
     withWebSocketAdapter<T>()(input);

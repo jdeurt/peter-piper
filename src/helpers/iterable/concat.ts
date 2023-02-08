@@ -18,6 +18,13 @@ export const concat = <T>(...iterables: AnyIterable<T>[]) =>
         })
     );
 
+/**
+ * A sync variant of {@link concat}.
+ * @group Lazy helpers
+ *
+ * @remarks
+ * Available as `concat` when imported from `peter-piper/sync`.
+ */
 export const concatSync = <T>(...iterables: AnySyncIterable<T>[]) =>
     withIterableAssertion((input: AnySyncIterable<T>) =>
         iterable(function* () {

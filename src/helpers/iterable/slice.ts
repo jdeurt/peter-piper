@@ -32,6 +32,13 @@ export const slice = <T>(
         })
     );
 
+/**
+ * A sync variant of {@link slice}.
+ * @group Lazy helpers
+ *
+ * @remarks
+ * Available as `slice` when imported from `peter-piper/sync`.
+ */
 export const sliceSync = <T>(
     startIndex: number,
     endIndex = Number.POSITIVE_INFINITY

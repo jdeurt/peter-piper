@@ -62,7 +62,7 @@
 
 #### Defined in
 
-[src/types/pp-iterable.ts:31](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/pp-iterable.ts#L31)
+[src/types/pp-iterable.ts:31](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/pp-iterable.ts#L31)
 
 ___
 
@@ -92,7 +92,7 @@ ___
 
 #### Defined in
 
-[src/types/pp-iterable.ts:39](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/pp-iterable.ts#L39)
+[src/types/pp-iterable.ts:39](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/pp-iterable.ts#L39)
 
 ___
 
@@ -116,7 +116,7 @@ ___
 
 #### Defined in
 
-[src/types/pp-iterable.ts:40](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/pp-iterable.ts#L40)
+[src/types/pp-iterable.ts:40](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/pp-iterable.ts#L40)
 
 ___
 
@@ -140,7 +140,7 @@ ___
 
 #### Defined in
 
-[src/types/pp-iterable.ts:41](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/pp-iterable.ts#L41)
+[src/types/pp-iterable.ts:41](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/pp-iterable.ts#L41)
 
 ___
 
@@ -164,7 +164,7 @@ ___
 
 #### Defined in
 
-[src/types/pp-iterable.ts:42](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/pp-iterable.ts#L42)
+[src/types/pp-iterable.ts:42](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/pp-iterable.ts#L42)
 
 ___
 
@@ -188,7 +188,7 @@ ___
 
 #### Defined in
 
-[src/types/pp-iterable.ts:43](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/pp-iterable.ts#L43)
+[src/types/pp-iterable.ts:43](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/pp-iterable.ts#L43)
 
 ___
 
@@ -206,7 +206,7 @@ ___
 
 #### Defined in
 
-[src/types/pp-iterable.ts:44](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/pp-iterable.ts#L44)
+[src/types/pp-iterable.ts:44](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/pp-iterable.ts#L44)
 
 ___
 
@@ -236,7 +236,7 @@ ___
 
 #### Defined in
 
-[src/types/pp-iterable.ts:45](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/pp-iterable.ts#L45)
+[src/types/pp-iterable.ts:45](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/pp-iterable.ts#L45)
 
 ___
 
@@ -246,7 +246,7 @@ ___
 
 #### Defined in
 
-[src/types/pp-iterable.ts:46](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/pp-iterable.ts#L46)
+[src/types/pp-iterable.ts:46](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/pp-iterable.ts#L46)
 
 ___
 
@@ -277,7 +277,7 @@ ___
 
 #### Defined in
 
-[src/types/pp-iterable.ts:47](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/pp-iterable.ts#L47)
+[src/types/pp-iterable.ts:47](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/pp-iterable.ts#L47)
 
 ___
 
@@ -308,7 +308,7 @@ ___
 
 #### Defined in
 
-[src/types/pp-iterable.ts:51](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/pp-iterable.ts#L51)
+[src/types/pp-iterable.ts:51](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/pp-iterable.ts#L51)
 
 ___
 
@@ -333,7 +333,7 @@ ___
 
 #### Defined in
 
-[src/types/pp-iterable.ts:55](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/pp-iterable.ts#L55)
+[src/types/pp-iterable.ts:55](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/pp-iterable.ts#L55)
 
 ___
 
@@ -357,7 +357,7 @@ ___
 
 #### Defined in
 
-[src/types/pp-iterable.ts:59](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/pp-iterable.ts#L59)
+[src/types/pp-iterable.ts:59](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/pp-iterable.ts#L59)
 
 ___
 
@@ -381,7 +381,7 @@ ___
 
 #### Defined in
 
-[src/types/pp-iterable.ts:60](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/pp-iterable.ts#L60)
+[src/types/pp-iterable.ts:60](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/pp-iterable.ts#L60)
 
 ___
 
@@ -399,7 +399,7 @@ ___
 
 #### Defined in
 
-[src/types/pp-iterable.ts:61](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/pp-iterable.ts#L61)
+[src/types/pp-iterable.ts:61](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/pp-iterable.ts#L61)
 
 ## Methods
 

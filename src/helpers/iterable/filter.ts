@@ -27,6 +27,13 @@ export const filter = <T>(predicate: AsyncPredicate<T>) =>
         })
     );
 
+/**
+ * A sync variant of {@link filter}.
+ * @group Lazy helpers
+ *
+ * @remarks
+ * Available as `filter` when imported from `peter-piper/sync`.
+ */
 export const filterSync = <T>(predicate: Predicate<T>) =>
     withIterableAssertion((input: AnySyncIterable<T>) =>
         iterable(function* () {

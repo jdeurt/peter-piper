@@ -79,7 +79,7 @@
 
 #### Defined in
 
-[src/types/adapter.ts:1](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/adapter.ts#L1)
+[src/types/adapter.ts:1](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/adapter.ts#L1)
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-[src/types/any-iterable.ts:3](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/any-iterable.ts#L3)
+[src/types/any-iterable.ts:3](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/any-iterable.ts#L3)
 
 ___
 
@@ -111,7 +111,7 @@ ___
 
 #### Defined in
 
-[src/types/list-helpers.ts:1](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/list-helpers.ts#L1)
+[src/types/list-helpers.ts:1](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/list-helpers.ts#L1)
 
 ___
 
@@ -127,7 +127,7 @@ ___
 
 #### Defined in
 
-[src/types/any-iterable.ts:8](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/any-iterable.ts#L8)
+[src/types/any-iterable.ts:8](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/any-iterable.ts#L8)
 
 ___
 
@@ -158,7 +158,7 @@ ___
 
 #### Defined in
 
-[src/types/predicate.ts:5](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/predicate.ts#L5)
+[src/types/predicate.ts:5](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/predicate.ts#L5)
 
 ___
 
@@ -174,7 +174,7 @@ ___
 
 #### Defined in
 
-[src/types/math.ts:1](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/math.ts#L1)
+[src/types/math.ts:1](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/math.ts#L1)
 
 ___
 
@@ -190,7 +190,7 @@ ___
 
 #### Defined in
 
-[src/types/element-of.ts:3](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/element-of.ts#L3)
+[src/types/element-of.ts:3](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/element-of.ts#L3)
 
 ___
 
@@ -207,7 +207,7 @@ ___
 
 #### Defined in
 
-src/types/match.ts:9
+[src/types/match.ts:9](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/match.ts#L9)
 
 ___
 
@@ -238,7 +238,7 @@ ___
 
 #### Defined in
 
-[src/types/fork.ts:1](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/fork.ts#L1)
+[src/types/fork.ts:1](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/fork.ts#L1)
 
 ___
 
@@ -254,7 +254,7 @@ ___
 
 #### Defined in
 
-[src/types/fork.ts:3](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/fork.ts#L3)
+[src/types/fork.ts:3](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/fork.ts#L3)
 
 ___
 
@@ -270,7 +270,7 @@ ___
 
 #### Defined in
 
-[src/types/fork.ts:9](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/fork.ts#L9)
+[src/types/fork.ts:9](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/fork.ts#L9)
 
 ___
 
@@ -286,7 +286,7 @@ ___
 
 #### Defined in
 
-[src/types/list-helpers.ts:17](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/list-helpers.ts#L17)
+[src/types/list-helpers.ts:17](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/list-helpers.ts#L17)
 
 ___
 
@@ -302,7 +302,7 @@ ___
 
 #### Defined in
 
-[src/types/pipable.ts:4](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/pipable.ts#L4)
+[src/types/pipable.ts:4](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/pipable.ts#L4)
 
 ___
 
@@ -318,7 +318,7 @@ ___
 
 #### Defined in
 
-[src/types/math.ts:35](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/math.ts#L35)
+[src/types/math.ts:35](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/math.ts#L35)
 
 ___
 
@@ -334,7 +334,7 @@ ___
 
 #### Defined in
 
-[src/types/list-helpers.ts:10](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/list-helpers.ts#L10)
+[src/types/list-helpers.ts:10](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/list-helpers.ts#L10)
 
 ___
 
@@ -350,7 +350,7 @@ ___
 
 #### Defined in
 
-[src/types/list-helpers.ts:3](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/list-helpers.ts#L3)
+[src/types/list-helpers.ts:3](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/list-helpers.ts#L3)
 
 ___
 
@@ -366,7 +366,7 @@ ___
 
 #### Defined in
 
-[src/types/list-helpers.ts:22](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/list-helpers.ts#L22)
+[src/types/list-helpers.ts:22](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/list-helpers.ts#L22)
 
 ___
 
@@ -398,7 +398,7 @@ ___
 
 #### Defined in
 
-[src/types/map-fn.ts:1](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/map-fn.ts#L1)
+[src/types/map-fn.ts:1](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/map-fn.ts#L1)
 
 ___
 
@@ -415,7 +415,7 @@ ___
 
 #### Defined in
 
-src/types/match.ts:4
+[src/types/match.ts:4](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/match.ts#L4)
 
 ___
 
@@ -431,7 +431,7 @@ ___
 
 #### Defined in
 
-src/types/match.ts:17
+[src/types/match.ts:17](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/match.ts#L17)
 
 ___
 
@@ -447,7 +447,7 @@ ___
 
 #### Defined in
 
-src/types/match.ts:31
+[src/types/match.ts:31](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/match.ts#L31)
 
 ___
 
@@ -457,7 +457,7 @@ ___
 
 #### Defined in
 
-src/types/match.ts:14
+[src/types/match.ts:14](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/match.ts#L14)
 
 ___
 
@@ -467,7 +467,7 @@ ___
 
 #### Defined in
 
-src/types/match.ts:15
+[src/types/match.ts:15](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/match.ts#L15)
 
 ___
 
@@ -483,7 +483,7 @@ ___
 
 #### Defined in
 
-[src/types/maybe-promise.ts:1](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/maybe-promise.ts#L1)
+[src/types/maybe-promise.ts:1](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/maybe-promise.ts#L1)
 
 ___
 
@@ -499,7 +499,7 @@ ___
 
 #### Defined in
 
-[src/types/pipable.ts:5](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/pipable.ts#L5)
+[src/types/pipable.ts:5](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/pipable.ts#L5)
 
 ___
 
@@ -530,7 +530,7 @@ ___
 
 #### Defined in
 
-[src/types/pipable.ts:2](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/pipable.ts#L2)
+[src/types/pipable.ts:2](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/pipable.ts#L2)
 
 ___
 
@@ -561,7 +561,7 @@ ___
 
 #### Defined in
 
-[src/types/predicate.ts:3](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/predicate.ts#L3)
+[src/types/predicate.ts:3](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/predicate.ts#L3)
 
 ___
 
@@ -571,7 +571,7 @@ ___
 
 #### Defined in
 
-[src/types/range.ts:1](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/range.ts#L1)
+[src/types/range.ts:1](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/range.ts#L1)
 
 ___
 
@@ -604,7 +604,7 @@ ___
 
 #### Defined in
 
-[src/types/reducer.ts:1](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/reducer.ts#L1)
+[src/types/reducer.ts:1](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/reducer.ts#L1)
 
 ___
 
@@ -620,7 +620,7 @@ ___
 
 #### Defined in
 
-[src/types/list-helpers.ts:18](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/list-helpers.ts#L18)
+[src/types/list-helpers.ts:18](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/list-helpers.ts#L18)
 
 ___
 
@@ -637,4 +637,4 @@ ___
 
 #### Defined in
 
-[src/types/traverse.ts:1](https://github.com/jdeurt/peter-piper/blob/40ca1ed/src/types/traverse.ts#L1)
+[src/types/traverse.ts:1](https://github.com/jdeurt/peter-piper/blob/8cd568d/src/types/traverse.ts#L1)

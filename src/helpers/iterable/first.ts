@@ -33,6 +33,13 @@ export const first = <T>(predicate?: AsyncPredicate<T>) =>
         });
     });
 
+/**
+ * A sync variant of {@link first}.
+ * @group Lazy helpers
+ *
+ * @remarks
+ * Available as `first` when imported from `peter-piper/sync`.
+ */
 export const firstSync = <T>(predicate?: Predicate<T>) =>
     withIterableAssertion((input: AnySyncIterable<T>) => {
         let index = 0;

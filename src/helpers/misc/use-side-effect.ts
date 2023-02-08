@@ -14,6 +14,13 @@ export const useSideEffect =
         return input;
     };
 
+/**
+ * A sync variant of {@link useSideEffect}.
+ * @group Other helpers
+ *
+ * @remarks
+ * Available as `useSideEffect` when imported from `peter-piper/sync`.
+ */
 export const useSideEffectSync =
     <T>(sideEffect: (value: T) => unknown) =>
     (input: T): T => {

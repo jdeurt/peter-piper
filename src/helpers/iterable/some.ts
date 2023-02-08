@@ -26,6 +26,13 @@ export const some = <T>(predicate: AsyncPredicate<T>) =>
         return accumulator;
     });
 
+/**
+ * A sync variant of {@link some}.
+ * @group Lazy helpers
+ *
+ * @remarks
+ * Available as `some` when imported from `peter-piper/sync`.
+ */
 export const someSync = <T>(predicate: Predicate<T>) =>
     withIterableAssertion((input: AnySyncIterable<T>): boolean => {
         let index = 0;

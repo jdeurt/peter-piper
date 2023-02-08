@@ -47,6 +47,13 @@ export function reduce<T, U = T>(
     });
 }
 
+/**
+ * A sync variant of {@link reduce}.
+ * @group Lazy helpers
+ *
+ * @remarks
+ * Available as `reduce` when imported from `peter-piper/sync`.
+ */
 export function reduceSync<T, U = T>(reducer: Reducer<T, U>, initialValue?: U) {
     return withIterableAssertion((input: AnySyncIterable<T>): U => {
         let index = 0;

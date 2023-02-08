@@ -20,6 +20,13 @@ export const map = <T, U>(mapFn: MapFn<T, U>) =>
         });
     });
 
+/**
+ * A sync variant of {@link map}.
+ * @group Lazy helpers
+ *
+ * @remarks
+ * Available as `map` when imported from `peter-piper/sync`.
+ */
 export const mapSync = <T, U>(mapFn: MapFn<T, U>) =>
     withIterableAssertion((input: AnySyncIterable<T>) => {
         let index = 0;

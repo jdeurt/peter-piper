@@ -20,6 +20,13 @@ export const toArray = <T>() =>
         return result;
     });
 
+/**
+ * A sync variant of {@link toArray}.
+ * @group Lazy helpers
+ *
+ * @remarks
+ * Available as `toArray` when imported from `peter-piper/sync`.
+ */
 export const toArraySync = <T>() =>
     withIterableAssertion((input: AnySyncIterable<T>): T[] => {
         const result: T[] = [];

@@ -44,6 +44,13 @@ export function scan<T, U = T>(
     });
 }
 
+/**
+ * A sync variant of {@link scan}.
+ * @group Lazy helpers
+ *
+ * @remarks
+ * Available as `scan` when imported from `peter-piper/sync`.
+ */
 export function scanSync<T, U = T>(reducer: Reducer<T, U>, initialValue?: U) {
     return withIterableAssertion((input: AnySyncIterable<T>) => {
         let index = 0;

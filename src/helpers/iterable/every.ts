@@ -26,6 +26,13 @@ export const every = <T>(predicate: AsyncPredicate<T>) =>
         return accumulator;
     });
 
+/**
+ * A sync variant of {@link every}.
+ * @group Lazy helpers
+ *
+ * @remarks
+ * Available as `every` when imported from `peter-piper/sync`.
+ */
 export const everySync = <T>(predicate: Predicate<T>) =>
     withIterableAssertion((input: AnySyncIterable<T>): boolean => {
         let index = 0;

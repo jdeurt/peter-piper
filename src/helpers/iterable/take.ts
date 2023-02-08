@@ -26,6 +26,13 @@ export const take = <T>(n: number) =>
         })
     );
 
+/**
+ * A sync variant of {@link take}.
+ * @group Lazy helpers
+ *
+ * @remarks
+ * Available as `take` when imported from `peter-piper/sync`.
+ */
 export const takeSync = <T>(n: number) =>
     withIterableAssertion((input: AnySyncIterable<T>) =>
         iterable(function* () {

@@ -18,6 +18,13 @@ export const isEmpty = () =>
                 .then(({ done }) => Boolean(done))
     );
 
+/**
+ * A sync variant of {@link isEmpty}.
+ * @group Lazy helpers
+ *
+ * @remarks
+ * Available as `isEmpty` when imported from `peter-piper/sync`.
+ */
 export const isEmptySync = () =>
     withIterableAssertion((input: AnySyncIterable<unknown>): boolean =>
         Boolean(input[Symbol.iterator]().next().done)

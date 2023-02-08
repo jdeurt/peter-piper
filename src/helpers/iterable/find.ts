@@ -27,6 +27,13 @@ export const find = <T>(predicate: AsyncPredicate<T>) =>
         }
     );
 
+/**
+ * A sync variant of {@link find}.
+ * @group Lazy helpers
+ *
+ * @remarks
+ * Available as `find` when imported from `peter-piper/sync`.
+ */
 export const findSync = <T>(predicate: Predicate<T>) =>
     withIterableAssertion((input: AnySyncIterable<T>): T | undefined => {
         let index = 0;

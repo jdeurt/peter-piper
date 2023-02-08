@@ -22,6 +22,10 @@ Or if you prefer using Yarn:
 $ yarn add peter-piper
 ```
 
+## Documentation
+
+Documentation is available [here](docs/modules.md).
+
 ## Concepts
 
 ### Greedy vs lazy
@@ -51,6 +55,21 @@ pp.using(infiniteNumberGenerator()).pipe(
 );
 ```
 
+### Working with sync iterables
+
+The main focus of Peter Piper is working with AsyncIterables. However, if needed, specialized sync helpers are available via `*Sync` variations (`pp.map` vs `pp.mapSync`) and through the `/sync` path:
+
+```js
+import { using, randomInts, map } from "peter-piper/sync";
+
+const threeRandomIntsFrom0To5 = using(randomInts([0, 5])).pipe(take(3));
+
+// Will log 3 random integers.
+for (const n of threeRandomIntsFrom0To5) {
+    console.log(n);
+}
+```
+
 ### New in version 0.0.31: Extended iterables
 
 v0.0.31 introduces the `pp.usingIterable` method, which allows you to construct iterables extended with Peter Piper iterable helpers.
@@ -68,25 +87,6 @@ usingIterable([-2, -1, 0, 1, 2]).filter(filterPredicate).take(2);
 // which produces the same result as
 range([-2, 2]).filter(filterPredicate).take(2);
 ```
-
-### Working with sync iterables
-
-The main focus of Peter Piper is working with AsyncIterables. However, if needed, specialized sync helpers are available via `*Sync` variations (`pp.map` vs `pp.mapSync`) and through the `/sync` path:
-
-```js
-import { using, randomInts, map } from "peter-piper/sync";
-
-const threeRandomIntsFrom0To5 = using(randomInts([0, 5])).pipe(take(3));
-
-// Will log 3 random integers.
-for (const n of threeRandomIntsFrom0To5) {
-    console.log(n);
-}
-```
-
-## Documentation
-
-Documentation is available [here](docs/modules.md).
 
 ## Example usage
 
