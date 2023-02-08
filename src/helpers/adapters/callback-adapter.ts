@@ -1,4 +1,4 @@
-import { asyncIterable } from "../../util/iterable-factory";
+import { asyncIterable } from "../../util";
 
 /**
  * The context of the callback adapter. Contains functions that allow for passing values to the iterable and marking the end of an iterable.

@@ -1,5 +1,5 @@
 import type { CallbackAdapterContext } from "./callback-adapter";
-import { assertWebSocket } from "../../util/type-assertions/assert-websocket";
+import { assertWebSocket } from "../../util";
 import { callbackAdapter } from "./callback-adapter";
 
 export const withWebSocketAdapter =

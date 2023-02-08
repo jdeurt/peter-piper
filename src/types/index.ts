@@ -1,5 +1,7 @@
+export * from "./adapter";
 export * from "./any-iterable";
 export * from "./element-of";
+export * from "./fork";
 export * from "./generated/cooked-pipe";
 export * from "./generated/pipe";
 export * from "./list-helpers";

@@ -1,6 +1,10 @@
-import type { AnyIterable, AnySyncIterable } from "../../types/any-iterable";
-import type { AsyncPredicate, Predicate } from "../../types/predicate";
-import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
+import type {
+    AnyIterable,
+    AnySyncIterable,
+    AsyncPredicate,
+    Predicate,
+} from "../../types";
+import { withIterableAssertion } from "../../util";
 
 /**
  * Tests whether all values of some input iterable satisfy the provided predicate.

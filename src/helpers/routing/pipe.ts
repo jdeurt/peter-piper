@@ -1,5 +1,4 @@
-import type { Pipable } from "../../types/pipable";
-import type { Pipe } from "../../types/generated/pipe";
+import type { Pipable, Pipe } from "../../types";
 
 /**
  * Pipes some input value through a series of functions, returning the result.

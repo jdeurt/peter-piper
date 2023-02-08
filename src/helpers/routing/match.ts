@@ -1,4 +1,4 @@
-import type { MaybePromise } from "../../types/maybe-promise";
+import type { MaybePromise } from "../../types";
 import { PLACEHOLDER } from "../../constants/placeholder";
 
 type MatchPath<T = never, U = unknown> = [

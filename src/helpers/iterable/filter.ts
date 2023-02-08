@@ -1,7 +1,10 @@
-import type { AnyIterable, AnySyncIterable } from "../../types/any-iterable";
-import type { AsyncPredicate, Predicate } from "../../types/predicate";
-import { asyncIterable, iterable } from "../../util/iterable-factory";
-import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
+import type {
+    AnyIterable,
+    AnySyncIterable,
+    AsyncPredicate,
+    Predicate,
+} from "../../types";
+import { asyncIterable, iterable, withIterableAssertion } from "../../util";
 
 /**
  * Creates a new iterable containing all values of some input iterable that satisfy the provided predicate.

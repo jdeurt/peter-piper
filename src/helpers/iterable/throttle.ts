@@ -1,5 +1,5 @@
-import type { AnyIterable } from "../../types/any-iterable";
-import { asyncIterable } from "../../util/iterable-factory";
+import type { AnyIterable } from "../../types";
+import { asyncIterable } from "../../util";
 
 /**
  * Creates a new iterable consiting of only values of some input iterable yielded `ms` milliseconds apart.

@@ -1,7 +1,10 @@
-import type { AnyIterable, AnySyncIterable } from "../../types/any-iterable";
-import type { MapFn } from "../../types/map-fn";
-import type { MaybePromise } from "../../types/maybe-promise";
-import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
+import type {
+    AnyIterable,
+    AnySyncIterable,
+    MapFn,
+    MaybePromise,
+} from "../../types";
+import { withIterableAssertion } from "../../util";
 
 /**
  * Fully consumes some input iterable while passing each value of the iterable to the provided callback function. The values returned from calling the callback function are returned as an array.

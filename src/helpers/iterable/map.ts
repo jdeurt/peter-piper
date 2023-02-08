@@ -1,7 +1,5 @@
-import type { AnyIterable, AnySyncIterable } from "../../types/any-iterable";
-import { asyncIterable, iterable } from "../../util/iterable-factory";
-import type { MapFn } from "../../types/map-fn";
-import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
+import type { AnyIterable, AnySyncIterable, MapFn } from "../../types";
+import { asyncIterable, iterable, withIterableAssertion } from "../../util";
 
 /**
  * Creates a new iterable which's values are the result of mapping some input iterable using the provided callback function.

@@ -1,8 +1,11 @@
-import type { AnyIterable, AnySyncIterable } from "../../types/any-iterable";
-import type { MaybePromise } from "../../types/maybe-promise";
+import type {
+    AnyIterable,
+    AnySyncIterable,
+    MaybePromise,
+    Reducer,
+} from "../../types";
 import { NOTHING } from "../../constants/nothing";
-import type { Reducer } from "../../types/reducer";
-import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
+import { withIterableAssertion } from "../../util";
 
 /**
  * Reduces some input iterable to a value using the provided callback function.

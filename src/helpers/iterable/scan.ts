@@ -1,9 +1,11 @@
-import type { AnyIterable, AnySyncIterable } from "../../types/any-iterable";
-import { asyncIterable, iterable } from "../../util/iterable-factory";
-import type { MaybePromise } from "../../types/maybe-promise";
+import type {
+    AnyIterable,
+    AnySyncIterable,
+    MaybePromise,
+    Reducer,
+} from "../../types";
+import { asyncIterable, iterable, withIterableAssertion } from "../../util";
 import { NOTHING } from "../../constants/nothing";
-import type { Reducer } from "../../types/reducer";
-import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
 
 /**
  * Similar to {@link reduce} except returns an iterable with values corresponding to the result of each reduction step.

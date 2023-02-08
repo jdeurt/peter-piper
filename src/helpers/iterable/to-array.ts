@@ -1,5 +1,5 @@
-import type { AnyIterable, AnySyncIterable } from "../../types/any-iterable";
-import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
+import type { AnyIterable, AnySyncIterable } from "../../types";
+import { withIterableAssertion } from "../../util";
 
 /**
  * Creates a new array from the values of some input iterable.

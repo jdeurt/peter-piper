@@ -1,5 +1,4 @@
-import { assertReadableStream } from "../../util/type-assertions/assert-readable-stream";
-import { asyncIterable } from "../../util/iterable-factory";
+import { assertReadableStream, asyncIterable } from "../../util";
 
 /**
  * Maps some input stream to an equivalent async iterable.

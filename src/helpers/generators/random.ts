@@ -1,6 +1,5 @@
-import { randomFloat, randomInt } from "../../util/random";
-import type { Range } from "../../types/range";
-import { iterable } from "../../util/iterable-factory";
+import { iterable, randomFloat, randomInt } from "../../util";
+import type { Range } from "../../types";
 
 /**
  * Creates an iterable that yields random floats in the provided range or from 0 to 1 if the range argument is omitted.

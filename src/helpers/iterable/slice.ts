@@ -1,6 +1,5 @@
-import type { AnyIterable, AnySyncIterable } from "../../types/any-iterable";
-import { asyncIterable, iterable } from "../../util/iterable-factory";
-import { withIterableAssertion } from "../../util/type-assertions/assert-iterable";
+import type { AnyIterable, AnySyncIterable } from "../../types";
+import { asyncIterable, iterable, withIterableAssertion } from "../../util";
 
 /**
  * Creates a new iterable by slicing some input iterable from the provided start index (inclusive) to the provided end index (exclusive).

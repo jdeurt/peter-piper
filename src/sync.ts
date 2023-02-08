@@ -1,5 +1,4 @@
-export { usingIterable } from "./util/using-iterable";
-export { using } from "./util/using";
+export { using, usingIterable } from "./util";
 export { PLACEHOLDER as __ } from "./constants/placeholder";
 export {
     randomFloats,

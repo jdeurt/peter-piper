@@ -1,9 +1,5 @@
-import { asyncIterable } from "../../util/iterable-factory";
-
-type Adapter<T, U> = (value: T) => {
-    next: () => Promise<{ value: U; done: boolean }>;
-    return?: () => Promise<void>;
-};
+import type { Adapter } from "../../types";
+import { asyncIterable } from "../../util";
 
 /**
  * Maps some input value to an async iterable in accordance with the provided adapter function.
