@@ -67,28 +67,27 @@ export const withCallbackAdapter =
             },
         });
 
-        const reader = stream.getReader();
+        return asyncIterable(() => {
+            const reader = stream.getReader();
 
-        return asyncIterable(
-            () =>
-                ({
-                    next: () => {
-                        if (isDone) {
-                            return Promise.resolve({
-                                value: [],
-                                done: true,
-                            });
-                        }
+            return {
+                next: () => {
+                    if (isDone) {
+                        return Promise.resolve({
+                            value: [],
+                            done: true,
+                        });
+                    }
 
-                        return reader.read();
-                    },
-                    return: () => {
-                        context.kill();
+                    return reader.read();
+                },
+                return: () => {
+                    context.kill();
 
-                        return Promise.resolve({ value: [] });
-                    },
-                } as AsyncIterator<U>)
-        );
+                    return Promise.resolve({ value: [] });
+                },
+            } as AsyncIterator<U>;
+        });
     };
 
 /**
