@@ -3,7 +3,7 @@ import { assertWebSocket } from "../../util";
 import { callbackAdapter } from "./callback-adapter";
 
 /**
- * Creates and async iteratable that yields values from messages received from a WebSocket.
+ * Creates an async iteratable that yields values from messages received from a WebSocket.
  * @group Adapters
  */
 export const withWebSocketAdapter =
