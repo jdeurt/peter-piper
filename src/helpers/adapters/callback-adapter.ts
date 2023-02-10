@@ -42,7 +42,8 @@ export const withCallbackAdapter =
     (input: T) => {
         let isDone = false;
 
-        // @ts-expect-error - Properties are immidiately set below.
+        // @ts-expect-error 2739
+        // Properties are set below. We need this here for scope reasons.
         const context: CallbackAdapterContext<U> = {};
 
         const stream = new ReadableStream<U>({

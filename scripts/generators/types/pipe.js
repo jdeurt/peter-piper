@@ -1,4 +1,4 @@
-import { writeFileSync } from "node:fs";
+const { writeFileSync } = require("node:fs");
 
 const getLetter = (i) => String.fromCharCode(65 + i);
 
@@ -21,7 +21,7 @@ const makeArgsArray = (i) => {
 };
 
 const makeOverloadSignature = (i) =>
-    `<${makeGenericParams(i)}>(...args: [${makeArgsArray(
+    `<${makeGenericParams(i)}>(...fns: [${makeArgsArray(
         i
     )}]): (value: In<${getLetter(0)}>) => Out<${getLetter(i)}>;`;
 
@@ -34,6 +34,7 @@ result += "export interface Pipe {\n";
 for (let i = 0; i < 26; i++) {
     result += `${makeOverloadSignature(i)}\n`;
 }
+result += "(...fns: Pipable[]): (value: unknown) => unknown;\n";
 result += "};";
 
 writeFileSync("./src/types/generated/pipe.ts", result, "utf8");

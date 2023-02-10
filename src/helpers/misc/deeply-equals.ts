@@ -70,7 +70,8 @@ export const deeplyEquals =
         }
 
         for (const key of xKeys) {
-            // @ts-expect-error - We already know `key` is a candidate key for x and y because of the creation of `xKeys` above.
+            // @ts-expect-error 7053
+            // We already know `key` is a candidate key for x and y because of the creation of `xKeys` above.
             if (!deeplyEquals(value[key])(input[key])) {
                 return false;
             }

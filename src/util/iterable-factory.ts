@@ -3,7 +3,7 @@ import type {
     ExtendedAsyncIterable,
     ExtendedIterable,
 } from "../types/pp-iterable";
-import { using } from "../helpers";
+import type { Pipable } from "../types";
 
 export const iterable = <T>(
     iterator: () => Iterator<T>
@@ -51,10 +51,8 @@ export const iterable = <T>(
     toArray() {
         return h.toArraySync<T>()(this);
     },
-    pipe() {
-        // @ts-expect-error - Arguments should be valid
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, prefer-rest-params
-        return using(this).pipe(...arguments);
+    pipe(...args: Pipable[]) {
+        return h.using(this).pipe(...args);
     },
 });
 
@@ -112,9 +110,7 @@ export const asyncIterable = <T>(
     toArray() {
         return h.toArray<T>()(this);
     },
-    pipe() {
-        // @ts-expect-error - Arguments should be valid
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, prefer-rest-params
-        return using(this).pipe(...arguments);
+    pipe(...args: Pipable[]) {
+        return h.using(this).pipe(...args);
     },
 });

@@ -11,7 +11,7 @@ import type { Pipable, Pipe } from "../../types";
  *     )
  * );
  */
-export const pipe = ((...args: unknown[]) =>
+export const pipe = ((...fns: Pipable[]) =>
     (input: unknown) =>
         // eslint-disable-next-line unicorn/no-array-reduce
-        args.reduce((x, f) => (f as Pipable)(x), input)) as Pipe;
+        fns.reduce((x, f) => f(x), input)) as Pipe;

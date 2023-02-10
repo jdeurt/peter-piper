@@ -9,7 +9,7 @@ import type { Pipable } from "../types/pipable";
  * );
  */
 export const using = <T>(value: T) => ({
-    pipe: ((...args: unknown[]) =>
+    pipe: ((...fns: unknown[]) =>
         // eslint-disable-next-line unicorn/no-array-reduce
-        args.reduce((x, f) => (f as Pipable)(x), value)) as CookedPipe<T>,
+        fns.reduce((x, f) => (f as Pipable)(x), value)) as CookedPipe<T>,
 });
