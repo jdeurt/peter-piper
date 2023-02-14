@@ -1,10 +1,10 @@
 import type {
     AnyIterable,
     AnySyncIterable,
-    MaybePromise,
+    AsyncReducer,
     Reducer,
 } from "../../types";
-import { NOTHING } from "../../constants/nothing";
+import { PPSymbol } from "../../constants";
 import { withIterableAssertion } from "../../util";
 
 /**
@@ -17,17 +17,17 @@ import { withIterableAssertion } from "../../util";
  * );
  */
 export function reduce<T, U = T>(
-    reducer: Reducer<T, MaybePromise<U>>,
+    reducer: AsyncReducer<T, U>,
     initialValue?: U
 ) {
     return withIterableAssertion(async (input: AnyIterable<T>): Promise<U> => {
         let index = 0;
-        let accumulator: U | typeof NOTHING =
+        let accumulator: U | typeof PPSymbol.nothing =
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            arguments.length === 2 ? initialValue! : NOTHING;
+            arguments.length === 2 ? initialValue! : PPSymbol.nothing;
 
         for await (const value of input) {
-            if (accumulator === NOTHING) {
+            if (accumulator === PPSymbol.nothing) {
                 index++;
                 accumulator = value as unknown as U;
 
@@ -37,7 +37,7 @@ export function reduce<T, U = T>(
             accumulator = await reducer(accumulator, value, index++);
         }
 
-        if (accumulator === NOTHING) {
+        if (accumulator === PPSymbol.nothing) {
             throw new TypeError(
                 "Reduce of empty iterable with no initial value"
             );
@@ -57,12 +57,12 @@ export function reduce<T, U = T>(
 export function reduceSync<T, U = T>(reducer: Reducer<T, U>, initialValue?: U) {
     return withIterableAssertion((input: AnySyncIterable<T>): U => {
         let index = 0;
-        let accumulator: U | typeof NOTHING =
+        let accumulator: U | typeof PPSymbol.nothing =
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            arguments.length === 2 ? initialValue! : NOTHING;
+            arguments.length === 2 ? initialValue! : PPSymbol.nothing;
 
         for (const value of input) {
-            if (accumulator === NOTHING) {
+            if (accumulator === PPSymbol.nothing) {
                 index++;
                 accumulator = value as unknown as U;
 
@@ -72,7 +72,7 @@ export function reduceSync<T, U = T>(reducer: Reducer<T, U>, initialValue?: U) {
             accumulator = reducer(accumulator, value, index++);
         }
 
-        if (accumulator === NOTHING) {
+        if (accumulator === PPSymbol.nothing) {
             throw new TypeError(
                 "Reduce of empty iterable with no initial value"
             );

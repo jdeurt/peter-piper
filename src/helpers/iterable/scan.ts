@@ -1,11 +1,11 @@
 import type {
     AnyIterable,
     AnySyncIterable,
-    MaybePromise,
+    AsyncReducer,
     Reducer,
 } from "../../types";
 import { asyncIterable, iterable, withIterableAssertion } from "../../util";
-import { NOTHING } from "../../constants/nothing";
+import { PPSymbol } from "../../constants";
 
 /**
  * Similar to {@link reduce} except returns an iterable with values corresponding to the result of each reduction step.
@@ -15,19 +15,16 @@ import { NOTHING } from "../../constants/nothing";
  *     scan((acc, x) => acc + x)
  * );
  */
-export function scan<T, U = T>(
-    reducer: Reducer<T, MaybePromise<U>>,
-    initialValue?: U
-) {
+export function scan<T, U = T>(reducer: AsyncReducer<T, U>, initialValue?: U) {
     return withIterableAssertion((input: AnyIterable<T>) => {
         let index = 0;
-        let accumulator: U | typeof NOTHING =
+        let accumulator: U | typeof PPSymbol.nothing =
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            arguments.length === 2 ? initialValue! : NOTHING;
+            arguments.length === 2 ? initialValue! : PPSymbol.nothing;
 
         return asyncIterable(async function* () {
             for await (const value of input) {
-                if (accumulator === NOTHING) {
+                if (accumulator === PPSymbol.nothing) {
                     index++;
                     accumulator = value as unknown as U;
 
@@ -54,13 +51,13 @@ export function scan<T, U = T>(
 export function scanSync<T, U = T>(reducer: Reducer<T, U>, initialValue?: U) {
     return withIterableAssertion((input: AnySyncIterable<T>) => {
         let index = 0;
-        let accumulator: U | typeof NOTHING =
+        let accumulator: U | typeof PPSymbol.nothing =
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            arguments.length === 2 ? initialValue! : NOTHING;
+            arguments.length === 2 ? initialValue! : PPSymbol.nothing;
 
         return iterable(function* () {
             for (const value of input) {
-                if (accumulator === NOTHING) {
+                if (accumulator === PPSymbol.nothing) {
                     index++;
                     accumulator = value as unknown as U;
 

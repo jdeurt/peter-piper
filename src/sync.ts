@@ -1,8 +1,9 @@
-export { PLACEHOLDER as __ } from "./constants/placeholder";
+export * from "./constants";
 export {
     randomFloats,
     randomInts,
     range,
+    atSync as at,
     concatSync as concat,
     consumeSync as consume,
     everySync as every,
@@ -28,5 +29,5 @@ export {
     wrapSync as wrap,
     pipe,
     using,
-    usingIterable,
+    from,
 } from "./helpers";

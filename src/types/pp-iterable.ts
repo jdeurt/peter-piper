@@ -1,8 +1,7 @@
 import type { AsyncPredicate, Predicate } from "./predicate";
+import type { AsyncReducer, Reducer } from "./reducer";
 import type { CookedPipe } from "./generated/cooked-pipe";
 import type { MapFn } from "./map-fn";
-import type { MaybePromise } from "./maybe-promise";
-import type { Reducer } from "./reducer";
 
 export interface ExtendedIterable<T> extends Iterable<T> {
     concat: (
@@ -45,11 +44,11 @@ export interface ExtendedAsyncIterable<T> extends AsyncIterable<T> {
     map: <U>(mapFn: MapFn<T, U>) => ExtendedAsyncIterable<Awaited<U>>;
     pipe: CookedPipe<ExtendedAsyncIterable<T>>;
     reduce: <U = T>(
-        reducer: Reducer<T, MaybePromise<U>>,
+        reducer: AsyncReducer<T, U>,
         initialValue?: U
     ) => Promise<U>;
     scan: <U = T>(
-        reducer: Reducer<T, MaybePromise<U>>,
+        reducer: AsyncReducer<T, U>,
         initialValue?: U
     ) => ExtendedAsyncIterable<Awaited<U>>;
     slice: (

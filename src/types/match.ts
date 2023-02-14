@@ -1,5 +1,5 @@
 import type { MaybePromise } from "./maybe-promise";
-import type { PLACEHOLDER } from "../constants/placeholder";
+import type { __ } from "../constants/placeholder";
 
 export type MatchPath<T = never, U = unknown> = [
     predicate: (value: T) => MaybePromise<boolean>,
@@ -7,7 +7,7 @@ export type MatchPath<T = never, U = unknown> = [
 ];
 
 export type FallbackPath<T = never, U = unknown> = [
-    predicate: typeof PLACEHOLDER,
+    predicate: typeof __,
     callback: (value: T) => U
 ];
 

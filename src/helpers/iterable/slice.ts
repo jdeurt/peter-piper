@@ -1,5 +1,11 @@
 import type { AnyIterable, AnySyncIterable } from "../../types";
-import { asyncIterable, iterable, withIterableAssertion } from "../../util";
+import {
+    sliceGreedy,
+    sliceGreedySync,
+    sliceLazy,
+    sliceLazySync,
+    withIterableAssertion,
+} from "../../util";
 
 /**
  * Creates a new iterable by slicing some input iterable from the provided start index (inclusive) to the provided end index (exclusive).
@@ -9,27 +15,15 @@ import { asyncIterable, iterable, withIterableAssertion } from "../../util";
  * using([1, 2, 3, 4]).pipe(
  *     slice(1, 3)
  * );
+ *
+ * @remarks
+ * Negative end indices are supported. However, if used, this helper becomes greedy and pools all values before returning a result.
  */
-export const slice = <T>(
-    startIndex: number,
-    endIndex = Number.POSITIVE_INFINITY
-) =>
+export const slice = <T>(startIndex = 0, endIndex = Number.POSITIVE_INFINITY) =>
     withIterableAssertion((input: AnyIterable<T>) =>
-        asyncIterable(async function* () {
-            let index = 0;
-
-            for await (const value of input) {
-                if (index === endIndex) {
-                    return;
-                }
-
-                if (index >= startIndex) {
-                    yield value;
-                }
-
-                index++;
-            }
-        })
+        startIndex >= 0 && endIndex >= 0
+            ? sliceLazy(input, startIndex, endIndex)
+            : sliceGreedy(input, startIndex, endIndex)
     );
 
 /**
@@ -40,23 +34,11 @@ export const slice = <T>(
  * Available as `slice` when imported from `peter-piper/sync`.
  */
 export const sliceSync = <T>(
-    startIndex: number,
+    startIndex = 0,
     endIndex = Number.POSITIVE_INFINITY
 ) =>
     withIterableAssertion((input: AnySyncIterable<T>) =>
-        iterable(function* () {
-            let index = 0;
-
-            for (const value of input) {
-                if (index === endIndex) {
-                    return;
-                }
-
-                if (index >= startIndex) {
-                    yield value;
-                }
-
-                index++;
-            }
-        })
+        startIndex >= 0 && endIndex >= 0
+            ? sliceLazySync(input, startIndex, endIndex)
+            : sliceGreedySync(input, startIndex, endIndex)
     );

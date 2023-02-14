@@ -4,7 +4,7 @@ import type {
     MatchPaths,
     MatchPathsWithFallback,
 } from "../../types";
-import { PLACEHOLDER } from "../../constants/placeholder";
+import { __ } from "../../constants/placeholder";
 
 /**
  * Finds the first path pair where some input value satisfies that pair's predicate and returns the result of passing said input value to that pair's callback function. If a placeholder (`__`) is used in place of a predicate in the last path, that path will act as a fallback path.
@@ -37,7 +37,7 @@ export const match =
         for (const path of paths) {
             const [predicate, callback] = path;
 
-            if (predicate === PLACEHOLDER || (await predicate(input))) {
+            if (predicate === __ || (await predicate(input))) {
                 return callback(input) as MatchPathReturnValueType<T>;
             }
         }

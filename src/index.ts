@@ -1,2 +1,2 @@
-export { PLACEHOLDER as __ } from "./constants/placeholder";
+export * from "./constants";
 export * from "./helpers";

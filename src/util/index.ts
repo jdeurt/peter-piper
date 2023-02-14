@@ -1,3 +1,4 @@
+export * from "./iterable";
 export * from "./iterable-factory";
 export * from "./random";
 export * from "./to-async-iterable";
