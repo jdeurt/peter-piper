@@ -17,7 +17,7 @@ import {
  * );
  *
  * @remarks
- * Negative end indices are supported. However, if used, this helper becomes greedy and pools all values before returning a result.
+ * Negative indices are supported. However, if used, this helper becomes greedy and pools all values before returning a result.
  */
 export const slice = <T>(startIndex = 0, endIndex = Number.POSITIVE_INFINITY) =>
     withIterableAssertion((input: AnyIterable<T>) =>

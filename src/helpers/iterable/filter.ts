@@ -1,8 +1,8 @@
 import type {
     AnyIterable,
     AnySyncIterable,
-    AsyncPredicate,
-    Predicate,
+    ArrayLikePredicate,
+    AsyncArrayLikePredicate,
 } from "../../types";
 import { asyncIterable, iterable, withIterableAssertion } from "../../util";
 
@@ -14,7 +14,7 @@ import { asyncIterable, iterable, withIterableAssertion } from "../../util";
  *     filter((x) => x === 1)
  * );
  */
-export const filter = <T>(predicate: AsyncPredicate<T>) =>
+export const filter = <T>(predicate: AsyncArrayLikePredicate<T>) =>
     withIterableAssertion((input: AnyIterable<T>) =>
         asyncIterable(async function* () {
             let index = 0;
@@ -34,7 +34,7 @@ export const filter = <T>(predicate: AsyncPredicate<T>) =>
  * @remarks
  * Available as `filter` when imported from `peter-piper/sync`.
  */
-export const filterSync = <T>(predicate: Predicate<T>) =>
+export const filterSync = <T>(predicate: ArrayLikePredicate<T>) =>
     withIterableAssertion((input: AnySyncIterable<T>) =>
         iterable(function* () {
             let index = 0;

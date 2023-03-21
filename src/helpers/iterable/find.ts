@@ -1,8 +1,8 @@
 import type {
     AnyIterable,
     AnySyncIterable,
-    AsyncPredicate,
-    Predicate,
+    ArrayLikePredicate,
+    AsyncArrayLikePredicate,
 } from "../../types";
 import { withIterableAssertion } from "../../util";
 
@@ -14,7 +14,7 @@ import { withIterableAssertion } from "../../util";
  *     find((x) => x === 2)
  * );
  */
-export const find = <T>(predicate: AsyncPredicate<T>) =>
+export const find = <T>(predicate: AsyncArrayLikePredicate<T>) =>
     withIterableAssertion(
         async (input: AnyIterable<T>): Promise<T | undefined> => {
             let index = 0;
@@ -34,7 +34,7 @@ export const find = <T>(predicate: AsyncPredicate<T>) =>
  * @remarks
  * Available as `find` when imported from `peter-piper/sync`.
  */
-export const findSync = <T>(predicate: Predicate<T>) =>
+export const findSync = <T>(predicate: ArrayLikePredicate<T>) =>
     withIterableAssertion((input: AnySyncIterable<T>): T | undefined => {
         let index = 0;
 

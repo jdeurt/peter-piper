@@ -44,6 +44,22 @@ module.exports = [
             },
         ],
     },
+    {
+        input: "src/math.ts",
+        output: [
+            {
+                format: "esm",
+                file: "dist/math.mjs",
+                sourcemap: false,
+            },
+            {
+                format: "cjs",
+                file: "dist/math.js",
+                sourcemap: false,
+                esModule: false,
+            },
+        ],
+    },
 ].map((config) => ({
     ...config,
     plugins: [

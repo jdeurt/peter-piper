@@ -1,8 +1,11 @@
 export * from "./constants";
 export {
+    // Generators
     randomFloats,
     randomInts,
     range,
+
+    // Iterable
     atSync as at,
     concatSync as concat,
     consumeSync as consume,
@@ -18,6 +21,8 @@ export {
     someSync as some,
     takeSync as take,
     toArraySync as toArray,
+
+    // Misc
     assertType,
     deeplyEquals,
     DeeplyEqualsOptions,

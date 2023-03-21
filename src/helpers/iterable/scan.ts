@@ -5,7 +5,7 @@ import type {
     Reducer,
 } from "../../types";
 import { asyncIterable, iterable, withIterableAssertion } from "../../util";
-import { PPSymbol } from "../../constants";
+import { NOTHING } from "../../constants";
 
 /**
  * Similar to {@link reduce} except returns an iterable with values corresponding to the result of each reduction step.
@@ -18,13 +18,13 @@ import { PPSymbol } from "../../constants";
 export function scan<T, U = T>(reducer: AsyncReducer<T, U>, initialValue?: U) {
     return withIterableAssertion((input: AnyIterable<T>) => {
         let index = 0;
-        let accumulator: U | typeof PPSymbol.nothing =
+        let accumulator: U | typeof NOTHING =
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            arguments.length === 2 ? initialValue! : PPSymbol.nothing;
+            arguments.length === 2 ? initialValue! : NOTHING;
 
         return asyncIterable(async function* () {
             for await (const value of input) {
-                if (accumulator === PPSymbol.nothing) {
+                if (accumulator === NOTHING) {
                     index++;
                     accumulator = value as unknown as U;
 
@@ -51,13 +51,13 @@ export function scan<T, U = T>(reducer: AsyncReducer<T, U>, initialValue?: U) {
 export function scanSync<T, U = T>(reducer: Reducer<T, U>, initialValue?: U) {
     return withIterableAssertion((input: AnySyncIterable<T>) => {
         let index = 0;
-        let accumulator: U | typeof PPSymbol.nothing =
+        let accumulator: U | typeof NOTHING =
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            arguments.length === 2 ? initialValue! : PPSymbol.nothing;
+            arguments.length === 2 ? initialValue! : NOTHING;
 
         return iterable(function* () {
             for (const value of input) {
-                if (accumulator === PPSymbol.nothing) {
+                if (accumulator === NOTHING) {
                     index++;
                     accumulator = value as unknown as U;
 

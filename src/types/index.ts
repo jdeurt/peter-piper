@@ -1,5 +1,6 @@
 export * from "./adapter";
 export * from "./any-iterable";
+export * from "./array-like-predicate";
 export * from "./element-of";
 export * from "./fork";
 export * from "./generated/cooked-pipe";
@@ -9,6 +10,7 @@ export * from "./map-fn";
 export * from "./match";
 export * from "./math";
 export * from "./maybe-promise";
+export * from "./nothing";
 export * from "./pipable";
 export * from "./pp-iterable";
 export * from "./predicate";

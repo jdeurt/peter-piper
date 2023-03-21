@@ -1,8 +1,8 @@
 import type {
     AnyIterable,
     AnySyncIterable,
-    AsyncPredicate,
-    Predicate,
+    AsyncArrayLikePredicate,
+    ArrayLikePredicate,
 } from "../../types";
 import { withIterableAssertion } from "../../util";
 
@@ -14,7 +14,7 @@ import { withIterableAssertion } from "../../util";
  *     every((x) => x % 2 === 0)
  * )
  */
-export const every = <T>(predicate: AsyncPredicate<T>) =>
+export const every = <T>(predicate: AsyncArrayLikePredicate<T>) =>
     withIterableAssertion(async (input: AnyIterable<T>): Promise<boolean> => {
         let index = 0;
         let accumulator = true;
@@ -33,7 +33,7 @@ export const every = <T>(predicate: AsyncPredicate<T>) =>
  * @remarks
  * Available as `every` when imported from `peter-piper/sync`.
  */
-export const everySync = <T>(predicate: Predicate<T>) =>
+export const everySync = <T>(predicate: ArrayLikePredicate<T>) =>
     withIterableAssertion((input: AnySyncIterable<T>): boolean => {
         let index = 0;
         let accumulator = true;

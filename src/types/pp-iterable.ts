@@ -1,4 +1,7 @@
-import type { AsyncPredicate, Predicate } from "./predicate";
+import type {
+    ArrayLikePredicate,
+    AsyncArrayLikePredicate,
+} from "./array-like-predicate";
 import type { AsyncReducer, Reducer } from "./reducer";
 import type { CookedPipe } from "./generated/cooked-pipe";
 import type { MapFn } from "./map-fn";
@@ -8,10 +11,10 @@ export interface ExtendedIterable<T> extends Iterable<T> {
         ...iterables: (ExtendedIterable<T> | Iterable<T>)[]
     ) => ExtendedIterable<T>;
     consume: <U>(mapFn?: MapFn<T, U>) => U[];
-    every: (predicate: Predicate<T>) => boolean;
-    filter: (predicate: Predicate<T>) => ExtendedIterable<T>;
-    find: (predicate: Predicate<T>) => T | undefined;
-    first: (predicate?: Predicate<T>) => ExtendedIterable<T>;
+    every: (predicate: ArrayLikePredicate<T>) => boolean;
+    filter: (predicate: ArrayLikePredicate<T>) => ExtendedIterable<T>;
+    find: (predicate: ArrayLikePredicate<T>) => T | undefined;
+    first: (predicate?: ArrayLikePredicate<T>) => ExtendedIterable<T>;
     isEmpty: () => boolean;
     map: <U>(mapFn: MapFn<T, U>) => ExtendedIterable<U>;
     pipe: CookedPipe<ExtendedIterable<T>>;
@@ -21,7 +24,7 @@ export interface ExtendedIterable<T> extends Iterable<T> {
         initialValue?: U
     ) => ExtendedIterable<U>;
     slice: (startIndex: number, endIndex?: number) => ExtendedIterable<T>;
-    some: (predicate: Predicate<T>) => boolean;
+    some: (predicate: ArrayLikePredicate<T>) => boolean;
     take: (n: number) => ExtendedIterable<T>;
     toArray: () => T[];
 }
@@ -36,10 +39,14 @@ export interface ExtendedAsyncIterable<T> extends AsyncIterable<T> {
         )[]
     ) => ExtendedAsyncIterable<Awaited<T>>;
     consume: <U>(mapFn?: MapFn<T, U>) => Promise<U[]>;
-    every: (predicate: AsyncPredicate<T>) => Promise<boolean>;
-    filter: (predicate: AsyncPredicate<T>) => ExtendedAsyncIterable<Awaited<T>>;
-    find: (predicate: AsyncPredicate<T>) => Promise<T | undefined>;
-    first: (predicate?: AsyncPredicate<T>) => ExtendedAsyncIterable<Awaited<T>>;
+    every: (predicate: AsyncArrayLikePredicate<T>) => Promise<boolean>;
+    filter: (
+        predicate: AsyncArrayLikePredicate<T>
+    ) => ExtendedAsyncIterable<Awaited<T>>;
+    find: (predicate: AsyncArrayLikePredicate<T>) => Promise<T | undefined>;
+    first: (
+        predicate?: AsyncArrayLikePredicate<T>
+    ) => ExtendedAsyncIterable<Awaited<T>>;
     isEmpty: () => Promise<boolean>;
     map: <U>(mapFn: MapFn<T, U>) => ExtendedAsyncIterable<Awaited<U>>;
     pipe: CookedPipe<ExtendedAsyncIterable<T>>;
@@ -55,7 +62,7 @@ export interface ExtendedAsyncIterable<T> extends AsyncIterable<T> {
         startIndex: number,
         endIndex?: number
     ) => ExtendedAsyncIterable<Awaited<T>>;
-    some: (predicate: AsyncPredicate<T>) => Promise<boolean>;
+    some: (predicate: AsyncArrayLikePredicate<T>) => Promise<boolean>;
     take: (n: number) => ExtendedAsyncIterable<Awaited<T>>;
     toArray: () => Promise<T[]>;
 }

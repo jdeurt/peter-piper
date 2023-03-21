@@ -29,12 +29,19 @@
         "./sync": {
             "import": "./dist/sync.mjs",
             "require": "./dist/sync.js"
+        },
+        "./math": {
+            "import": "./dist/math.mjs",
+            "require": "./dist/math.js"
         }
     },
     "typesVersions": {
         "*": {
             "sync": [
                 "types/sync.d.ts"
+            ],
+            "math": [
+                "types/math.d.ts"
             ]
         }
     },
