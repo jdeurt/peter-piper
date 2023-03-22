@@ -32,7 +32,7 @@ Greedy helpers do what the name implies: they fully consume whatever input is gi
 
 In contrast, lazy helpers immidiately output an iterable that can be acted on and consume a single value at a time.
 
-In practice, this behavioral diffirence can be demonstrated as follows:
+In practice, this behavioral difference can be demonstrated as follows:
 
 ```js
 import * as pp from "peter-piper";
