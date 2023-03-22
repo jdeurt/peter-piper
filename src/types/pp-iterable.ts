@@ -7,6 +7,7 @@ import type { CookedPipe } from "./generated/cooked-pipe";
 import type { MapFn } from "./map-fn";
 
 export interface ExtendedIterable<T> extends Iterable<T> {
+    at: (n: number) => T | undefined;
     concat: (
         ...iterables: (ExtendedIterable<T> | Iterable<T>)[]
     ) => ExtendedIterable<T>;
@@ -30,6 +31,7 @@ export interface ExtendedIterable<T> extends Iterable<T> {
 }
 
 export interface ExtendedAsyncIterable<T> extends AsyncIterable<T> {
+    at: (n: number) => Promise<T | undefined>;
     concat: (
         ...iterables: (
             | Iterable<T>
@@ -64,5 +66,6 @@ export interface ExtendedAsyncIterable<T> extends AsyncIterable<T> {
     ) => ExtendedAsyncIterable<Awaited<T>>;
     some: (predicate: AsyncArrayLikePredicate<T>) => Promise<boolean>;
     take: (n: number) => ExtendedAsyncIterable<Awaited<T>>;
+    throttle: (ms: number) => ExtendedAsyncIterable<Awaited<T>>;
     toArray: () => Promise<T[]>;
 }

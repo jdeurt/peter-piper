@@ -10,6 +10,9 @@ export const iterable = <T>(
 ): ExtendedIterable<T> => ({
     [Symbol.iterator]: iterator,
 
+    at(n) {
+        return h.atSync<T>(n)(this);
+    },
     concat(...iterables) {
         return h.concatSync(...iterables)(this);
     },
@@ -62,6 +65,9 @@ export const asyncIterable = <T>(
 ): ExtendedAsyncIterable<T> => ({
     [Symbol.asyncIterator]: iterator,
 
+    at(n) {
+        return h.at<T>(n)(this);
+    },
     concat(...iterables) {
         // ???
         // eslint-disable-next-line unicorn/prefer-spread
@@ -108,6 +114,9 @@ export const asyncIterable = <T>(
     },
     take(n) {
         return h.take<T>(n)(this);
+    },
+    throttle(ms) {
+        return h.throttle<T>(ms)(this);
     },
     toArray() {
         return h.toArray<T>()(this);

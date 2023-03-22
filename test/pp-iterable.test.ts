@@ -13,6 +13,12 @@ testProp("should create a pp iterable", [fc.array(fc.anything())], (t, arr) => {
     t.false(isAsyncIterable(resultSync));
 });
 
+testProp("should be indexable", [fc.array(fc.float())], (t, arr) => {
+    const resultSync = from(arr);
+
+    t.is(resultSync.at(0), arr[0]);
+});
+
 testProp(
     "should wrap a non-iterable in a pp iterable",
     [fc.anything()],
