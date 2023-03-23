@@ -31,6 +31,9 @@ export const iterable = <T>(
     first(predicate) {
         return h.firstSync(predicate)(this);
     },
+    flat<D extends number = 1>(depth?: D) {
+        return h.flatSync<T, D>(depth)(this);
+    },
     isEmpty() {
         return h.isEmptySync()(this);
     },
@@ -57,6 +60,11 @@ export const iterable = <T>(
     },
     pipe(...args: Pipable[]) {
         return h.using(this).pipe(...args);
+    },
+    // @ts-expect-error 2322 - T not being an iterable is accounted for
+    zip() {
+        // @ts-expect-error 2344 - T not being an iterable is accounted for
+        return h.zipSync<T>()(this);
     },
 });
 
@@ -91,6 +99,9 @@ export const asyncIterable = <T>(
     first(predicate) {
         return h.first(predicate)(this);
     },
+    flat<D extends number = 1>(depth?: D) {
+        return h.flat<T, D>(depth)(this);
+    },
     isEmpty() {
         return h.isEmpty()(this);
     },
@@ -123,5 +134,10 @@ export const asyncIterable = <T>(
     },
     pipe(...args: Pipable[]) {
         return h.using(this).pipe(...args);
+    },
+    // @ts-expect-error 2322 - T not being an iterable is accounted for
+    zip() {
+        // @ts-expect-error 2344 - T not being an iterable is accounted for
+        return h.zip<T>()(this);
     },
 });

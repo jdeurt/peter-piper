@@ -9,8 +9,8 @@ import { asyncIterable, iterable, withIterableAssertion } from "../../util";
  *     map((x) => x * 2)
  * );
  */
-export const map = <T, U>(mapFn: MapFn<T, U>) =>
-    withIterableAssertion((input: AnyIterable<T>) => {
+export const map = <T, U>(mapFn: MapFn<T, U>) => {
+    return withIterableAssertion((input: AnyIterable<T>) => {
         let index = 0;
 
         return asyncIterable(async function* () {
@@ -19,6 +19,7 @@ export const map = <T, U>(mapFn: MapFn<T, U>) =>
             }
         });
     });
+};
 
 /**
  * A sync variant of {@link map}.

@@ -13,6 +13,7 @@ export {
     filterSync as filter,
     findSync as find,
     firstSync as first,
+    flatSync as flat,
     isEmptySync as isEmpty,
     mapSync as map,
     reduceSync as reduce,
@@ -21,6 +22,7 @@ export {
     someSync as some,
     takeSync as take,
     toArraySync as toArray,
+    zipSync as zip,
 
     // Misc
     assertType,
