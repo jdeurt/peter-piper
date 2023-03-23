@@ -1,13 +1,19 @@
-import type { AnyIterable, ElementOf } from "../../types";
+import type { AnyIterable, AnySyncIterable, ElementOf } from "../../types";
 import { isAsyncIterable, isSyncIterable } from "../type-narrowing";
 import { fork } from "../fork";
+import { withIterableAssertion } from "../type-assertions";
 
-export const getIterator = <T extends AnyIterable<unknown>>(iterable: T) =>
-    fork(
-        iterable,
-        [isAsyncIterable, isSyncIterable],
-        [
-            (iterable as AsyncIterable<unknown>)[Symbol.asyncIterator],
-            (iterable as Iterable<unknown>)[Symbol.iterator],
-        ]
-    ) as AsyncIterator<ElementOf<T>> | Iterator<ElementOf<T>>;
+export const getIterator = withIterableAssertion(
+    <T extends AnyIterable<unknown>>(iterable: T) =>
+        fork(
+            iterable,
+            [isAsyncIterable, isSyncIterable],
+            [
+                (iter) =>
+                    (iter as AsyncIterable<unknown>)[Symbol.asyncIterator](),
+                (iter) => (iter as Iterable<unknown>)[Symbol.iterator](),
+            ]
+        ) as T extends AnySyncIterable<unknown>
+            ? Iterator<ElementOf<T>>
+            : AsyncIterator<ElementOf<T>>
+);
