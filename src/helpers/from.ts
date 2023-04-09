@@ -1,7 +1,7 @@
 import type {
     ExtendedAsyncIterable,
     ExtendedIterable,
-} from "../types/pp-iterable";
+} from "../types/extended-iterable";
 import { asyncIterable, iterable } from "../util/iterable-factory";
 import {
     isAsyncIterable,

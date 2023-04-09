@@ -1,4 +1,7 @@
-import type { ExtendedAsyncIterable, ExtendedIterable } from "./pp-iterable";
+import type {
+    ExtendedAsyncIterable,
+    ExtendedIterable,
+} from "./extended-iterable";
 import type { AnyIterable } from "./any-iterable";
 import type { ElementOf } from "./element-of";
 

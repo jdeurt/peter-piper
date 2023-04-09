@@ -1,4 +1,5 @@
 export * from "./at";
+export * from "./buffer";
 export * from "./concat";
 export * from "./consume";
 export * from "./every";

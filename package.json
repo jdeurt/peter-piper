@@ -30,9 +30,9 @@
             "import": "./dist/sync.mjs",
             "require": "./dist/sync.js"
         },
-        "./math": {
-            "import": "./dist/math.mjs",
-            "require": "./dist/math.js"
+        "./prelude": {
+            "import": "./dist/prelude.mjs",
+            "require": "./dist/prelude.js"
         }
     },
     "typesVersions": {

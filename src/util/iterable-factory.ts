@@ -2,7 +2,7 @@ import * as h from "../helpers";
 import type {
     ExtendedAsyncIterable,
     ExtendedIterable,
-} from "../types/pp-iterable";
+} from "../types/extended-iterable";
 import type { Pipable } from "../types";
 
 export const iterable = <T>(
@@ -75,6 +75,9 @@ export const asyncIterable = <T>(
 
     at(n) {
         return h.at<T>(n)(this);
+    },
+    buffer(ms) {
+        return h.buffer<T>(ms)(this);
     },
     concat(...iterables) {
         // ???

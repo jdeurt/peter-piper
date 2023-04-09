@@ -45,6 +45,7 @@ export interface ExtendedIterable<T> extends Iterable<T> {
 
 export interface ExtendedAsyncIterable<T> extends AsyncIterable<T> {
     at: (n: number) => Promise<T | undefined>;
+    buffer: (ms: number) => ExtendedAsyncIterable<Awaited<T>>;
     concat: (
         ...iterables: (
             | Iterable<T>

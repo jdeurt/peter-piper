@@ -14,7 +14,7 @@ export * from "./maybe-promise";
 export * from "./narrow-iterable";
 export * from "./nothing";
 export * from "./pipable";
-export * from "./pp-iterable";
+export * from "./extended-iterable";
 export * from "./predicate";
 export * from "./range";
 export * from "./reducer";

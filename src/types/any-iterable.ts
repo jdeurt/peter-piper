@@ -1,4 +1,7 @@
-import type { ExtendedAsyncIterable, ExtendedIterable } from "./pp-iterable";
+import type {
+    ExtendedAsyncIterable,
+    ExtendedIterable,
+} from "./extended-iterable";
 
 export type AnyIterable<T> =
     | Iterable<T>
