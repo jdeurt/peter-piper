@@ -45,16 +45,16 @@ module.exports = [
         ],
     },
     {
-        input: "src/math.ts",
+        input: "src/prelude.ts",
         output: [
             {
                 format: "esm",
-                file: "dist/math.mjs",
+                file: "dist/prelude.mjs",
                 sourcemap: false,
             },
             {
                 format: "cjs",
-                file: "dist/math.js",
+                file: "dist/prelude.js",
                 sourcemap: false,
                 esModule: false,
             },
