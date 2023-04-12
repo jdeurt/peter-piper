@@ -1,5 +1,5 @@
 {
-    "version": "0.2.3",
+    "version": "0.2.4",
     "name": "peter-piper",
     "repository": "jdeurt/peter-piper",
     "description": "A zero-dependency collection of typed composable/pipable utility functions with a focus on lazy evaluation.",
