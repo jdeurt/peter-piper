@@ -1,5 +1,5 @@
 import { testProp, fc } from "@fast-check/ava";
-import * as ppMath from "../../src/pluggable/math";
+import * as ppMath from "../../src/prelude/math";
 
 testProp("comparison helpers", [fc.float(), fc.float()], async (t, x, y) => {
     t.is(ppMath.gt(x)(y), y > x);

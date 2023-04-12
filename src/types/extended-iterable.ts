@@ -14,6 +14,7 @@ import type { FlatIterable } from "./flat-iterable";
 import type { MapFn } from "./map-fn";
 
 export interface ExtendedIterable<T> extends Iterable<T> {
+    async: () => ExtendedAsyncIterable<Awaited<T>>;
     at: (n: number) => T | undefined;
     concat: (
         ...iterables: (ExtendedIterable<T> | Iterable<T>)[]
@@ -44,6 +45,7 @@ export interface ExtendedIterable<T> extends Iterable<T> {
 }
 
 export interface ExtendedAsyncIterable<T> extends AsyncIterable<T> {
+    async: () => ExtendedAsyncIterable<Awaited<T>>;
     at: (n: number) => Promise<T | undefined>;
     buffer: (ms: number) => ExtendedAsyncIterable<Awaited<T>>;
     concat: (

@@ -10,6 +10,9 @@ export const iterable = <T>(
 ): ExtendedIterable<T> => ({
     [Symbol.iterator]: iterator,
 
+    async() {
+        return h.async<T>()(this);
+    },
     at(n) {
         return h.atSync<T>(n)(this);
     },
@@ -73,6 +76,9 @@ export const asyncIterable = <T>(
 ): ExtendedAsyncIterable<T> => ({
     [Symbol.asyncIterator]: iterator,
 
+    async() {
+        return h.async<T>()(this);
+    },
     at(n) {
         return h.at<T>(n)(this);
     },
