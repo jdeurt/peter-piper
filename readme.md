@@ -169,7 +169,6 @@ for await (const n of evenNumbers) {
 
 -   Internal `lift` refactor.
 -   Make generic types more user-friendly.
--   Add support for Websocket -> AsyncIterable transformations.
 
 ## Authors
 
