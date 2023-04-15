@@ -2,7 +2,7 @@ import * as h from "../helpers";
 import type {
     ExtendedAsyncIterable,
     ExtendedIterable,
-} from "../types/extended-iterable";
+} from "../types/iterable/extended-iterable";
 import type { Pipable } from "../types";
 
 export const iterable = <T>(

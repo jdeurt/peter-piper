@@ -1,18 +1,18 @@
 import type {
     ExtendedAsyncIterable,
     ExtendedIterable,
-} from "../types/extended-iterable";
+} from "../types/iterable/extended-iterable";
 import { asyncIterable, iterable } from "../util/iterable-factory";
 import {
     isAsyncIterable,
     isIterable,
 } from "../util/type-narrowing/is-iterable";
-import type { AnyIterable } from "../types/any-iterable";
-import type { ElementOf } from "../types/element-of";
 import {
     isAsyncIteratorFunction,
     isIteratorFunction,
 } from "../util/type-narrowing/is-iterator-function";
+import type { AnyIterable } from "../types/iterable/any-iterable";
+import type { ElementOf } from "../types/iterable/element-of";
 
 /**
  * Maps the provided async iterable to an equivalent Peter Piper async iterable.

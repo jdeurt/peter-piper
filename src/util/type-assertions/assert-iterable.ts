@@ -1,4 +1,4 @@
-import type { AnyIterable } from "../../types/any-iterable";
+import type { AnyIterable } from "../../types/iterable/any-iterable";
 import { isIterable } from "../type-narrowing/is-iterable";
 
 export function assertIterable(

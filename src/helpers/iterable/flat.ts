@@ -12,7 +12,7 @@ import {
     toAsyncIterable,
     withIterableAssertion,
 } from "../../util";
-import type { FlatIterable } from "../../types/flat-iterable";
+import type { FlatIterable } from "../../types/iterable/flat-iterable";
 import { getIterator } from "../../util/iterable/get-iterator";
 
 /**

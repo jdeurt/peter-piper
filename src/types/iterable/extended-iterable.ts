@@ -2,16 +2,16 @@ import type { AnyIterable, AnySyncIterable } from "./any-iterable";
 import type {
     ArrayLikePredicate,
     AsyncArrayLikePredicate,
-} from "./array-like-predicate";
+} from "../array-like-predicate";
 import type {
     AsExtendedAsyncIterable,
     AsExtendedIterable,
 } from "./narrow-iterable";
-import type { AsyncReducer, Reducer } from "./reducer";
-import type { CookedPipe } from "./generated/cooked-pipe";
+import type { AsyncReducer, Reducer } from "../reducer";
+import type { CookedPipe } from "../generated/cooked-pipe";
 import type { ElementOf } from "./element-of";
 import type { FlatIterable } from "./flat-iterable";
-import type { MapFn } from "./map-fn";
+import type { MapFn } from "../map-fn";
 
 export interface ExtendedIterable<T> extends Iterable<T> {
     async: () => ExtendedAsyncIterable<Awaited<T>>;
