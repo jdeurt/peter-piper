@@ -7,7 +7,7 @@
 
     "overrides": [
         {
-            "files": ["scripts/**/*", "test/**/*"],
+            "files": ["scripts/**/*", "test/**/*", "recipes/**/*"],
             "parserOptions": { "project": null }
         }
     ]
