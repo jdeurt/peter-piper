@@ -1,8 +1,8 @@
 import type {
     AnyIterable,
     AnySyncIterable,
-    AsyncArrayLikePredicate,
     ArrayLikePredicate,
+    AsyncArrayLikePredicate,
 } from "../../types";
 import { withIterableAssertion } from "../../util";
 

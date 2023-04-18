@@ -68,7 +68,7 @@ for (const n of threeRandomIntsFrom0To5) {
 }
 ```
 
-### New in version 0.0.31: Extended iterables
+### Extended iterables
 
 v0.0.31 introduces the `pp.usingIterable` method, which allows you to construct iterables extended with Peter Piper iterable helpers.
 
@@ -84,6 +84,63 @@ usingIterable([-2, -1, 0, 1, 2]).pipe(filter(filterPredicate), take(2));
 usingIterable([-2, -1, 0, 1, 2]).filter(filterPredicate).take(2);
 // which produces the same result as
 range([-2, 2]).filter(filterPredicate).take(2);
+```
+
+## RxJS vs PP
+
+Peter piper is by no means a suitable replacement for RxJS. However, it does offer very similar functionality as highlighted below.
+
+### RxJS
+
+The following snippet was taken from https://rxjs.dev/guide/observable#observable.
+
+```ts
+import { Observable } from "rxjs";
+
+const observable = new Observable((subscriber) => {
+    subscriber.next(1);
+    subscriber.next(2);
+    subscriber.next(3);
+    setTimeout(() => {
+        subscriber.next(4);
+        subscriber.complete();
+    }, 1000);
+});
+
+console.log("just before subscribe");
+observable.subscribe({
+    next(x) {
+        console.log("got value " + x);
+    },
+    complete() {
+        console.log("done");
+    },
+});
+console.log("just after subscribe");
+```
+
+### PP
+
+```ts
+import { from } from "peter-piper";
+
+const provider = from(async function* () {
+    yield 1;
+    yield 2;
+    yield 3;
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    yield 4;
+});
+
+console.log("just before subscribe");
+
+from(provider)
+    .consume((x) => console.log(`got value ${x}`))
+    .then(() => console.log("done"));
+
+console.log("just after subscribe");
 ```
 
 ## Example usage
