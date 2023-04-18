@@ -4,7 +4,7 @@ import { iterable } from "../../util";
  * Creates an iterable that yields a constant stream of `undefined`.
  * @group Iterable factories
  * @example
- * for (const _ of constant().take(5)) {
+ * for (const _ of voidIterable().take(5)) {
  *     ...
  * }
  * // equivalent to
