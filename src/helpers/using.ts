@@ -3,6 +3,7 @@ import type { Pipable } from "../types/pipable";
 
 /**
  * Creates a new "cooked" pipe using the provided value as the starting input.
+ * @deprecated Use {@link from} with iterable helpers instead.
  * @example
  * using("Hello World!").pipe(
  *     (str) => str.split(" ")
