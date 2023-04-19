@@ -68,9 +68,9 @@ export const withCallbackAdapter =
             },
         });
 
-        return asyncIterable(() => {
-            const reader = stream.getReader();
+        const reader = stream.getReader();
 
+        return asyncIterable(() => {
             return {
                 next: () => {
                     if (isDone) {

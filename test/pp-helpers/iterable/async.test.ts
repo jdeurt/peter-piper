@@ -1,7 +1,7 @@
 import test from "ava";
 
 import { from } from "../../../src";
-import { isAsyncIterable } from "../../../src/util";
+import { isAsyncIterable } from "../../../src/utils";
 
 test("should convert an iterable to an equivalent async iterable", async (t) => {
     const syncIterable = from(function* () {

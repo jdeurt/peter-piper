@@ -4,7 +4,7 @@ import { filterSync, takeSync, toArraySync, from } from "../src";
 import {
     isAsyncIterable,
     isIterable,
-} from "../src/util/type-narrowing/is-iterable";
+} from "../src/utils/type-narrowing/is-iterable";
 
 testProp("should create a pp iterable", [fc.array(fc.anything())], (t, arr) => {
     const resultSync = from(arr);
