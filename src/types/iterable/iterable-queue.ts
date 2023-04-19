@@ -18,4 +18,9 @@ export type IterableQueue<T> = ExtendedAsyncIterable<T> & {
      * Closes the queue, immediately marking the iterable as complete.
      */
     close: () => void;
+
+    /**
+     * Forks the queue into `n` sub-queues (default 2).
+     */
+    fork: (n?: number) => IterableQueue<T>[];
 };

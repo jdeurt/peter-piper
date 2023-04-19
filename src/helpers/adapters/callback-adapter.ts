@@ -1,4 +1,5 @@
-import { asyncIterable } from "../../utils";
+import type { IterableQueue } from "../../types";
+import { queue } from "../generators";
 
 /**
  * The context of the callback adapter. Contains functions that allow for passing values to the iterable and marking the end of an iterable.
@@ -39,56 +40,25 @@ export const withCallbackAdapter =
         factory: FactoryFn<T, U>,
         cleanup?: CleanupFn<T, U>
     ) =>
-    (input: T) => {
-        let isDone = false;
-
-        // @ts-expect-error 2739
-        // Properties are set below. We need this here for scope reasons.
-        const context: CallbackAdapterContext<U> = {};
-
-        const stream = new ReadableStream<U>({
-            start(controller) {
-                context.pass = (...args: U) => {
-                    if (isDone) {
-                        return;
-                    }
-
-                    controller.enqueue(args);
-                };
-
-                context.kill = () => {
-                    isDone = true;
-
-                    cleanup?.(context, input);
-
-                    controller.close();
-                };
-
-                factory(context, input);
+    (input: T): IterableQueue<U> => {
+        const q = queue<U>({
+            onFinished: () => {
+                cleanup?.(context, input);
             },
         });
 
-        return asyncIterable(() => {
-            const reader = stream.getReader();
+        const context: CallbackAdapterContext<U> = {
+            pass: (...args: U) => {
+                q.push(args);
+            },
+            kill: () => {
+                q.seal();
+            },
+        };
 
-            return {
-                next: () => {
-                    if (isDone) {
-                        return Promise.resolve({
-                            value: [],
-                            done: true,
-                        });
-                    }
+        factory(context, input);
 
-                    return reader.read();
-                },
-                return: () => {
-                    context.kill();
-
-                    return Promise.resolve({ value: [] });
-                },
-            } as AsyncIterator<U>;
-        });
+        return q;
     };
 
 /**
