@@ -1,5 +1,6 @@
 export * from "./adapter";
 export * from "./iterable/any-iterable";
+export * from "./iterable/iterable-queue";
 export * from "./array-like-predicate";
 export * from "./iterable/element-of";
 export * from "./fork";

@@ -1,15 +1,5 @@
 import { testProp, fc } from "@fast-check/ava";
-import {
-    concat,
-    filter,
-    map,
-    toArray,
-    using,
-    __,
-    from,
-    webSocketAdapter,
-    useSideEffect,
-} from "../src";
+import { concat, filter, map, toArray, using, __ } from "../src";
 import { set } from "./helpers/set-arbitrary";
 
 testProp(

@@ -72,8 +72,16 @@ export function from<T>(
     }
 
     if (isAsyncIterable(value)) {
-        return asyncIterable(value[Symbol.asyncIterator].bind(value)) as R;
+        return asyncIterable(async function* () {
+            for await (const yielded of value) {
+                yield yielded;
+            }
+        }) as R;
     }
 
-    return iterable(value[Symbol.iterator].bind(value)) as R;
+    return iterable(function* () {
+        for (const yielded of value) {
+            yield yielded;
+        }
+    }) as R;
 }
