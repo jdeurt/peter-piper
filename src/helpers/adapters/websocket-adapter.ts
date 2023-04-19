@@ -1,5 +1,5 @@
 import type { CallbackAdapterContext } from "./callback-adapter";
-import { assertWebSocket } from "../../util";
+import { assertWebSocket } from "../../utils";
 import { callbackAdapter } from "./callback-adapter";
 
 /**

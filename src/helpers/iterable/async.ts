@@ -2,7 +2,7 @@ import {
     asyncIterable,
     toAsyncIterable,
     withIterableAssertion,
-} from "../../util";
+} from "../../utils";
 import type { AnyIterable } from "../../types";
 
 /**

@@ -5,7 +5,7 @@ import {
     sliceLazy,
     sliceLazySync,
     withIterableAssertion,
-} from "../../util";
+} from "../../utils";
 
 /**
  * Creates a new iterable by slicing some input iterable from the provided start index (inclusive) to the provided end index (exclusive).

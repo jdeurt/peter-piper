@@ -2,15 +2,15 @@ import type {
     ExtendedAsyncIterable,
     ExtendedIterable,
 } from "../types/iterable/extended-iterable";
-import { asyncIterable, iterable } from "../util/iterable-factory";
+import { asyncIterable, iterable } from "../utils/iterable-factory";
 import {
     isAsyncIterable,
     isIterable,
-} from "../util/type-narrowing/is-iterable";
+} from "../utils/type-narrowing/is-iterable";
 import {
     isAsyncIteratorFunction,
     isIteratorFunction,
-} from "../util/type-narrowing/is-iterator-function";
+} from "../utils/type-narrowing/is-iterator-function";
 import type { AnyIterable } from "../types/iterable/any-iterable";
 import type { ElementOf } from "../types/iterable/element-of";
 

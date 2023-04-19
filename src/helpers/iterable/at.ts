@@ -5,7 +5,7 @@ import {
     atLazy,
     atLazySync,
     withIterableAssertion,
-} from "../../util";
+} from "../../utils";
 
 /**
  * Returns the nth element of some iterable.

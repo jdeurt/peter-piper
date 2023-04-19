@@ -60,6 +60,22 @@ module.exports = [
             },
         ],
     },
+    {
+        input: "src/exposed-utils.ts",
+        output: [
+            {
+                format: "esm",
+                file: "dist/utils.mjs",
+                sourcemap: false,
+            },
+            {
+                format: "cjs",
+                file: "dist/utils.js",
+                sourcemap: false,
+                esModule: false,
+            },
+        ],
+    },
 ].map((config) => ({
     ...config,
     plugins: [

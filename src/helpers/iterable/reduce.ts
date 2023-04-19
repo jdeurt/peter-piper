@@ -5,7 +5,7 @@ import type {
     Reducer,
 } from "../../types";
 import { NOTHING } from "../../constants";
-import { withIterableAssertion } from "../../util";
+import { withIterableAssertion } from "../../utils";
 
 /**
  * Reduces some input iterable to a value using the provided callback function.

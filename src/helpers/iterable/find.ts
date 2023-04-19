@@ -4,7 +4,7 @@ import type {
     ArrayLikePredicate,
     AsyncArrayLikePredicate,
 } from "../../types";
-import { withIterableAssertion } from "../../util";
+import { withIterableAssertion } from "../../utils";
 
 /**
  * Retrieves the first value of some input iterable that satisfies the provided predicate.

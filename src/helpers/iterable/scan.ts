@@ -4,7 +4,7 @@ import type {
     AsyncReducer,
     Reducer,
 } from "../../types";
-import { asyncIterable, iterable, withIterableAssertion } from "../../util";
+import { asyncIterable, iterable, withIterableAssertion } from "../../utils";
 import { NOTHING } from "../../constants";
 
 /**

@@ -1,5 +1,5 @@
 import type { AnyIterable, AnySyncIterable } from "../../types";
-import { asyncIterable, iterable, withIterableAssertion } from "../../util";
+import { asyncIterable, iterable, withIterableAssertion } from "../../utils";
 
 /**
  * Creates an iterable by concatenating an arbitrary amount of iterables to some base iterable.

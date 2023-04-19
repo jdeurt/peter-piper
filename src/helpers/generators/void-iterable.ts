@@ -1,4 +1,4 @@
-import { iterable } from "../../util";
+import { iterable } from "../../utils";
 
 /**
  * Creates an iterable that yields a constant stream of `undefined`.

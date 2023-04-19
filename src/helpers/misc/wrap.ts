@@ -1,4 +1,4 @@
-import { asyncIterable, iterable } from "../../util";
+import { asyncIterable, iterable } from "../../utils";
 
 /**
  * Wraps some input value in an async iterable.

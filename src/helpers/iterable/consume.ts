@@ -4,7 +4,7 @@ import type {
     MapFn,
     MaybePromise,
 } from "../../types";
-import { withIterableAssertion } from "../../util";
+import { withIterableAssertion } from "../../utils";
 
 /**
  * Fully consumes some input iterable while passing each value of the iterable to the provided callback function. The values returned from calling the callback function are returned as an array.

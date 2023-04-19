@@ -4,7 +4,7 @@ import type {
     ArrayLikePredicate,
     AsyncArrayLikePredicate,
 } from "../../types";
-import { withIterableAssertion } from "../../util";
+import { withIterableAssertion } from "../../utils";
 
 /**
  * Tests whether any values of some input iterable satisfy the provided predicate.

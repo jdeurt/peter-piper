@@ -5,6 +5,9 @@ import type {
 } from "../types/iterable/extended-iterable";
 import type { Pipable } from "../types";
 
+/**
+ * Creates a new extended iterable.
+ */
 export const iterable = <T>(
     iterator: () => Iterator<T>
 ): ExtendedIterable<T> => ({
@@ -71,6 +74,9 @@ export const iterable = <T>(
     },
 });
 
+/**
+ * Creates a new extended async iterable.
+ */
 export const asyncIterable = <T>(
     iterator: () => AsyncIterator<T>
 ): ExtendedAsyncIterable<T> => ({

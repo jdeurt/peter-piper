@@ -1,5 +1,5 @@
 import type { AnyIterable, AnySyncIterable, MapFn } from "../../types";
-import { asyncIterable, iterable, withIterableAssertion } from "../../util";
+import { asyncIterable, iterable, withIterableAssertion } from "../../utils";
 
 /**
  * Creates a new iterable which's values are the result of mapping some input iterable using the provided callback function.

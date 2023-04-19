@@ -1,5 +1,8 @@
 import type { AnyIterable } from "../types/iterable/any-iterable";
 
+/**
+ * Maps the provided iterable to an equivalent async iterable.
+ */
 export const toAsyncIterable = <T>(
     input: AnyIterable<T>
 ): AsyncIterable<T> => ({

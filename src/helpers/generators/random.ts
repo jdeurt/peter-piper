@@ -1,4 +1,4 @@
-import { iterable, randomFloat, randomInt } from "../../util";
+import { iterable, randomFloat, randomInt } from "../../utils";
 import type { Range } from "../../types";
 
 /**

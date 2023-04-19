@@ -33,6 +33,10 @@
         "./prelude": {
             "import": "./dist/prelude.mjs",
             "require": "./dist/prelude.js"
+        },
+        "./utils": {
+            "import": "./dist/utils.mjs",
+            "require": "./dist/utils.js"
         }
     },
     "typesVersions": {
@@ -40,8 +44,11 @@
             "sync": [
                 "types/sync.d.ts"
             ],
-            "math": [
-                "types/math.d.ts"
+            "prelude": [
+                "types/prelude.d.ts"
+            ],
+            "utils": [
+                "types/utils.d.ts"
             ]
         }
     },

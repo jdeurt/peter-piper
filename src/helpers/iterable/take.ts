@@ -1,5 +1,5 @@
 import type { AnyIterable, AnySyncIterable } from "../../types";
-import { asyncIterable, iterable, withIterableAssertion } from "../../util";
+import { asyncIterable, iterable, withIterableAssertion } from "../../utils";
 
 /**
  * Creates a new iterable containing only the first `x` values of some input iterable.

@@ -11,9 +11,9 @@ import {
     iterable,
     toAsyncIterable,
     withIterableAssertion,
-} from "../../util";
+} from "../../utils";
 import type { FlatIterable } from "../../types/iterable/flat-iterable";
-import { getIterator } from "../../util/iterable/get-iterator";
+import { getIterator } from "../../utils/iterable/get-iterator";
 
 /**
  * Flattens all elements of some input iterable up until the specified depth.

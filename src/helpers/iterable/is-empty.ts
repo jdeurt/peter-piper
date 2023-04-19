@@ -1,5 +1,5 @@
 import type { AnyIterable, AnySyncIterable } from "../../types";
-import { toAsyncIterable, withIterableAssertion } from "../../util";
+import { toAsyncIterable, withIterableAssertion } from "../../utils";
 
 /**
  * Returns `Promise<true>` if some input iterable is empty (i.e. can't produce any values). Returns `Promise<false>` otherwise.

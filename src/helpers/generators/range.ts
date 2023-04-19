@@ -1,5 +1,5 @@
 import type { Range } from "../../types";
-import { iterable } from "../../util";
+import { iterable } from "../../utils";
 
 /**
  * Creates an iterable that yields integers in order in the provided range.

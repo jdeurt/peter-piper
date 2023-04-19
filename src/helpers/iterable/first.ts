@@ -4,7 +4,7 @@ import type {
     ArrayLikePredicate,
     AsyncArrayLikePredicate,
 } from "../../types";
-import { asyncIterable, iterable, withIterableAssertion } from "../../util";
+import { asyncIterable, iterable, withIterableAssertion } from "../../utils";
 
 /**
  * Creates an iterable containing only the first value of some input iterable or, if a predicate is provided, the first value to satisfy that predicate.

@@ -1,5 +1,5 @@
 import type { Adapter } from "../../types";
-import { asyncIterable } from "../../util";
+import { asyncIterable } from "../../utils";
 
 /**
  * Maps some input value to an async iterable in accordance with the provided adapter function.

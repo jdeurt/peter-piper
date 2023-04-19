@@ -3,6 +3,9 @@ import { isAsyncIterable, isSyncIterable } from "../type-narrowing";
 import { fork } from "../fork";
 import { withIterableAssertion } from "../type-assertions";
 
+/**
+ * Returns the iterator embedded in an iterable.
+ */
 export const getIterator = withIterableAssertion(
     <T extends AnyIterable<unknown>>(iterable: T) =>
         fork(
@@ -14,6 +17,6 @@ export const getIterator = withIterableAssertion(
                 (iter) => (iter as Iterable<unknown>)[Symbol.iterator](),
             ]
         ) as T extends AnySyncIterable<unknown>
-            ? Iterator<ElementOf<T>>
-            : AsyncIterator<ElementOf<T>>
+            ? Iterator<ElementOf<T>, ElementOf<T>>
+            : AsyncIterator<ElementOf<T>, ElementOf<T>>
 );

@@ -4,7 +4,7 @@ import type {
     ArrayLikePredicate,
     AsyncArrayLikePredicate,
 } from "../../types";
-import { asyncIterable, iterable, withIterableAssertion } from "../../util";
+import { asyncIterable, iterable, withIterableAssertion } from "../../utils";
 
 /**
  * Creates a new iterable containing all values of some input iterable that satisfy the provided predicate.

@@ -1,7 +1,7 @@
 import type { AnyIterable, AnySyncIterable, ElementOf } from "../../types";
-import { asyncIterable, iterable, withIterableAssertion } from "../../util";
+import { asyncIterable, iterable, withIterableAssertion } from "../../utils";
 import { NOTHING } from "../../constants";
-import { getIterator } from "../../util/iterable/get-iterator";
+import { getIterator } from "../../utils/iterable/get-iterator";
 
 /**
  * Creates an iterable of n-tuples by grouping some input iterable's elements by indices.

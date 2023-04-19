@@ -1,5 +1,5 @@
 import type { AnyIterable, AnySyncIterable } from "../../types";
-import { withIterableAssertion } from "../../util";
+import { withIterableAssertion } from "../../utils";
 
 /**
  * Creates a new array from the values of some input iterable.
