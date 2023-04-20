@@ -1,15 +1,14 @@
 import { iterable } from "../../utils";
 
 /**
- * Creates an iterable that yields a constant stream of `undefined`.
+ * Creates an infinite iterable that yields `undefined` values.
+ *
  * @group Iterable factories
+ * @returns {Iterable<void>} An iterable that continuously yields `undefined`.
+ *
  * @example
- * for (const _ of voidIterable().take(5)) {
- *     ...
- * }
- * // equivalent to
- * for (let i = 0; i < 5; i++) {
- *     ...
+ * for (const value of voidIterable()) {
+ *     console.log(value); // Logs `undefined` indefinitely
  * }
  */
 export const voidIterable = () =>

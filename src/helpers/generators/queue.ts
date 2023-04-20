@@ -18,6 +18,29 @@ export interface QueueConfig {
     onFinished?: () => void;
 }
 
+/**
+ * Creates an async iterable queue that can be used to push and consume values.
+ * The queue provides methods to push values, seal the queue, close the queue, and fork it into multiple sub-queues.
+ * The optional `QueueConfig` object allows registering callbacks for specific events, such as sealing, closing, or the iterator finishing execution.
+ *
+ * @group Iterable factories
+ * @param {QueueConfig} [queueConfig] - An optional configuration object with callbacks for sealing, closing, and iterator finishing events.
+ * @returns {IterableQueue<T>} An async iterable queue with additional methods to control the queue state and fork it into sub-queues.
+ *
+ * @example
+ * const q = queue<number>();
+ *
+ * q.push(1);
+ * q.push(2);
+ *
+ * (async () => {
+ *   for await (const value of q) {
+ *     console.log(value); // Logs 1, 2
+ *   }
+ * })();
+ *
+ * q.seal(); // No more values can be pushed; the iterator will finish after consuming all remaining values.
+ */
 export const queue = <T>({
     onSealed,
     onClosed,
