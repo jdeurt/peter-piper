@@ -1,7 +1,7 @@
 import type { ExtendedAsyncIterable } from "./extended-iterable";
 
 /**
- * An extended async iterable that can pull from a value pool. Iterable queues can be created via the {@link [queue](helpers.queue.queue)} function.
+ * An extended async iterable that can pull from a value pool. Iterable queues can be created via the {@link [queue](helpers.queue)} function.
  *
  * @template T - The type of the elements in the iterable queue.
  */
