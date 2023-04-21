@@ -8,6 +8,7 @@ import { assertReadableStream, asyncIterable } from "../../utils";
  * @returns {(input: ReadableStream<T>) => AsyncIterable<T>} A function that takes a ReadableStream as input and returns an AsyncIterable of T.
  *
  * @example
+ * ```ts
  * const stream = new ReadableStream({
  *   start(controller) {
  *     controller.enqueue('Hello');
@@ -21,6 +22,7 @@ import { assertReadableStream, asyncIterable } from "../../utils";
  *     console.log(value); // Logs "Hello"
  *   }
  * })();
+ * ```
  */
 export const withStreamAdapter =
     <T>() =>
@@ -46,6 +48,7 @@ export const withStreamAdapter =
  * @returns {AsyncIterable<T>} An AsyncIterable of T generated from the ReadableStream.
  *
  * @example
+ * ```ts
  * const stream = new ReadableStream({
  *   start(controller) {
  *     controller.enqueue('Hello');
@@ -59,6 +62,7 @@ export const withStreamAdapter =
  *     console.log(value); // Logs "Hello"
  *   }
  * })();
+ * ```
  */
 export const streamAdapter = <T>(stream: ReadableStream<T>) =>
     withStreamAdapter<T>()(stream);

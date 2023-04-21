@@ -38,6 +38,7 @@ export type CleanupFn<T, U extends unknown[]> = (
  * @returns {(input: T) => IterableQueue<U>} A function that takes an input object and returns an IterableQueue.
  *
  * @example
+ * ```ts
  * const someTarget = new EventEmitter();
  * const eventQueue = withCallbackAdapter(
  *   (context, target) => target.on("someEvent", context.pass),
@@ -53,6 +54,7 @@ export type CleanupFn<T, U extends unknown[]> = (
  * // Emit some events
  * someTarget.emit("someEvent", "Hello");
  * someTarget.emit("someEvent", "World");
+ * ```
  */
 export const withCallbackAdapter =
     <T, U extends unknown[]>(
@@ -91,6 +93,7 @@ export const withCallbackAdapter =
  * @returns {IterableQueue<U>} An IterableQueue populated with values from the provided factory function.
  *
  * @example
+ * ```ts
  * const someEmitter = new EventEmitter();
  * const factory = (context: CallbackAdapterContext<[string]>) => {
  *   someEmitter.on("someEvent", context.pass);
@@ -109,6 +112,7 @@ export const withCallbackAdapter =
  * // Emit some events
  * someEmitter.emit("someEvent", "Hello");
  * someEmitter.emit("someEvent", "World");
+ * ```
  */
 export const callbackAdapter = <U extends unknown[]>(
     factory: FactoryFn<undefined, U>,

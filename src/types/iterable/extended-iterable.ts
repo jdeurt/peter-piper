@@ -13,14 +13,48 @@ import type { ElementOf } from "./element-of";
 import type { FlatIterable } from "./flat-iterable";
 import type { MapFn } from "../map-fn";
 
+/**
+ * An iterable with additional methods.
+ */
 export interface ExtendedIterable<T> extends Iterable<T> {
+    /**
+     * Maps the iterable to an equivalent async iterable.
+     * @returns An async iterable of the same type.
+     */
     async: () => ExtendedAsyncIterable<Awaited<T>>;
+
+    /**
+     * Returns the nth element of the iterable.
+     * @param n The index of the element to return.
+     * @returns The nth element of the iterable, or `undefined` if the iterable is shorter than `n + 1` elements.
+     */
     at: (n: number) => T | undefined;
+
+    /**
+     * Creates an iterable by concatenating an arbitrary number of iterables with the current iterable.
+     * @param iterables The iterables to concatenate.
+     * @returns An iterable containing the elements of the current iterable followed by the elements of the provided iterables.
+     */
     concat: (
         ...iterables: (ExtendedIterable<T> | Iterable<T>)[]
     ) => ExtendedIterable<T>;
+
+    /**
+     * Fully consumes the iterable while passing each value to the provided callback.
+     * The values returned from calling the callback function are returned as an array.
+     * @param mapFn A callback function that receives the current value and index of the iterable.
+     * @returns An array containing the values returned from calling the callback function.
+     */
     consume: <U>(mapFn?: MapFn<T, U>) => U[];
+
+    /**
+     * Tests whether all values of the iterable satisfy the provided predicate.
+     * @param predicate A predicate function that receives the current value and index of the iterable.
+     * @returns `true` if all values of the iterable satisfy the provided predicate, otherwise `false`.
+     */
     every: (predicate: ArrayLikePredicate<T>) => boolean;
+
+    // TODO - Finish documentation
     filter: (predicate: ArrayLikePredicate<T>) => ExtendedIterable<T>;
     find: (predicate: ArrayLikePredicate<T>) => T | undefined;
     first: (predicate?: ArrayLikePredicate<T>) => ExtendedIterable<T>;

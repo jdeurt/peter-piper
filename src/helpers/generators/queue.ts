@@ -28,6 +28,7 @@ export interface QueueConfig {
  * @returns {IterableQueue<T>} An async iterable queue with additional methods to control the queue state and fork it into sub-queues.
  *
  * @example
+ * ```ts
  * const q = queue<number>();
  *
  * q.push(1);
@@ -40,6 +41,7 @@ export interface QueueConfig {
  * })();
  *
  * q.seal(); // No more values can be pushed; the iterator will finish after consuming all remaining values.
+ * ```
  */
 export const queue = <T>({
     onSealed,

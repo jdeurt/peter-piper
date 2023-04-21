@@ -9,9 +9,11 @@ import { iterable } from "../../utils";
  * @returns {Iterable<number>} An iterable of integers in the specified range.
  *
  * @example
+ * ```ts
  * for (const n of range([0, 100])) {
  *     console.log(n); // Logs integers from 0 to 100 (inclusive)
  * }
+ * ```
  */
 export const range = ([from, to]: Range) =>
     iterable(function* () {

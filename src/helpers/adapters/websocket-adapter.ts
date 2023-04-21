@@ -10,6 +10,7 @@ import { callbackAdapter } from "./callback-adapter";
  * @returns {(input: WebSocket) => IterableQueue<MessageEvent<T>>} A function that takes a WebSocket as input and returns an IterableQueue of MessageEvent<T>.
  *
  * @example
+ * ```ts
  * const ws = new WebSocket('ws://example.com');
  * const wsQueue = withWebSocketAdapter<{ message: string }>()(ws);
  *
@@ -18,6 +19,7 @@ import { callbackAdapter } from "./callback-adapter";
  *     console.log(event.data); // Logs WebSocket messages as they are received
  *   }
  * })();
+ * ```
  */
 export const withWebSocketAdapter =
     <T>() =>
@@ -45,6 +47,7 @@ export const withWebSocketAdapter =
  * @returns {IterableQueue<MessageEvent<T>>} An IterableQueue of MessageEvent<T> generated from the WebSocket's "message" events.
  *
  * @example
+ * ```ts
  * const ws = new WebSocket('ws://example.com');
  * const wsQueue = webSocketAdapter<{ message: string }>(ws);
  *
@@ -53,6 +56,7 @@ export const withWebSocketAdapter =
  *     console.log(event.data); // Logs WebSocket messages as they are received
  *   }
  * })();
+ * ```
  */
 export const webSocketAdapter = <T>(input: WebSocket) =>
     withWebSocketAdapter<T>()(input);

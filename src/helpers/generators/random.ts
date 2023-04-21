@@ -10,9 +10,11 @@ import type { Range } from "../../types";
  * @returns {Iterable<number>} An iterable of random float values.
  *
  * @example
+ * ```ts
  * for (const n of randomFloats([0.1, 9.9])) {
  *     console.log(n); // Logs random float values between 0.1 and 9.9 (inclusive)
  * }
+ * ```
  */
 export const randomFloats = (range?: Range, generator?: () => number) =>
     iterable(function* () {

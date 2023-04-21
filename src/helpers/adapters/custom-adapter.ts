@@ -11,6 +11,7 @@ import { asyncIterable } from "../../utils";
  * @returns {(input: T) => AsyncIterable<U>} A function that takes an input value of type T and returns an AsyncIterable of U.
  *
  * @example
+ * ```ts
  * const arrayAdapter: Adapter<number[], number> = (array) => {
  *   let index = 0;
  *   return {
@@ -29,6 +30,7 @@ import { asyncIterable } from "../../utils";
  *     console.log(value); // Logs 1, 2, 3
  *   }
  * })();
+ * ```
  */
 export const withCustomAdapter =
     <T, U>(adapter: Adapter<T, U>) =>
@@ -44,6 +46,7 @@ export const withCustomAdapter =
  * @returns {AsyncIterable<U>} An AsyncIterable of U generated from the adapter function.
  *
  * @example
+ * ```ts
  * const arrayAdapter: Adapter<undefined, number> = () => {
  *   let index = 0;
  *   const array = [1, 2, 3];
@@ -63,6 +66,7 @@ export const withCustomAdapter =
  *     console.log(value); // Logs 1, 2, 3
  *   }
  * })();
+ * ```
  */
 export const customAdapter = <U>(adapter: Adapter<undefined, U>) =>
     // eslint-disable-next-line unicorn/no-useless-undefined

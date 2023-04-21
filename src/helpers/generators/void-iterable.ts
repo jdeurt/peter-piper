@@ -7,9 +7,11 @@ import { iterable } from "../../utils";
  * @returns {Iterable<void>} An iterable that continuously yields `undefined`.
  *
  * @example
+ * ```ts
  * for (const value of voidIterable()) {
  *     console.log(value); // Logs `undefined` indefinitely
  * }
+ * ```
  */
 export const voidIterable = () =>
     iterable(function* () {
