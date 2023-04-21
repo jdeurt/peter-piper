@@ -14,7 +14,6 @@ import { getIterator } from "../../utils/iterable/get-iterator";
  * @group Lazy helpers
  * @template T - The type of elements in the input iterable of iterables.
  * @returns A function that accepts an input iterable of iterables and returns an async iterable.
- * @group Combination helpers
  *
  * @example
  * ```ts
@@ -61,7 +60,6 @@ export const zip = <T extends AnyIterable<unknown>>() =>
  * @group Lazy helpers
  * @template T - The type of elements in the input sync iterable of sync iterables.
  * @returns A function that accepts an input sync iterable of sync iterables and returns an iterable.
- * @group Combination helpers
  *
  * @example
  * ```ts
