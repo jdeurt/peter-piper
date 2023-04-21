@@ -4,6 +4,7 @@ export {
     randomFloats,
     randomInts,
     range,
+    voidIterable,
 
     // Iterable
     atSync as at,
