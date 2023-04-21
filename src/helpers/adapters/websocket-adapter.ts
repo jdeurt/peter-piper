@@ -35,7 +35,7 @@ export const withWebSocketAdapter =
                 input.removeEventListener("message", ctx.pass);
                 input.removeEventListener("close", ctx.kill);
             }
-        );
+        ).map(([event]) => event);
     };
 
 /**
