@@ -30,8 +30,11 @@ jobs:
             - name: Setup Node.js
               uses: actions/setup-node@v3
 
+            - name: Install dependencies
+              run: yarn install --frozen-lockfile
+
             - name: Generate docs
-              run: npx typedoc --options typedoc.json
+              run: yarn run docs
 
     deploy:
         environment:
