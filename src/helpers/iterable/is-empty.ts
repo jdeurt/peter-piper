@@ -2,12 +2,21 @@ import type { AnyIterable, AnySyncIterable } from "../../types";
 import { toAsyncIterable, withIterableAssertion } from "../../utils";
 
 /**
- * Returns `Promise<true>` if some input iterable is empty (i.e. can't produce any values). Returns `Promise<false>` otherwise.
- * @group Other helpers
+ * Checks if an input iterable is empty.
+ * Returns a promise that resolves to a boolean value.
+ *
+ * @group Greedy helpers
+ * @returns A function that accepts an input iterable and returns a promise that resolves to a boolean value.
+ *
  * @example
- * using([]).pipe(
- *     isEmpty()
- * )
+ * ```ts
+ * const input = [1, 2, 3];
+ * const empty = isEmpty()(input);
+ *
+ * (async () => {
+ *   console.log(await empty); // Logs false
+ * })();
+ * ```
  */
 export const isEmpty = () =>
     withIterableAssertion(
@@ -19,8 +28,18 @@ export const isEmpty = () =>
     );
 
 /**
- * A sync variant of {@link isEmpty}.
- * @group Other helpers
+ * Checks if an input sync iterable is empty.
+ * Returns a boolean value.
+ *
+ * @group Greedy helpers
+ * @returns A function that accepts an input sync iterable and returns a boolean value.
+ *
+ * @example
+ * ```ts
+ * const input = [1, 2, 3];
+ * const empty = isEmptySync()(input);
+ * console.log(empty); // Logs false
+ * ```
  *
  * @remarks
  * Available as `isEmpty` when imported from `peter-piper/sync`.

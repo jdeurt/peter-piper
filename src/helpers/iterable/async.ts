@@ -6,12 +6,23 @@ import {
 import type { AnyIterable } from "../../types";
 
 /**
- * Maps some input iterable to an equivalent async iterable.
+ * Creates an asynchronous iterable from a given input iterable.
+ *
  * @group Lazy helpers
+ * @template T - The type of elements in the input iterable.
+ * @returns A function that accepts an input iterable and returns an asynchronous iterable.
+ *
  * @example
- * using(someSyncGenerator()).pipe(
- *     async()
- * );
+ * ```ts
+ * const input = [1, 2, 3];
+ * const asyncIterable = async<number>()(input);
+ *
+ * (async () => {
+ *   for await (const x of asyncIterable) {
+ *     console.log(x); // Logs 1, 2, 3
+ *   }
+ * })();
+ * ```
  */
 export const async = <T>() =>
     withIterableAssertion((input: AnyIterable<T>) =>

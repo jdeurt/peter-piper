@@ -8,12 +8,27 @@ import { asyncIterable, iterable, withIterableAssertion } from "../../utils";
 import { NOTHING } from "../../constants";
 
 /**
- * Similar to {@link reduce} except returns an iterable with values corresponding to the result of each reduction step.
+ * Reduces an input iterable to a sequence of accumulated values using an asynchronous reducer function.
+ *
  * @group Lazy helpers
+ * @template T - The type of elements in the input iterable.
+ * @template U - The type of the output value. Defaults to `T`.
+ * @param reducer - An asynchronous reducer function that takes the accumulator, a value, and its index.
+ * @param initialValue - Optional. The initial value of the accumulator. If not provided, the first value of the iterable is used.
+ * @returns A function that accepts an input iterable and returns an async iterable that yields accumulated values.
+ *
  * @example
- * using([1, 2, 3]).pipe(
- *     scan((acc, x) => acc + x)
- * );
+ * ```ts
+ * const input = [1, 2, 3];
+ * const add = async (acc: number, value: number) => acc + value;
+ * const scanSum = scan(add)(input);
+ *
+ * (async () => {
+ *   for await (const value of scanSum) {
+ *     console.log(value); // Logs 1, 3, 6
+ *   }
+ * })();
+ * ```
  */
 export function scan<T, U = T>(reducer: AsyncReducer<T, U>, initialValue?: U) {
     return withIterableAssertion((input: AnyIterable<T>) => {
@@ -42,8 +57,25 @@ export function scan<T, U = T>(reducer: AsyncReducer<T, U>, initialValue?: U) {
 }
 
 /**
- * A sync variant of {@link scan}.
+ * Reduces an input sync iterable to a sequence of accumulated values using a reducer function.
+ *
  * @group Lazy helpers
+ * @template T - The type of elements in the input sync iterable.
+ * @template U - The type of the output value. Defaults to `T`.
+ * @param reducer - A reducer function that takes the accumulator, a value, and its index.
+ * @param initialValue - Optional. The initial value of the accumulator. If not provided, the first value of the iterable is used.
+ * @returns A function that accepts an input sync iterable and returns an iterable that yields accumulated values.
+ *
+ * @example
+ * ```ts
+ * const input = [1, 2, 3];
+ * const add = (acc: number, value: number) => acc + value;
+ * const scanSumSync = scanSync(add)(input);
+ *
+ * for (const value of scanSumSync) {
+ *   console.log(value); // Logs 1, 3, 6
+ * }
+ * ```
  *
  * @remarks
  * Available as `scan` when imported from `peter-piper/sync`.

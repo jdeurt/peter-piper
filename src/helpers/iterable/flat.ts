@@ -16,12 +16,26 @@ import type { FlatIterable } from "../../types/iterable/flat-iterable";
 import { getIterator } from "../../utils/iterable/get-iterator";
 
 /**
- * Flattens all elements of some input iterable up until the specified depth.
+ * Flattens an input iterable up to a specified depth.
+ * Returns a new asynchronous iterable.
+ *
  * @group Lazy helpers
+ * @template T - The type of elements in the input iterable.
+ * @template D - The depth of flattening.
+ * @param depth - The depth of flattening, defaults to 1.
+ * @returns A function that accepts an input iterable and returns a new asynchronous iterable.
+ *
  * @example
- * using([[1, 2], [3, 4]]).pipe(
- *     flat(1)
- * );
+ * ```ts
+ * const input = [1, [2, 3], [4, [5]]];
+ * const flatIterable = flat<number>(1)(input);
+ *
+ * (async () => {
+ *   for await (const x of flatIterable) {
+ *     console.log(x); // Logs 1, 2, 3, 4, [5]
+ *   }
+ * })();
+ * ```
  */
 export const flat = <T, D extends number = 1>(depth?: D) =>
     withIterableAssertion(
@@ -55,8 +69,24 @@ export const flat = <T, D extends number = 1>(depth?: D) =>
     );
 
 /**
- * A sync variant of {@link flat}.
+ * Flattens an input sync iterable up to a specified depth.
+ * Returns a new synchronous iterable.
+ *
  * @group Lazy helpers
+ * @template T - The type of elements in the input sync iterable.
+ * @template D - The depth of flattening.
+ * @param depth - The depth of flattening, defaults to 1.
+ * @returns A function that accepts an input sync iterable and returns a new synchronous iterable.
+ *
+ * @example
+ * ```ts
+ * const input = [1, [2, 3], [4, [5]]];
+ * const flatSyncIterable = flatSync<number>(1)(input);
+ *
+ * for (const x of flatSyncIterable) {
+ *   console.log(x); // Logs 1, 2, 3, 4, [5]
+ * }
+ * ```
  *
  * @remarks
  * Available as `flat` when imported from `peter-piper/sync`.

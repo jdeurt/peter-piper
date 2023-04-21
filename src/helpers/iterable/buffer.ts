@@ -2,15 +2,24 @@ import type { AnyIterable } from "../../types";
 import { asyncIterable } from "../../utils";
 
 /**
- * Creates a new iterable consiting of values of some input iterable with a `ms` millisecond buffer between them.
- * @group Lazy helpers
- * @example
- * using(someAsyncGenerator()).pipe(
- *     buffer(2000) // 2 seconds
- * );
+ * Creates a buffered asynchronous iterable from an input iterable with a specified time delay between elements.
  *
- * @remarks
- * Due to the nature of this helper, it does not have a sync variant.
+ * @group Lazy helpers
+ * @template T - The type of elements in the input iterable.
+ * @param ms - The number of milliseconds to delay between elements.
+ * @returns A function that accepts an input iterable and returns a buffered asynchronous iterable with the specified delay.
+ *
+ * @example
+ * ```ts
+ * const input = [1, 2, 3];
+ * const bufferedIterable = buffer<number>(500)(input);
+ *
+ * (async () => {
+ *   for await (const x of bufferedIterable) {
+ *     console.log(x); // Logs 1, 2, 3 with a 500ms delay between each value
+ *   }
+ * })();
+ * ```
  */
 export const buffer = <T>(ms: number) => {
     let lastPass = Number.NEGATIVE_INFINITY;

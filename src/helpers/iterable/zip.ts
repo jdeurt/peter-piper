@@ -4,18 +4,23 @@ import { NOTHING } from "../../constants";
 import { getIterator } from "../../utils/iterable/get-iterator";
 
 /**
- * Creates an iterable of n-tuples by grouping some input iterable's elements by indices.
- * @group Lazy helpers
- * @example
- * using([
- *     [1, 2, 3, 4],
- *     [2, 3, 4, 5]
- * ]).pipe(
- *     zip()
- * );
+ * Zips together elements from the input iterables into arrays.
+ * Returns a function that accepts an input iterable of iterables and
+ * yields arrays of elements from the input iterables, where the first elements of the input iterables
+ * are combined, the second elements are combined, and so on.
  *
- * @remarks
- * Because of the nature of this helper, the input iterable must be a sync iterable containing only other iterables. The child iterables can be sync or async.
+ * The input iterable containing child iterables MUST be synchronous. The child iterables can be either synchronous or asynchronous.
+ *
+ * @group Lazy helpers
+ * @template T - The type of elements in the input iterable of iterables.
+ * @returns A function that accepts an input iterable of iterables and returns an async iterable.
+ * @group Combination helpers
+ *
+ * @example
+ * ```ts
+ * const input = iterable([[1, 2, 3], ['a', 'b', 'c']]);
+ * const result = await toArray(zip()(input)); // [[1, 'a'], [2, 'b'], [3, 'c']]
+ * ```
  */
 export const zip = <T extends AnyIterable<unknown>>() =>
     withIterableAssertion((input: AnySyncIterable<T>) =>
@@ -48,8 +53,21 @@ export const zip = <T extends AnyIterable<unknown>>() =>
     );
 
 /**
- * A sync variant of {@link zip}.
+ * Zips together elements from the input sync iterables into arrays.
+ * Returns a function that accepts an input sync iterable of sync iterables and
+ * yields arrays of elements from the input sync iterables, where the first elements of the input sync iterables
+ * are combined, the second elements are combined, and so on.
+ *
  * @group Lazy helpers
+ * @template T - The type of elements in the input sync iterable of sync iterables.
+ * @returns A function that accepts an input sync iterable of sync iterables and returns an iterable.
+ * @group Combination helpers
+ *
+ * @example
+ * ```ts
+ * const input = iterable([[1, 2, 3], ['a', 'b', 'c']]);
+ * const result = toArraySync(zipSync()(input)); // [[1, 'a'], [2, 'b'], [3, 'c']]
+ * ```
  *
  * @remarks
  * Available as `zip` when imported from `peter-piper/sync`.

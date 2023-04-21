@@ -7,16 +7,22 @@ import type {
 import { withIterableAssertion } from "../../utils";
 
 /**
- * Fully consumes some input iterable while passing each value of the iterable to the provided callback function. The values returned from calling the callback function are returned as an array.
- * @group Greedy helpers
- * @example
- * using([1, 2, 3]).pipe(
- *     consume((x) => x);
- * );
+ * Consumes an input iterable and optionally applies a mapping function to each element.
+ * Returns a Promise of an array containing the results of the mapping function.
  *
- * @remarks
- * `consume` behaves almost identically to `map`, the main difference being that `consume` will greedily iterate through the input iterable.
- * Because of this, you must be careful not to pass an inifinite iterable as input unless you want `consume` to run forever.
+ * @group Greedy helpers
+ * @template T - The type of elements in the input iterable.
+ * @template U - The type of elements in the resulting array.
+ * @param mapFn - An optional mapping function to apply to each element of the input iterable.
+ * @returns A function that accepts an input iterable and returns a Promise of an array containing the results.
+ *
+ * @example
+ * ```ts
+ * const input = [1, 2, 3];
+ * const double = (x: number) => x * 2;
+ * const consumedIterable = await consume<number, number>(double)(input);
+ * console.log(consumedIterable); // Logs [2, 4, 6]
+ * ```
  */
 export const consume = <T, U>(mapFn?: MapFn<T, MaybePromise<U>>) =>
     withIterableAssertion(async (input: AnyIterable<T>): Promise<U[]> => {
@@ -34,8 +40,22 @@ export const consume = <T, U>(mapFn?: MapFn<T, MaybePromise<U>>) =>
     });
 
 /**
- * A sync variant of {@link consume}.
+ * Consumes an input sync iterable and optionally applies a mapping function to each element.
+ * Returns an array containing the results of the mapping function.
+ *
  * @group Greedy helpers
+ * @template T - The type of elements in the input sync iterable.
+ * @template U - The type of elements in the resulting array.
+ * @param mapFn - An optional mapping function to apply to each element of the input sync iterable.
+ * @returns A function that accepts an input sync iterable and returns an array containing the results.
+ *
+ * @example
+ * ```ts
+ * const input = [1, 2, 3];
+ * const double = (x: number) => x * 2;
+ * const consumedSyncIterable = consumeSync<number, number>(double)(input);
+ * console.log(consumedSyncIterable); // Logs [2, 4, 6]
+ * ```
  *
  * @remarks
  * Available as `consume` when imported from `peter-piper/sync`.

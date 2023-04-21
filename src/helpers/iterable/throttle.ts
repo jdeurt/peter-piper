@@ -2,15 +2,25 @@ import type { AnyIterable } from "../../types";
 import { asyncIterable } from "../../utils";
 
 /**
- * Creates a new iterable consiting of only values of some input iterable yielded `ms` milliseconds apart.
- * @group Lazy helpers
- * @example
- * using(someAsyncGenerator()).pipe(
- *     throttle(2000) // 2 seconds
- * );
+ * Throttles the input iterable, only yielding elements at most every ms milliseconds. Elements that are not yielded are discarded.
+ * Returns an async iterable that yields elements from the input iterable, but throttled.
  *
- * @remarks
- * Due to the nature of this helper, it does not have a sync variant.
+ * @group Lazy helpers
+ * @template T - The type of elements in the input iterable.
+ * @param ms - The minimum number of milliseconds between each yielded element.
+ * @returns A function that accepts an input iterable and returns a throttled async iterable.
+ *
+ * @example
+ * ```ts
+ * const input = asyncIterable(...);
+ * const throttledInput = throttle(1000)(input);
+ *
+ * (async () => {
+ *   for await (const value of throttledInput) {
+ *     console.log(value); // Logs elements with at least 1000ms delay between each log
+ *   }
+ * })();
+ * ```
  */
 export const throttle = <T>(ms: number) => {
     let lastPass = Number.NEGATIVE_INFINITY;
