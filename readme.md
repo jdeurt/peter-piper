@@ -26,31 +26,51 @@ Documentation is available [here](https://jdeurt.github.io/peter-piper/).
 
 ## Concepts
 
-### Greedy vs lazy
+### Lazy vs greedy
 
-Greedy helpers do what the name implies: they fully consume whatever input is given. In the context of this library, greedy helpers will take whatever iterable is passed to them as input and only return a value once that iterable has been fully consumed. This means that greedy helpers can run infinitely if the input iterable never ends.
+A function is referred to as **lazy** when it performs operations on an input iterable's elements as they are yielded. Lazy functions do not immidiately consume the input iterable. Instead they provide a mapping from iterable A to iterable B.
 
-In contrast, lazy helpers immidiately output an iterable that can be acted on and consume a single value at a time.
-
-In practice, this behavioral difference can be demonstrated as follows:
-
-```js
+```ts
 import * as pp from "peter-piper";
 
-const infiniteNumberGenerator = function* () {
-    let i = 0;
-    while (true) {
-        yield i++;
-    }
-};
+const data = someExtemelyLargeIntArray;
 
-pp.using(infiniteNumberGenerator()).pipe(
-    pp.map((x) => x * 2), // Lazy: immidiately passes an iterable to the next helper
-    pp.consume((x) => x * 2), // Greedy: will keep pooling values until the iterable has finished
+const iterable = pp.from(someExtemelyLargeIntArray).map((x) => x * 2);
 
-    // Since the infinite number generator never stops outputting values, `consume` will run infinitely and this helper is never reached.
-    pp.useSideEffect(console.log)
+// ...
+```
+
+In the snippet above, `pp.from` and the `map` method are lazy functions. They does not immidiately consume the array, but instead create a map from the array to an iterable that some routine can eventually consume.
+
+In contrast, a function is **greedy** when it consumes an input iterable's elements. Greedy functions will immidiately consume an iterable when called.
+
+```ts
+// ...
+
+const calculateTransformedArray = () => iterable.toArray();
+
+const transformedArray = await calculateTransformedArray(); // Computationally expensive!
+```
+
+### Composability above all
+
+All helpers in Peter Piper are built with composability in mind. This enables some fun "plug-and-play" patterns that make creating reusable routines a breeze.
+
+```ts
+import * as pp from "peter-piper/sync";
+import { add, mult } from "peter-piper/prelude";
+
+const modularizedTransformation = pp.pipe<number>(
+    add(1),
+    mult(2),
+    (x) => x.toString(),
+    (str) => `n = ${str}`
 );
+
+const input = [1, 2, 3];
+const output = pp.from(input).map(modularizedTransformation).toArray();
+
+console.log(output); // Logs [4, 6, 8]
 ```
 
 ### Working with sync iterables
@@ -58,37 +78,56 @@ pp.using(infiniteNumberGenerator()).pipe(
 The main focus of Peter Piper is working with AsyncIterables. However, if needed, specialized sync helpers are available via `*Sync` variations (`pp.map` vs `pp.mapSync`) and through the `/sync` path:
 
 ```js
-import { using, randomInts, map } from "peter-piper/sync";
+import * as pp from "peter-piper";
+import * as ppSync from "peter-piper/sync";
 
-const threeRandomIntsFrom0To5 = using(randomInts([0, 5])).pipe(take(3));
+const input = [1, 2, 3];
 
-// Will log 3 random integers.
-for (const n of threeRandomIntsFrom0To5) {
-    console.log(n);
-}
+const awaitedArray = await pp.toArray<number>()(input); // Returns `Promise<number[]>`
+const array1 = pp.toArraySync<number>()(input); // Returns `number[]`
+const array2 = ppSync.toArray<number>()(input); // Returns `number[]`
 ```
 
 ### Extended iterables
 
-v0.0.31 introduces the `pp.usingIterable` method, which allows you to construct iterables extended with Peter Piper iterable helpers.
+You may have noticed that thus far we've only been dealing with simple array inputs. Arrays are cool and all, but what's the point of this unless we take it a step further?
 
-Since version 0.0.31, all iterable helpers and generators return these extended iterables as well.
+All iterable helpers exported by Peter Piper return custom **extended iterables**. This feature becomes much more interesting when we consider the implication that Peter Piper _allows you to interact with iterables as if they were just normal arrays_.
 
-```js
-import { usingIterable, range, filter, take } from "peter-piper/sync";
+Take the following example of a WebSocket connection that sends you an infinite stream of numbers:
 
-const filterPredicate = (x) => x > 0;
-
-usingIterable([-2, -1, 0, 1, 2]).pipe(filter(filterPredicate), take(2));
-// produces the same result as
-usingIterable([-2, -1, 0, 1, 2]).filter(filterPredicate).take(2);
-// which produces the same result as
-range([-2, 2]).filter(filterPredicate).take(2);
+```ts
+const ws = new WebSocket("ws://random-numbers.com");
 ```
+
+Say we want to multiply each number by 2 and store the results somewhere to be accessed later. A naive approach would involve transforming the numbers as they are received and storing them in an array like so:
+
+```ts
+const numbers: number[] = [];
+
+ws.addEventListener("message", (event: MessageEvent<number>) => {
+    numbers.push(event.data * 2);
+});
+```
+
+But wait. I want to consume this data as it appears. All I've done here is push to an array that will continue growing for as long as the connection is active. Enter PP.
+
+```ts
+import * as pp from "peter-piper";
+
+const data = pp.webSocketAdapter<number>(ws).map(({ data }) => data * 2);
+
+// Somewhere else...
+for await (const n of data) {
+    console.log(n);
+}
+```
+
+And that's it. You can check the [documentation](https://jdeurt.github.io/peter-piper/) to see a complete list of extended iterable helpers and methods available to you.
 
 ## RxJS vs PP
 
-Peter piper is by no means a suitable replacement for RxJS. However, it does offer very similar functionality as highlighted below.
+Peter Piper is by no means a suitable replacement for RxJS, nor will it ever be. However, it does offer very similar functionality as highlighted below.
 
 ### RxJS
 
@@ -160,21 +199,6 @@ const result = await pp.using([1, 2, 3]).pipe(
 result; // [6, 8, 10, 12]
 ```
 
-### Building functions
-
-```js
-import * as pp from "peter-piper";
-
-const getNumbersInRange = (from, to) =>
-    pipe(
-        filter((x) => x >= from),
-        filter((x) => x <= to), // Iterable helpers always return iterables
-        toArray() // So we convert the resuling iterable to an array.
-    );
-
-await getNumbersInRange(3, 5)([1, 2, 3, 4, 5, 6, 7]); // [3, 4, 5]
-```
-
 ### Treating streams as iterables
 
 ```js
@@ -225,7 +249,6 @@ for await (const n of evenNumbers) {
 ## TODO
 
 -   Internal `lift` refactor.
--   Make generic types more user-friendly.
 
 ## Authors
 
