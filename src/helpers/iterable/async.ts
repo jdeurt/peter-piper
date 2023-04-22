@@ -6,7 +6,7 @@ import {
 import type { AnyIterable } from "../../types";
 
 /**
- * Creates an asynchronous iterable from a given input iterable.
+ * Maps the given input iterable to an equivalent asynchronous iterable.
  *
  * @group Lazy helpers
  * @template T - The type of elements in the input iterable.

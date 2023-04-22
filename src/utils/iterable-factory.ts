@@ -4,6 +4,7 @@ import type {
     ExtendedIterable,
 } from "../types/iterable/extended-iterable";
 import type { Pipable } from "../types";
+import { getIterator } from "./iterable";
 
 /**
  * Creates a new extended iterable.
@@ -42,6 +43,9 @@ export const iterable = <T>(
     },
     isEmpty() {
         return h.isEmptySync()(this);
+    },
+    getIterator() {
+        return getIterator(this);
     },
     map(mapFn) {
         return h.mapSync(mapFn)(this);
@@ -119,6 +123,9 @@ export const asyncIterable = <T>(
     },
     isEmpty() {
         return h.isEmpty()(this);
+    },
+    getIterator() {
+        return getIterator(this);
     },
     map(mapFn) {
         // eslint-disable-next-line unicorn/no-array-callback-reference

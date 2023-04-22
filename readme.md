@@ -26,6 +26,18 @@ Documentation is available [here](https://jdeurt.github.io/peter-piper/).
 
 ## Concepts
 
+### Curried functions
+
+Curried functions are functions which take multiple arguments, one at a time, by returning a series of functions. In practice, this concept can be demonstated with a simple `add` function.
+
+```ts
+const add = (x: number, y: number) => x + y;
+
+const curriedAdd = (x: number) => (y: number) => x + y;
+```
+
+All helpers in Peter Piper are curried. This implementation detail enables some neat partial function applications and the ability to construct new functions easily using PP helpers as puzzle pieces, which we'll get to later.
+
 ### Lazy vs greedy
 
 A function is referred to as **lazy** when it performs operations on an input iterable's elements as they are yielded. Lazy functions do not immidiately consume the input iterable. Instead they provide a mapping from iterable A to iterable B.

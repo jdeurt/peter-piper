@@ -62,6 +62,7 @@ export interface ExtendedIterable<T> extends Iterable<T> {
         depth?: D
     ) => AsExtendedIterable<FlatIterable<T, D>>;
     isEmpty: () => boolean;
+    getIterator: () => Iterator<T>;
     map: <U>(mapFn: MapFn<T, U>) => ExtendedIterable<U>;
     pipe: CookedPipe<ExtendedIterable<T>>;
     reduce: <U = T>(reducer: Reducer<T, U>, initialValue?: U) => U;
@@ -103,6 +104,7 @@ export interface ExtendedAsyncIterable<T> extends AsyncIterable<T> {
         depth?: D
     ) => AsExtendedAsyncIterable<FlatIterable<T, D>>;
     isEmpty: () => Promise<boolean>;
+    getIterator: () => AsyncIterator<T>;
     map: <U>(mapFn: MapFn<T, U>) => ExtendedAsyncIterable<Awaited<U>>;
     pipe: CookedPipe<ExtendedAsyncIterable<T>>;
     reduce: <U = T>(
