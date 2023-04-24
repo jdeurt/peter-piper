@@ -8,6 +8,7 @@ export * from "./filter";
 export * from "./find";
 export * from "./first";
 export * from "./flat";
+export * from "./for-each";
 export * from "./is-empty";
 export * from "./map";
 export * from "./reduce";

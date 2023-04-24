@@ -12,6 +12,7 @@ import type { CookedPipe } from "../generated/cooked-pipe";
 import type { ElementOf } from "./element-of";
 import type { FlatIterable } from "./flat-iterable";
 import type { MapFn } from "../map-fn";
+import type { MaybePromise } from "../maybe-promise";
 
 /**
  * An iterable with additional methods.
@@ -61,6 +62,7 @@ export interface ExtendedIterable<T> extends Iterable<T> {
     flat: <D extends number = 1>(
         depth?: D
     ) => AsExtendedIterable<FlatIterable<T, D>>;
+    forEach: (fn: (element: T, index: number) => void) => ExtendedIterable<T>;
     isEmpty: () => boolean;
     getIterator: () => Iterator<T>;
     map: <U>(mapFn: MapFn<T, U>) => ExtendedIterable<U>;
@@ -103,6 +105,9 @@ export interface ExtendedAsyncIterable<T> extends AsyncIterable<T> {
     flat: <D extends number = 1>(
         depth?: D
     ) => AsExtendedAsyncIterable<FlatIterable<T, D>>;
+    forEach: (
+        fn: (element: T, index: number) => MaybePromise<void>
+    ) => ExtendedAsyncIterable<Awaited<T>>;
     isEmpty: () => Promise<boolean>;
     getIterator: () => AsyncIterator<T>;
     map: <U>(mapFn: MapFn<T, U>) => ExtendedAsyncIterable<Awaited<U>>;

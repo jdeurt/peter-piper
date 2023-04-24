@@ -15,6 +15,7 @@ export {
     findSync as find,
     firstSync as first,
     flatSync as flat,
+    forEachSync as forEach,
     isEmptySync as isEmpty,
     mapSync as map,
     reduceSync as reduce,

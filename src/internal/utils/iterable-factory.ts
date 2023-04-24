@@ -41,6 +41,9 @@ export const iterable = <T>(
     flat<D extends number = 1>(depth?: D) {
         return h.flatSync<T, D>(depth)(this);
     },
+    forEach(fn) {
+        return h.forEachSync(fn)(this);
+    },
     isEmpty() {
         return h.isEmptySync()(this);
     },
@@ -110,6 +113,10 @@ export const asyncIterable = <T>(
     filter(predicate) {
         // eslint-disable-next-line unicorn/no-array-callback-reference
         return h.filter(predicate)(this);
+    },
+    forEach(fn) {
+        // eslint-disable-next-line unicorn/no-array-for-each, unicorn/no-array-callback-reference
+        return h.forEach(fn)(this);
     },
     find(predicate) {
         // eslint-disable-next-line unicorn/no-array-callback-reference
