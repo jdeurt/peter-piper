@@ -35,4 +35,4 @@ for (let i = 0; i < 26; i++) {
 result += "(...fns: Pipable[]): unknown;\n";
 result += "};";
 
-writeFileSync("./src/types/generated/cooked-pipe.ts", result, "utf8");
+writeFileSync("./src/internal/types/generated/cooked-pipe.ts", result, "utf8");

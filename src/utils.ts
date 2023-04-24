@@ -8,4 +8,4 @@ export {
     iterable,
     asyncIterable,
     toAsyncIterable,
-} from "./utils";
+} from "./internal/utils";

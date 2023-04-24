@@ -61,7 +61,7 @@ module.exports = [
         ],
     },
     {
-        input: "src/exposed-utils.ts",
+        input: "src/utils.ts",
         output: [
             {
                 format: "esm",

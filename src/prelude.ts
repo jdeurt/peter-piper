@@ -1,1 +1,1 @@
-export * from "./prelude";
+export * from "./internal/prelude";

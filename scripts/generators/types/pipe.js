@@ -17,7 +17,7 @@ const makeArgsDef = (i) => {
 
     return `${makeArgsDef(i - 1)}, ${getLetter(
         i
-    ).toLowerCase()}: Pipable<${getLetter(i)}In, ${getLetter(i)}Out>`;
+    ).toLowerCase()}: Pipable<${getLetter(i - 1)}Out, ${getLetter(i)}Out>`;
 };
 
 const makeOverloadSignature = (i) =>
@@ -37,4 +37,4 @@ for (let i = 0; i < 26; i++) {
 result += "(...fns: Pipable[]): (value: unknown) => unknown;\n";
 result += "};";
 
-writeFileSync("./src/types/generated/pipe.ts", result, "utf8");
+writeFileSync("./src/internal/types/generated/pipe.ts", result, "utf8");
