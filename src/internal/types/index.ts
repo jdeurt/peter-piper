@@ -21,3 +21,5 @@ export * from "./predicate";
 export * from "./range";
 export * from "./reducer";
 export * from "./traverse";
+export * from "./css-selector";
+export * from "./is-exact";

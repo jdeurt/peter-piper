@@ -1,6 +1,7 @@
 export * from "./internal/constants";
 export {
     // Generators
+    domElements,
     randomFloats,
     randomInts,
     range,
