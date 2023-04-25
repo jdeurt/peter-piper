@@ -2,8 +2,6 @@ type TagNameMap = {
     [K in keyof HTMLElementTagNameMap]: HTMLElementTagNameMap[K];
 } & {
     [K in keyof SVGElementTagNameMap]: SVGElementTagNameMap[K];
-} & {
-    [K in keyof MathMLElementTagNameMap]: MathMLElementTagNameMap[K];
 };
 
 export type Selector<T extends keyof TagNameMap = keyof TagNameMap> = T;
