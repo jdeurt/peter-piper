@@ -13,6 +13,7 @@ import type { ElementOf } from "./element-of";
 import type { FlatIterable } from "./flat-iterable";
 import type { MapFn } from "../map-fn";
 import type { MaybePromise } from "../maybe-promise";
+import type { ProxiedIterable } from "./proxied-iterable";
 
 /**
  * An iterable with additional methods.
@@ -79,6 +80,16 @@ export interface ExtendedIterable<T> extends Iterable<T> {
     zip: () => T extends AnySyncIterable<unknown>
         ? ExtendedIterable<ElementOf<T> | undefined>
         : never;
+
+    /**
+     * Returns a new {@link ProxiedIterable} that exposes methods present in the iterable's elements.
+     *
+     * @returns A proxied iterable representation of the iterable.
+     *
+     * @remarks
+     * You should avoid using this method unless absolutely necessary since it can cause your elements to unexpectedly mutate.
+     */
+    unsafeProxy: () => ProxiedIterable<ExtendedIterable<T>>;
 }
 
 export interface ExtendedAsyncIterable<T> extends AsyncIterable<T> {
@@ -131,4 +142,14 @@ export interface ExtendedAsyncIterable<T> extends AsyncIterable<T> {
     zip: () => T extends AnyIterable<unknown>
         ? ExtendedAsyncIterable<Awaited<ElementOf<T>> | undefined>
         : never;
+
+    /**
+     * Returns a new {@link ProxiedIterable} that exposes methods present in the iterable's elements.
+     *
+     * @returns A proxied iterable representation of the iterable.
+     *
+     * @remarks
+     * You should avoid using this method unless absolutely necessary since it can cause your elements to unexpectedly mutate.
+     */
+    unsafeProxy: () => ProxiedIterable<ExtendedAsyncIterable<T>>;
 }

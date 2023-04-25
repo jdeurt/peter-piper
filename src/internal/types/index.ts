@@ -16,6 +16,7 @@ export * from "./iterable/narrow-iterable";
 export * from "./nothing";
 export * from "./pipable";
 export * from "./iterable/extended-iterable";
+export * from "./iterable/proxied-iterable";
 export * from "./predicate";
 export * from "./range";
 export * from "./reducer";

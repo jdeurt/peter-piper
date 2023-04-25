@@ -4,7 +4,7 @@ import type {
     ExtendedIterable,
 } from "../types/iterable/extended-iterable";
 import type { Pipable } from "../types";
-import { getIterator } from "./iterable";
+import { getIterator, proxyElements } from "./iterable";
 
 /**
  * Creates a new extended iterable.
@@ -78,6 +78,9 @@ export const iterable = <T>(
     zip() {
         // @ts-expect-error 2344 - T not being an iterable is accounted for
         return h.zipSync<T>()(this);
+    },
+    unsafeProxy() {
+        return proxyElements(this);
     },
 });
 
@@ -168,5 +171,8 @@ export const asyncIterable = <T>(
     zip() {
         // @ts-expect-error 2344 - T not being an iterable is accounted for
         return h.zip<T>()(this);
+    },
+    unsafeProxy() {
+        return proxyElements(this);
     },
 });

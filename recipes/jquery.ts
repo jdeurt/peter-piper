@@ -1,22 +1,22 @@
 import * as pp from "../src/sync";
 import type { ExtendedIterable } from "../src/internal/types";
 
-interface $Fn {
-    <K extends keyof HTMLElementTagNameMap>(selectors: K): ExtendedIterable<
-        HTMLElementTagNameMap[K]
+interface JQueryLike {
+    <K extends keyof HTMLElementTagNameMap>(selectors: K): ReturnType<
+        ExtendedIterable<HTMLElementTagNameMap[K]>["unsafeProxy"]
     >;
-    <K extends keyof SVGElementTagNameMap>(selectors: K): ExtendedIterable<
-        SVGElementTagNameMap[K]
+    <K extends keyof SVGElementTagNameMap>(selectors: K): ReturnType<
+        ExtendedIterable<SVGElementTagNameMap[K]>["unsafeProxy"]
     >;
-    <K extends keyof MathMLElementTagNameMap>(selectors: K): ExtendedIterable<
-        MathMLElementTagNameMap[K]
+    <K extends keyof MathMLElementTagNameMap>(selectors: K): ReturnType<
+        ExtendedIterable<MathMLElementTagNameMap[K]>["unsafeProxy"]
     >;
-    <E extends Element = Element>(selectors: string): ExtendedIterable<E>;
+    <E extends Element = Element>(selectors: string): ReturnType<
+        ExtendedIterable<E>["unsafeProxy"]
+    >;
 }
 
-const $: $Fn = (selectors: string) =>
-    pp.from(document.querySelectorAll(selectors));
+const $: JQueryLike = (selectors) =>
+    pp.from(document.querySelectorAll(selectors)).unsafeProxy();
 
-$("button")
-    .forEach((btn) => btn.click())
-    .consume();
+$("button")._click().consume();
