@@ -19,4 +19,10 @@ interface JQueryLike {
 const $: JQueryLike = (selectors) =>
     pp.from(document.querySelectorAll(selectors)).unsafeProxy();
 
-$("button")._click().consume();
+const hiddenBox = $("#banner-message");
+
+$("#button-container button")
+    ._addEventListener("click", () => {
+        hiddenBox._setAttribute("hidden", "false").consume();
+    })
+    .consume();

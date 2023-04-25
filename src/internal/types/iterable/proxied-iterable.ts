@@ -8,12 +8,15 @@ import type { GenericFunction } from "../function";
 
 /**
  * Represents an extended iterable that exposes methods present in the input iterable type's elements.
+ * Calling `_method(...)` on a ProxiedIterable is effectively the same as calling `<ExtendedIterable>.forEach((element) => element.method(...))`
  *
  * @example
  * ```ts
  * const $button = from(document.querySelectorAll("button")).unsafeProxy();
  *
- * $button._click.consume();
+ * $button._click().consume();
+ * // Same as
+ * $button.forEach((element) => element.click()).consume();
  * ```
  */
 export type ProxiedIterable<T extends AnyIterable<unknown>> =
