@@ -19,12 +19,12 @@ import { from } from "../from";
  * }
  * ```
  */
-export function domElements<T extends Selector>(
+export function domNodesFrom<T extends Selector>(
     selector: T
 ): ExtendedIterable<NodeFromSelector<T>>;
 
 /**
- * Creates an extended iterable that yields DOM elements from the provided CSS selector.
+ * Creates an extended iterable that yields DOM nodes from the provided CSS selector.
  * Shorthand for `pp.from(document.querySelectorAll(selector))`.
  *
  * @group Iterable factories
@@ -34,17 +34,17 @@ export function domElements<T extends Selector>(
  *
  * @example
  * ```ts
- * const buttons = domElements<HTMLButtonElement>("button.some-class");
+ * const buttons = domNodesFrom<HTMLButtonElement>("button.some-class");
  *
  * for (const div of buttons.take(3)) {
  *   console.log(div); // Logs 3 buttons
  * }
  * ```
  */
-export function domElements<T extends HTMLElement = HTMLElement>(
+export function domNodesFrom<T extends HTMLElement = HTMLElement>(
     selector: string
 ): ExtendedIterable<T>;
 
-export function domElements(selector: string) {
+export function domNodesFrom(selector: string) {
     return from(document.querySelectorAll(selector));
 }
