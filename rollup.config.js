@@ -45,22 +45,6 @@ module.exports = [
         ],
     },
     {
-        input: "src/prelude.ts",
-        output: [
-            {
-                format: "esm",
-                file: "dist/prelude.mjs",
-                sourcemap: false,
-            },
-            {
-                format: "cjs",
-                file: "dist/prelude.js",
-                sourcemap: false,
-                esModule: false,
-            },
-        ],
-    },
-    {
         input: "src/utils.ts",
         output: [
             {
