@@ -3,8 +3,8 @@ import type {
     ExtendedAsyncIterable,
     ExtendedIterable,
 } from "../types/iterable/extended-iterable";
-import type { Pipable } from "../types";
 import { getIterator, proxyElements } from "./iterable";
+import type { Pipable } from "../types";
 
 /**
  * Creates a new extended iterable.
