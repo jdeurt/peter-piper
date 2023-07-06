@@ -22,9 +22,9 @@ testProp(
 test("should lazily evaluate iterables", async (t) => {
     const iterator = using(infiniteNumberGenerator())
         .pipe(
-            filter((value: number) => value % 2 === 0),
-            slice<number>(0, 5),
-            map((value: number) => `n${value}`)
+            filter((value) => value % 2 === 0),
+            slice(0, 5),
+            map((value) => `n${value}`)
         )
         [Symbol.asyncIterator]();
 

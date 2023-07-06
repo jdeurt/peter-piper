@@ -43,9 +43,6 @@
             "sync": [
                 "types/sync.d.ts"
             ],
-            "prelude": [
-                "types/prelude.d.ts"
-            ],
             "utils": [
                 "types/utils.d.ts"
             ]

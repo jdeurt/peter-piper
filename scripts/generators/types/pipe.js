@@ -7,7 +7,7 @@ const makeGenericParams = (i) => {
         return "AIn, AOut";
     }
 
-    return `${makeGenericParams(i - 1)}, ${getLetter(i)}In, ${getLetter(i)}Out`;
+    return `${makeGenericParams(i - 1)}, ${getLetter(i)}Out`;
 };
 
 const makeArgsDef = (i) => {
