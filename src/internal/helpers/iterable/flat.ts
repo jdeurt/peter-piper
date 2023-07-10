@@ -1,3 +1,7 @@
+import type {
+    FlatAsyncIterable,
+    FlatIterable,
+} from "../../types/iterable/flat-iterable";
 import {
     asyncIterable,
     isIterable,
@@ -7,10 +11,6 @@ import {
     withIterableAssertion,
 } from "../../utils";
 import type { AnyIterable } from "../../types";
-import type {
-    FlatAsyncIterable,
-    FlatIterable,
-} from "../../types/iterable/flat-iterable";
 import { getIterator } from "../../utils/iterable/get-iterator";
 
 /**

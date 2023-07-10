@@ -6,6 +6,8 @@ export {
     isAsyncIteratorFunction,
     isIteratorFunction,
     iterable,
+    xIterable,
     asyncIterable,
+    xAsyncIterable,
     toAsyncIterable,
 } from "./internal/utils";

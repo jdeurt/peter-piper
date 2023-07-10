@@ -1,6 +1,5 @@
 import type { AnyIterable, ElementOf } from "../../types";
 import { asyncIterable, iterable, withIterableAssertion } from "../../utils";
-import { NOTHING } from "../../constants";
 import { getIterator } from "../../utils/iterable/get-iterator";
 
 /**
@@ -34,19 +33,15 @@ export const zip = <T extends AnyIterable<unknown>>() =>
 
             // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
             while (true) {
-                const nextResults = (await Promise.all(
+                const nexts = (await Promise.all(
                     iterators.map((iterator) => iterator.next())
-                )) as IteratorResult<ElementOf<T>>[];
+                )) as IteratorResult<ElementOf<T>, ElementOf<T>>[];
 
-                const candidateElement = nextResults.map((nextResult) =>
-                    nextResult.done ? NOTHING : nextResult.value
-                );
-
-                if (candidateElement.includes(NOTHING)) {
-                    return;
+                if (nexts.some(({ done }) => done)) {
+                    break;
                 }
 
-                yield candidateElement as ElementOf<T>[];
+                yield nexts.map(({ value }) => value);
             }
         })
     );
@@ -83,19 +78,15 @@ export const zipSync = <T extends Iterable<unknown>>() =>
 
             // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
             while (true) {
-                const nextResults = iterators.map((iterator) =>
+                const nexts = iterators.map((iterator) =>
                     iterator.next()
-                ) as IteratorResult<ElementOf<T>>[];
+                ) as IteratorResult<ElementOf<T>, ElementOf<T>>[];
 
-                const candidateElement = nextResults.map((nextResult) =>
-                    nextResult.done ? NOTHING : nextResult.value
-                );
-
-                if (candidateElement.includes(NOTHING)) {
-                    return;
+                if (nexts.some(({ done }) => done)) {
+                    break;
                 }
 
-                yield candidateElement as ElementOf<T>[];
+                yield nexts.map(({ value }) => value);
             }
         })
     );
