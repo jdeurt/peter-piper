@@ -1,4 +1,4 @@
-import type { AnyIterable, AnySyncIterable } from "../../types";
+import type { AnyIterable } from "../../types";
 import { withIterableAssertion } from "../../utils";
 
 /**
@@ -46,7 +46,7 @@ export const toArray = <T>() =>
  * Available as `toArray` when imported from `peter-piper/sync`.
  */
 export const toArraySync = <T>() =>
-    withIterableAssertion((input: AnySyncIterable<T>): T[] => {
+    withIterableAssertion((input: Iterable<T>): T[] => {
         const result: T[] = [];
 
         for (const value of input) {

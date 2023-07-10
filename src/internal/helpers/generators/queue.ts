@@ -1,6 +1,6 @@
 import type { IterableQueue } from "../../types/iterable/iterable-queue";
 import type { QueueConfig } from "../../types/queue-config";
-import { asyncIterable } from "../../utils";
+import { xAsyncIterable } from "../../utils";
 
 /**
  * Creates an async iterable queue that can be used to push and consume values.
@@ -39,7 +39,7 @@ export const queue = <T>({
     let closed = false;
 
     // eslint-disable-next-line @typescript-eslint/require-await
-    const iterable = asyncIterable<T>(async function* generator() {
+    const iterable = xAsyncIterable<T>(async function* generator() {
         while (!closed) {
             if (buffer.length > 0) {
                 yield buffer.shift() as T;

@@ -1,5 +1,5 @@
-import type { AnyIterable, AnySyncIterable } from "../../types";
 import { toArray, toArraySync } from "./to-array";
+import type { AnyIterable } from "../../types";
 
 export const atLazy = async <T>(input: AnyIterable<T>, index: number) => {
     let currIndex = 0;
@@ -19,7 +19,7 @@ export const atLazy = async <T>(input: AnyIterable<T>, index: number) => {
 export const atGreedy = async <T>(input: AnyIterable<T>, index: number) =>
     toArray(input).then((arr) => arr.at(index));
 
-export const atLazySync = <T>(input: AnySyncIterable<T>, index: number) => {
+export const atLazySync = <T>(input: Iterable<T>, index: number) => {
     let currIndex = 0;
 
     for (const value of input) {
@@ -34,5 +34,5 @@ export const atLazySync = <T>(input: AnySyncIterable<T>, index: number) => {
 /**
  * Supports negative end indeces.
  */
-export const atGreedySync = <T>(input: AnySyncIterable<T>, index: number) =>
+export const atGreedySync = <T>(input: Iterable<T>, index: number) =>
     toArraySync(input).at(index);

@@ -1,9 +1,4 @@
-import type {
-    AnyIterable,
-    AnySyncIterable,
-    MapFn,
-    MaybePromise,
-} from "../../types";
+import type { AnyIterable, MapFn, MaybePromise } from "../../types";
 import { withIterableAssertion } from "../../utils";
 
 /**
@@ -61,7 +56,7 @@ export const consume = <T, U>(mapFn?: MapFn<T, MaybePromise<U>>) =>
  * Available as `consume` when imported from `peter-piper/sync`.
  */
 export const consumeSync = <T, U>(mapFn?: MapFn<T, U>) =>
-    withIterableAssertion((input: AnySyncIterable<T>): U[] => {
+    withIterableAssertion((input: Iterable<T>): U[] => {
         const results: U[] = [];
 
         let index = 0;

@@ -1,4 +1,3 @@
-import type { AnyIterable, AnySyncIterable } from "../../types";
 import {
     sliceGreedy,
     sliceGreedySync,
@@ -6,6 +5,7 @@ import {
     sliceLazySync,
     withIterableAssertion,
 } from "../../utils";
+import type { AnyIterable } from "../../types";
 
 /**
  * Slices an input iterable between the specified start and end indices.
@@ -65,7 +65,7 @@ export const sliceSync = <T>(
     startIndex = 0,
     endIndex = Number.POSITIVE_INFINITY
 ) =>
-    withIterableAssertion((input: AnySyncIterable<T>) =>
+    withIterableAssertion((input: Iterable<T>) =>
         startIndex >= 0 && endIndex >= 0
             ? sliceLazySync(input, startIndex, endIndex)
             : sliceGreedySync(input, startIndex, endIndex)

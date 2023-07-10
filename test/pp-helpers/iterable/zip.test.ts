@@ -1,6 +1,7 @@
 import { testProp, fc } from "@fast-check/ava";
 
 import { toArray, zip } from "../../../src";
+import { xAsyncIterable } from "../../../src/internal/utils";
 
 /**
  *
@@ -24,9 +25,9 @@ testProp(
         const zipped = zip<number[]>()(arr);
         const zippedArrays = zipArrays(...arr);
 
-        for await (const [elem, index] of zipped.map(
-            (v, i) => [v, i] as const
-        )) {
+        for await (const [elem, index] of xAsyncIterable(
+            zipped[Symbol.asyncIterator]
+        ).map((v, i) => [v, i] as const)) {
             t.deepEqual(elem, zippedArrays[index]);
         }
 

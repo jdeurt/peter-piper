@@ -1,4 +1,4 @@
-import type { AnyIterable, AnySyncIterable, ElementOf } from "../../types";
+import type { AnyIterable, ElementOf } from "../../types";
 import { asyncIterable, iterable, withIterableAssertion } from "../../utils";
 import { NOTHING } from "../../constants";
 import { getIterator } from "../../utils/iterable/get-iterator";
@@ -22,7 +22,7 @@ import { getIterator } from "../../utils/iterable/get-iterator";
  * ```
  */
 export const zip = <T extends AnyIterable<unknown>>() =>
-    withIterableAssertion((input: AnySyncIterable<T>) =>
+    withIterableAssertion((input: Iterable<T>) =>
         asyncIterable(async function* () {
             const iterators = [...input].map((nestedIterable) =>
                 getIterator(nestedIterable)
@@ -70,8 +70,8 @@ export const zip = <T extends AnyIterable<unknown>>() =>
  * @remarks
  * Available as `zip` when imported from `peter-piper/sync`.
  */
-export const zipSync = <T extends AnySyncIterable<unknown>>() =>
-    withIterableAssertion((input: AnySyncIterable<T>) =>
+export const zipSync = <T extends Iterable<unknown>>() =>
+    withIterableAssertion((input: Iterable<T>) =>
         iterable(function* () {
             const iterators = [...input].map((nestedIterable) =>
                 getIterator(nestedIterable)

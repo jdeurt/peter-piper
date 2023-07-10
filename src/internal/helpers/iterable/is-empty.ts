@@ -1,5 +1,5 @@
-import type { AnyIterable, AnySyncIterable } from "../../types";
 import { toAsyncIterable, withIterableAssertion } from "../../utils";
+import type { AnyIterable } from "../../types";
 
 /**
  * Checks if an input iterable is empty.
@@ -45,6 +45,6 @@ export const isEmpty = () =>
  * Available as `isEmpty` when imported from `peter-piper/sync`.
  */
 export const isEmptySync = () =>
-    withIterableAssertion((input: AnySyncIterable<unknown>): boolean =>
+    withIterableAssertion((input: Iterable<unknown>): boolean =>
         Boolean(input[Symbol.iterator]().next().done)
     );

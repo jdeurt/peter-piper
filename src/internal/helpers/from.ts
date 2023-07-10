@@ -2,7 +2,6 @@ import type {
     ExtendedAsyncIterable,
     ExtendedIterable,
 } from "../types/iterable/extended-iterable";
-import { asyncIterable, iterable } from "../utils/iterable-factory";
 import {
     isAsyncIterable,
     isIterable,
@@ -11,21 +10,22 @@ import {
     isAsyncIteratorFunction,
     isIteratorFunction,
 } from "../utils/type-narrowing/is-iterator-function";
+import { xAsyncIterable, xIterable } from "../utils/iterable-factory";
 import type { AnyIterable } from "../types/iterable/any-iterable";
 import type { ElementOf } from "../types/iterable/element-of";
 
 /**
- * Maps the provided async iterable to an equivalent Peter Piper async iterable.
+ * Maps the provided async iterable to an equivalent extended async iterable.
  */
 export function from<T>(value: AsyncIterable<T>): ExtendedAsyncIterable<T>;
 
 /**
- * Maps the provided iterable to an equivalent Peter Piper iterable.
+ * Maps the provided iterable to an equivalent extended iterable.
  */
 export function from<T>(value: Iterable<T>): ExtendedIterable<T>;
 
 /**
- * Maps the provided async iterator to an equivalent Peter Piper async iterable.
+ * Maps the provided async iterator to an equivalent extended async iterable.
  */
 export function from<T>(
     // eslint-disable-next-line @typescript-eslint/unified-signatures
@@ -33,7 +33,7 @@ export function from<T>(
 ): ExtendedAsyncIterable<T>;
 
 /**
- * Maps the provided iterator to an equivalent Peter Piper iterable.
+ * Maps the provided iterator to an equivalent extended iterable.
  */
 // eslint-disable-next-line @typescript-eslint/unified-signatures
 export function from<T>(value: () => Iterator<T>): ExtendedIterable<T>;
@@ -58,28 +58,28 @@ export function from<T>(
         : ExtendedIterable<T>;
 
     if (isAsyncIteratorFunction(value)) {
-        return asyncIterable(value) as R;
+        return xAsyncIterable(value) as R;
     }
 
     if (isIteratorFunction(value)) {
-        return iterable(value) as R;
+        return xIterable(value) as R;
     }
 
     if (!isIterable(value)) {
-        return iterable(function* () {
+        return xIterable(function* () {
             yield value;
         }) as R;
     }
 
     if (isAsyncIterable(value)) {
-        return asyncIterable(async function* () {
+        return xAsyncIterable(async function* () {
             for await (const yielded of value) {
                 yield yielded;
             }
         }) as R;
     }
 
-    return iterable(function* () {
+    return xIterable(function* () {
         for (const yielded of value) {
             yield yielded;
         }

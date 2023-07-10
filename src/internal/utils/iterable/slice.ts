@@ -1,6 +1,6 @@
-import type { AnyIterable, AnySyncIterable } from "../../types";
 import { asyncIterable, iterable } from "../iterable-factory";
 import { toArray, toArraySync } from "./to-array";
+import type { AnyIterable } from "../../types";
 
 export const sliceLazy = <T>(
     input: AnyIterable<T>,
@@ -40,7 +40,7 @@ export const sliceGreedy = <T>(
     });
 
 export const sliceLazySync = <T>(
-    input: AnySyncIterable<T>,
+    input: Iterable<T>,
     startIndex = 0,
     endIndex = Number.POSITIVE_INFINITY
 ) =>
@@ -64,7 +64,7 @@ export const sliceLazySync = <T>(
  * Supports negative end indexes.
  */
 export const sliceGreedySync = <T>(
-    input: AnySyncIterable<T>,
+    input: Iterable<T>,
     startIndex = 0,
     endIndex = Number.POSITIVE_INFINITY
 ) =>

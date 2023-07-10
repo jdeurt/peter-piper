@@ -1,5 +1,5 @@
-import type { AnyIterable, AnySyncIterable } from "../../types";
 import { asyncIterable, iterable, withIterableAssertion } from "../../utils";
+import type { AnyIterable } from "../../types";
 
 /**
  * Concatenates multiple input iterables into a single asynchronous iterable.
@@ -53,8 +53,8 @@ export const concat = <T>(...iterables: AnyIterable<T>[]) =>
  * @remarks
  * Available as `concat` when imported from `peter-piper/sync`.
  */
-export const concatSync = <T>(...iterables: AnySyncIterable<T>[]) =>
-    withIterableAssertion((input: AnySyncIterable<T>) =>
+export const concatSync = <T>(...iterables: Iterable<T>[]) =>
+    withIterableAssertion((input: Iterable<T>) =>
         iterable(function* () {
             for (const iter of [input, ...iterables]) {
                 yield* iter;

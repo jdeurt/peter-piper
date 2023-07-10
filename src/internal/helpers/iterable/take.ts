@@ -1,5 +1,5 @@
-import type { AnyIterable, AnySyncIterable } from "../../types";
 import { asyncIterable, iterable, withIterableAssertion } from "../../utils";
+import type { AnyIterable } from "../../types";
 
 /**
  * Lazily takes the first `n` elements from the input iterable.
@@ -62,7 +62,7 @@ export const take = <T>(n: number) =>
  * Available as `take` when imported from `peter-piper/sync`.
  */
 export const takeSync = <T>(n: number) =>
-    withIterableAssertion((input: AnySyncIterable<T>) =>
+    withIterableAssertion((input: Iterable<T>) =>
         iterable(function* () {
             let index = 0;
 

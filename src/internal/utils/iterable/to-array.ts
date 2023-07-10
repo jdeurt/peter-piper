@@ -1,4 +1,4 @@
-import type { AnyIterable, AnySyncIterable } from "../../types";
+import type { AnyIterable } from "../../types";
 
 export const toArray = async <T>(input: AnyIterable<T>) => {
     const result: T[] = [];
@@ -10,7 +10,7 @@ export const toArray = async <T>(input: AnyIterable<T>) => {
     return result;
 };
 
-export const toArraySync = <T>(input: AnySyncIterable<T>) => {
+export const toArraySync = <T>(input: Iterable<T>) => {
     const result: T[] = [];
 
     for (const value of input) {

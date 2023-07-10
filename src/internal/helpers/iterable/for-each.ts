@@ -1,4 +1,4 @@
-import type { AnyIterable, AnySyncIterable, MaybePromise } from "../../types";
+import type { AnyIterable, MaybePromise } from "../../types";
 import { asyncIterable, iterable, withIterableAssertion } from "../../utils";
 
 /**
@@ -53,7 +53,7 @@ export const forEach = <T>(
  * Available as `forEach` when imported from `peter-piper/sync`.
  */
 export const forEachSync = <T>(fn: (element: T, index: number) => void) => {
-    return withIterableAssertion((input: AnySyncIterable<T>) => {
+    return withIterableAssertion((input: Iterable<T>) => {
         let index = 0;
 
         return iterable(function* () {

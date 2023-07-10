@@ -1,6 +1,5 @@
 import type {
     AnyIterable,
-    AnySyncIterable,
     ArrayLikePredicate,
     AsyncArrayLikePredicate,
 } from "../../types";
@@ -71,7 +70,7 @@ export const first = <T>(predicate?: AsyncArrayLikePredicate<T>) =>
  * Available as `first` when imported from `peter-piper/sync`.
  */
 export const firstSync = <T>(predicate?: ArrayLikePredicate<T>) =>
-    withIterableAssertion((input: AnySyncIterable<T>) => {
+    withIterableAssertion((input: Iterable<T>) => {
         let index = 0;
 
         return iterable(function* () {

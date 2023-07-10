@@ -3,25 +3,35 @@ import type {
     ExtendedAsyncIterable,
     ExtendedIterable,
 } from "../types/iterable/extended-iterable";
-import { getIterator, proxyElements } from "./iterable";
 import type { Pipable } from "../types";
+import { getIterator } from "./iterable";
+
+export const iterable = <T>(iterator: () => Iterator<T>): Iterable<T> => ({
+    [Symbol.iterator]: iterator,
+});
+
+export const asyncIterable = <T>(
+    asyncIterator: () => AsyncIterator<T>
+): AsyncIterable<T> => ({
+    [Symbol.asyncIterator]: asyncIterator,
+});
 
 /**
  * Creates a new extended iterable.
  */
-export const iterable = <T>(
+export const xIterable = <T>(
     iterator: () => Iterator<T>
 ): ExtendedIterable<T> => ({
     [Symbol.iterator]: iterator,
 
     async() {
-        return h.async<T>()(this);
+        return xAsyncIterable(h.async<T>()(this)[Symbol.asyncIterator]);
     },
     at(n) {
         return h.atSync<T>(n)(this);
     },
     concat(...iterables) {
-        return h.concatSync(...iterables)(this);
+        return xIterable(h.concatSync(...iterables)(this)[Symbol.iterator]);
     },
     consume(mapFn) {
         return h.consumeSync(mapFn)(this);
@@ -30,19 +40,16 @@ export const iterable = <T>(
         return h.everySync(predicate)(this);
     },
     filter(predicate) {
-        return h.filterSync(predicate)(this);
+        return xIterable(h.filterSync(predicate)(this)[Symbol.iterator]);
     },
     find(predicate) {
         return h.findSync(predicate)(this);
     },
     first(predicate) {
-        return h.firstSync(predicate)(this);
-    },
-    flat<D extends number = 1>(depth?: D) {
-        return h.flatSync<T, D>(depth)(this);
+        return xIterable(h.firstSync(predicate)(this)[Symbol.iterator]);
     },
     forEach(fn) {
-        return h.forEachSync(fn)(this);
+        return xIterable(h.forEachSync(fn)(this)[Symbol.iterator]);
     },
     isEmpty() {
         return h.isEmptySync()(this);
@@ -51,60 +58,54 @@ export const iterable = <T>(
         return getIterator(this);
     },
     map(mapFn) {
-        return h.mapSync(mapFn)(this);
+        return xIterable(h.mapSync(mapFn)(this)[Symbol.iterator]);
     },
     reduce(reducer, initialValue) {
         return h.reduceSync(reducer, initialValue)(this);
     },
     scan(reducer, initialValue) {
-        return h.scanSync(reducer, initialValue)(this);
+        return xIterable(
+            h.scanSync(reducer, initialValue)(this)[Symbol.iterator]
+        );
     },
     slice(startIndex, endIndex) {
-        return h.sliceSync<T>(startIndex, endIndex)(this);
+        return xIterable(
+            h.sliceSync<T>(startIndex, endIndex)(this)[Symbol.iterator]
+        );
     },
     some(predicate) {
         return h.someSync(predicate)(this);
     },
     take(n) {
-        return h.takeSync<T>(n)(this);
+        return xIterable(h.takeSync<T>(n)(this)[Symbol.iterator]);
     },
     toArray() {
         return h.toArraySync<T>()(this);
     },
     pipe(...args: Pipable[]) {
-        return h.using(this).pipe(...args);
-    },
-    // @ts-expect-error 2322 - T not being an iterable is accounted for
-    zip() {
-        // @ts-expect-error 2344 - T not being an iterable is accounted for
-        return h.zipSync<T>()(this);
-    },
-    unsafeProxy() {
-        return proxyElements(this);
+        return h.pipe(...args)(this);
     },
 });
 
 /**
  * Creates a new extended async iterable.
  */
-export const asyncIterable = <T>(
+export const xAsyncIterable = <T>(
     iterator: () => AsyncIterator<T>
 ): ExtendedAsyncIterable<T> => ({
     [Symbol.asyncIterator]: iterator,
 
-    async() {
-        return h.async<T>()(this);
-    },
     at(n) {
         return h.at<T>(n)(this);
     },
     buffer(ms) {
-        return h.buffer<T>(ms)(this);
+        return xAsyncIterable(h.buffer<T>(ms)(this)[Symbol.asyncIterator]);
     },
     concat(...iterables) {
-        // ???
-        // eslint-disable-next-line unicorn/prefer-spread
-        return h.concat(...iterables)(this);
+        return xAsyncIterable(
+            // eslint-disable-next-line unicorn/prefer-spread
+            h.concat(...iterables)(this)[Symbol.asyncIterator]
+        );
     },
     consume(mapFn) {
         return h.consume(mapFn)(this);
@@ -115,21 +116,18 @@ export const asyncIterable = <T>(
     },
     filter(predicate) {
         // eslint-disable-next-line unicorn/no-array-callback-reference
-        return h.filter(predicate)(this);
+        return xAsyncIterable(h.filter(predicate)(this)[Symbol.asyncIterator]);
     },
     forEach(fn) {
         // eslint-disable-next-line unicorn/no-array-for-each, unicorn/no-array-callback-reference
-        return h.forEach(fn)(this);
+        return xAsyncIterable(h.forEach(fn)(this)[Symbol.asyncIterator]);
     },
     find(predicate) {
         // eslint-disable-next-line unicorn/no-array-callback-reference
         return h.find(predicate)(this);
     },
     first(predicate) {
-        return h.first(predicate)(this);
-    },
-    flat<D extends number = 1>(depth?: D) {
-        return h.flat<T, D>(depth)(this);
+        return xAsyncIterable(h.first(predicate)(this)[Symbol.asyncIterator]);
     },
     isEmpty() {
         return h.isEmpty()(this);
@@ -139,40 +137,36 @@ export const asyncIterable = <T>(
     },
     map(mapFn) {
         // eslint-disable-next-line unicorn/no-array-callback-reference
-        return h.map(mapFn)(this);
+        return xAsyncIterable(h.map(mapFn)(this)[Symbol.asyncIterator]);
     },
     reduce(reducer, initialValue) {
         // eslint-disable-next-line unicorn/no-array-reduce, unicorn/no-array-callback-reference
         return h.reduce(reducer, initialValue)(this);
     },
     scan(reducer, initialValue) {
-        return h.scan(reducer, initialValue)(this);
+        return xAsyncIterable(
+            h.scan(reducer, initialValue)(this)[Symbol.asyncIterator]
+        );
     },
     slice(startIndex, endIndex) {
-        return h.slice<T>(startIndex, endIndex)(this);
+        return xAsyncIterable(
+            h.slice<T>(startIndex, endIndex)(this)[Symbol.asyncIterator]
+        );
     },
     some(predicate) {
         // eslint-disable-next-line unicorn/no-array-callback-reference
         return h.some(predicate)(this);
     },
     take(n) {
-        return h.take<T>(n)(this);
+        return xAsyncIterable(h.take<T>(n)(this)[Symbol.asyncIterator]);
     },
     throttle(ms) {
-        return h.throttle<T>(ms)(this);
+        return xAsyncIterable(h.throttle<T>(ms)(this)[Symbol.asyncIterator]);
     },
     toArray() {
         return h.toArray<T>()(this);
     },
     pipe(...args: Pipable[]) {
-        return h.using(this).pipe(...args);
-    },
-    // @ts-expect-error 2322 - T not being an iterable is accounted for
-    zip() {
-        // @ts-expect-error 2344 - T not being an iterable is accounted for
-        return h.zip<T>()(this);
-    },
-    unsafeProxy() {
-        return proxyElements(this);
+        return h.pipe(...args)(this);
     },
 });

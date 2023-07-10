@@ -1,19 +1,11 @@
-import type { AnyIterable, AnySyncIterable } from "./any-iterable";
 import type {
     ArrayLikePredicate,
     AsyncArrayLikePredicate,
 } from "../array-like-predicate";
-import type {
-    AsExtendedAsyncIterable,
-    AsExtendedIterable,
-} from "./narrow-iterable";
 import type { AsyncReducer, Reducer } from "../reducer";
 import type { CookedPipe } from "../generated/cooked-pipe";
-import type { ElementOf } from "./element-of";
-import type { FlatIterable } from "./flat-iterable";
 import type { MapFn } from "../map-fn";
 import type { MaybePromise } from "../maybe-promise";
-import type { ProxiedIterable } from "./proxied-iterable";
 
 /**
  * An iterable with additional methods.
@@ -60,9 +52,6 @@ export interface ExtendedIterable<T> extends Iterable<T> {
     filter: (predicate: ArrayLikePredicate<T>) => ExtendedIterable<T>;
     find: (predicate: ArrayLikePredicate<T>) => T | undefined;
     first: (predicate?: ArrayLikePredicate<T>) => ExtendedIterable<T>;
-    flat: <D extends number = 1>(
-        depth?: D
-    ) => AsExtendedIterable<FlatIterable<T, D>>;
     forEach: (fn: (element: T, index: number) => void) => ExtendedIterable<T>;
     isEmpty: () => boolean;
     getIterator: () => Iterator<T>;
@@ -77,23 +66,9 @@ export interface ExtendedIterable<T> extends Iterable<T> {
     some: (predicate: ArrayLikePredicate<T>) => boolean;
     take: (n: number) => ExtendedIterable<T>;
     toArray: () => T[];
-    zip: () => T extends AnySyncIterable<unknown>
-        ? ExtendedIterable<ElementOf<T> | undefined>
-        : never;
-
-    /**
-     * Returns a new {@link ProxiedIterable} that exposes methods present in the iterable's elements.
-     *
-     * @returns A proxied iterable representation of the iterable.
-     *
-     * @remarks
-     * You should avoid using this method unless absolutely necessary since it can cause your elements to unexpectedly mutate.
-     */
-    unsafeProxy: () => ProxiedIterable<ExtendedIterable<T>>;
 }
 
 export interface ExtendedAsyncIterable<T> extends AsyncIterable<T> {
-    async: () => ExtendedAsyncIterable<Awaited<T>>;
     at: (n: number) => Promise<T | undefined>;
     buffer: (ms: number) => ExtendedAsyncIterable<Awaited<T>>;
     concat: (
@@ -113,9 +88,6 @@ export interface ExtendedAsyncIterable<T> extends AsyncIterable<T> {
     first: (
         predicate?: AsyncArrayLikePredicate<T>
     ) => ExtendedAsyncIterable<Awaited<T>>;
-    flat: <D extends number = 1>(
-        depth?: D
-    ) => AsExtendedAsyncIterable<FlatIterable<T, D>>;
     forEach: (
         fn: (element: T, index: number) => MaybePromise<void>
     ) => ExtendedAsyncIterable<Awaited<T>>;
@@ -139,17 +111,4 @@ export interface ExtendedAsyncIterable<T> extends AsyncIterable<T> {
     take: (n: number) => ExtendedAsyncIterable<Awaited<T>>;
     throttle: (ms: number) => ExtendedAsyncIterable<Awaited<T>>;
     toArray: () => Promise<T[]>;
-    zip: () => T extends AnyIterable<unknown>
-        ? ExtendedAsyncIterable<Awaited<ElementOf<T>> | undefined>
-        : never;
-
-    /**
-     * Returns a new {@link ProxiedIterable} that exposes methods present in the iterable's elements.
-     *
-     * @returns A proxied iterable representation of the iterable.
-     *
-     * @remarks
-     * You should avoid using this method unless absolutely necessary since it can cause your elements to unexpectedly mutate.
-     */
-    unsafeProxy: () => ProxiedIterable<ExtendedAsyncIterable<T>>;
 }

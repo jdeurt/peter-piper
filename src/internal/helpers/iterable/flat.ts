@@ -1,9 +1,3 @@
-import type {
-    AnyIterable,
-    AnySyncIterable,
-    AsExtendedAsyncIterable,
-    AsExtendedIterable,
-} from "../../types";
 import {
     asyncIterable,
     isIterable,
@@ -12,7 +6,11 @@ import {
     toAsyncIterable,
     withIterableAssertion,
 } from "../../utils";
-import type { FlatIterable } from "../../types/iterable/flat-iterable";
+import type { AnyIterable } from "../../types";
+import type {
+    FlatAsyncIterable,
+    FlatIterable,
+} from "../../types/iterable/flat-iterable";
 import { getIterator } from "../../utils/iterable/get-iterator";
 
 /**
@@ -39,7 +37,7 @@ import { getIterator } from "../../utils/iterable/get-iterator";
  */
 export const flat = <T, D extends number = 1>(depth?: D) =>
     withIterableAssertion(
-        (input: AnyIterable<T>): AsExtendedAsyncIterable<FlatIterable<T, D>> =>
+        (input: AnyIterable<T>): FlatAsyncIterable<T, D> =>
             asyncIterable(async function* () {
                 const iterator = getIterator(input);
 
@@ -65,7 +63,7 @@ export const flat = <T, D extends number = 1>(depth?: D) =>
                         yield nextResult.value;
                     }
                 }
-            }) as AsExtendedAsyncIterable<FlatIterable<T, D>>
+            }) as FlatAsyncIterable<T, D>
     );
 
 /**
@@ -93,7 +91,7 @@ export const flat = <T, D extends number = 1>(depth?: D) =>
  */
 export const flatSync = <T, D extends number = 1>(depth?: D) =>
     withIterableAssertion(
-        (input: AnySyncIterable<T>): AsExtendedIterable<FlatIterable<T, D>> =>
+        (input: Iterable<T>): FlatIterable<T, D> =>
             iterable(function* () {
                 const iterator = getIterator(input);
 
@@ -112,10 +110,10 @@ export const flatSync = <T, D extends number = 1>(depth?: D) =>
                     } else if (isSyncIterable(nextResult.value)) {
                         yield* flatSync((depth - 1) as D)(
                             nextResult.value
-                        ) as AnySyncIterable<T>;
+                        ) as Iterable<T>;
                     } else {
                         yield nextResult.value;
                     }
                 }
-            }) as AsExtendedIterable<FlatIterable<T, D>>
+            }) as FlatIterable<T, D>
     );

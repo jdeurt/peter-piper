@@ -1,4 +1,4 @@
-import type { AnyIterable, AnySyncIterable, MapFn } from "../../types";
+import type { AnyIterable, MapFn } from "../../types";
 import { asyncIterable, iterable, withIterableAssertion } from "../../utils";
 
 /**
@@ -61,7 +61,7 @@ export const map = <T, U>(mapFn: MapFn<T, U>) => {
  * Available as `map` when imported from `peter-piper/sync`.
  */
 export const mapSync = <T, U>(mapFn: MapFn<T, U>) =>
-    withIterableAssertion((input: AnySyncIterable<T>) => {
+    withIterableAssertion((input: Iterable<T>) => {
         let index = 0;
 
         return iterable(function* () {

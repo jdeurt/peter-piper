@@ -1,9 +1,4 @@
-import type {
-    AnyIterable,
-    AnySyncIterable,
-    AsyncReducer,
-    Reducer,
-} from "../../types";
+import type { AnyIterable, AsyncReducer, Reducer } from "../../types";
 import { NOTHING } from "../../constants";
 import { withIterableAssertion } from "../../utils";
 
@@ -82,7 +77,7 @@ export function reduce<T, U = T>(
  * Available as `reduce` when imported from `peter-piper/sync`.
  */
 export function reduceSync<T, U = T>(reducer: Reducer<T, U>, initialValue?: U) {
-    return withIterableAssertion((input: AnySyncIterable<T>): U => {
+    return withIterableAssertion((input: Iterable<T>): U => {
         let index = 0;
         let accumulator: U | typeof NOTHING =
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

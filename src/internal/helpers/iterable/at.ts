@@ -1,4 +1,3 @@
-import type { AnyIterable, AnySyncIterable } from "../../types";
 import {
     atGreedy,
     atGreedySync,
@@ -6,6 +5,7 @@ import {
     atLazySync,
     withIterableAssertion,
 } from "../../utils";
+import type { AnyIterable } from "../../types";
 
 /**
  * Retrieves the element at a given index from an input iterable.
@@ -46,6 +46,6 @@ export const at = <T>(i: number) =>
  * Available as `at` when imported from `peter-piper/sync`.
  */
 export const atSync = <T>(i: number) =>
-    withIterableAssertion((input: AnySyncIterable<T>) =>
+    withIterableAssertion((input: Iterable<T>) =>
         i >= 0 ? atLazySync(input, i) : atGreedySync(input, i)
     );
